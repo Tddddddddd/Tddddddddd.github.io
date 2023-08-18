@@ -9,7 +9,7 @@
     
     <title>
         
-            HackTheBox-Lame |
+            Shocker - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">HackTheBox-Lame</span>
+                <span class="title-hover-animation">Shocker - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2023-04-03 11:18:28</span>
-                <span class="mobile">2023-04-03 11:18</span>
+                <span class="pc">2022-04-03 16:22:00</span>
+                <span class="mobile">2022-04-03 16:22</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2023-04-03 11:18:28</span>
+                <span class="pc">2023-04-03 16:22:00</span>
             </span>
         
 
@@ -247,125 +247,148 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.6hqy3tfydg00.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.10xa3ta2l09c.webp"
                      
                 ></p>
 <p>nmap扫描</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.3yx945fjppu0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.4uxobz62v340.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.ph7ioor6g1s.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.7hgseb8uwqk0.webp"
                      
                 ></p>
-<p>21端口开放的vsftp 2.3.4貌似有后门，搜一下exp</p>
+<p>访问80端口</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.4bj2nn4n7hs0.webp"
-                     
-                ></p>
-<p>但没有用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.62enuz5zbbo0.webp"
-                     
-                ></p>
-<p>尝试445端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.kdh3n125z5c.webp"
-                     
-                ></p>
-<p>搜索有无可用exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.2aj2i3t51v28.webp"
-                     
-                ></p>
-<p>选用16320.rb</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.3jnj15i7ovs0.webp"
-                     
-                ></p>
-<p>将文件复制到根目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.1x5rzlt19wzk.webp"
-                     
-                ></p>
-<p>由于.rb文件无法直接执行，查看文件内容，看能否找到CVE编号</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.5d2734vnx000.webp"
-                     
-                ></p>
-<p>google搜索CVE编号，查找exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.5c7o88jfk4w0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.4vpce7citg20.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.2csefffa96ck.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.czx182t9erc.webp"
                      
                 ></p>
-<p>将exp下载到本地运行</p>
-<p>这里报错缺少python库</p>
+<p>没什么可利用信息，扫一下目录</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.6je80n9is1w0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.7i035qtd7yw0.webp"
                      
                 ></p>
-<p>根据文档安装一下</p>
+<p>发现一个user.sh文件</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.506tpjc15t40.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.5504dzpwuek0.webp"
                      
                 ></p>
-<p>尝试利用</p>
+<p>下载下来</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.2s6y7a8qzhy0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.2lcsfwsq2f80.webp"
                      
                 ></p>
-<p>运行时跟上目标IP地址，端口，以及需要反弹的IP地址和端口</p>
+<p>文件内容</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.10lrdip0x77k.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.vvm4kafhp40.webp"
                      
                 ></p>
-<p>nc监听反弹端口</p>
+<p>在利用curl看看</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.1y03ra9u5nk0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.185pujj7uiak.webp"
                      
                 ></p>
-<p>直接就root权限了</p>
+<p>可能是个bash命令，搜索一下</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.15fueukgv9i8.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.3cic9j5wfn40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.jmargjdlqtk.webp"
+                     
+                ></p>
+<p>可用来反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.2qwo6w1zlwo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.sygxxsajs.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.38t0qh18vqm0.webp"
+                     
+                ></p>
+<p>发现lxd用户组</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.5isyyrpa9ns0.webp"
+                     
+                ></p>
+<p>文件也存在</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.1irratgpjo68.webp"
+                     
+                ></p>
+<p>尝试利用lxd提权</p>
+<p>同样在攻击机下载文件执行后，在让靶机下载，但是，这次不行，没有权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.fbwnzzb7us8.webp"
+                     
+                ></p>
+<p>另寻他法</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.5gjfy87pjh00.webp"
+                     
+                ></p>
+<p>搜索一下用法</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.357xmm6f28q0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.4y33ty3xblc0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Shocker/image.3un23wr3dko0.webp"
                      
                 ></p>
 
@@ -386,21 +409,21 @@
             
                 <div class="article-nav">
                     
-                    
-                        <div class="article-next">
-                            <a class="next"
-                               rel="next"
-                               href="/2022/10/20/cisp-pte/"
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/08/29/hello-world/"
                             >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">cisp-pte</span>
-                                <span class="post-nav-item">下一篇</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
                             </span>
-                                <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
                         </div>
+                    
                     
                 </div>
             

