@@ -3,19 +3,15 @@
   <entry>
     <title>Hello World</title>
     <url>/2022/08/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230818/image.webp"
+                     
+                ></p>
+<p>很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，<del>主要是因为懒</del></p>
+<p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
+<p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非你能把Github打穿</del></p>
 ]]></content>
   </entry>
 </search>
