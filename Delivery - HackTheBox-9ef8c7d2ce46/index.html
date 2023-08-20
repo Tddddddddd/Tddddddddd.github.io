@@ -9,7 +9,7 @@
     
     <title>
         
-            Tabby - HackTheBox |
+            Delivery - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Tabby - HackTheBox</span>
+                <span class="title-hover-animation">Delivery - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2023-05-05 15:36:23</span>
-                <span class="mobile">2023-05-05 15:36</span>
+                <span class="pc">2023-05-07 09:06:17</span>
+                <span class="mobile">2023-05-07 09:06</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2023-05-06 17:54:06</span>
+                <span class="pc">2023-05-07 09:06:17</span>
             </span>
         
 
@@ -247,255 +247,209 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.1q3g0npi6peo.png"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.frk9vzobkeo.webp"
                      
                 ></p>
 <p>nmap扫描</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.7fmpwfvtrbo0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.58y0b2fbdn80.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.78i0uv7x7q00.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.1hgeaq29rc74.webp"
                      
                 ></p>
-<p>貌似是个tomcat的站</p>
-<p>先看看80</p>
+<p>访问80端口</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.4dogslda6jy0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.qgr5nw3uw8g.webp"
                      
                 ></p>
+<p>扫一下目录</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.7dz5cs944wg0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.17ia7ipzc1q8.webp"
                      
                 ></p>
-<p>发现一个域名，添加到hosts文件</p>
+<p>没什么用</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.2kpy2jleguu0.webp"
-                     
-                ></p>
-<p>这里疑似一个文件包含</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.5g8exzeeu8o0.webp"
-                     
-                ></p>
-<p>确实是文件包含，包含他本身看一下代码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.549xhwo7sgk0.webp"
-                     
-                ></p>
-<p>这就是打开文件，并不存在包含执行文件</p>
-<p>在看看8080</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.5yfzl15e6po0.webp"
-                     
-                ></p>
-<p>貌似就是个tomcat的后台</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.38osb9uexa00.webp"
-                     
-                ></p>
-<p>弱口令不行，爆破的话感觉也不太行，试试用文件包含去找一下配置文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.2giwhsvpjhno.webp"
-                     
-                ></p>
-<p>这里给提示了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.3jczqydodte0.webp"
-                     
-                ></p>
-<p>获得密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.3ix1i8njjoa0.webp"
-                     
-                ></p>
-<p>登录后也没发现上传war包的地方</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.1erwhk7cch7k.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.79lia7ss0x40.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.51mtb9xpm700.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.1gehl4h9thog.webp"
                      
                 ></p>
-<p>发现很多这种curl请求，搜一下有没有什么说法</p>
-<p><code>https://medium.com/@cyb0rgs/exploiting-apache-tomcat-manager-script-role-974e4307cd00</code></p>
-<p>貌似是有个类似于接口的功能，可以上传war包</p>
+<p>发现域名，添加到hosts文件</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.13k77884zd1c.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.3zdzpqqz5bk0.webp"
                      
                 ></p>
-<p>先生成一个war包</p>
+<p>发现cms名称</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.47x03ozthqw0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.2srx82tzxxk0.webp"
+                     
+                ></p>
+<p>搜一下有无exp可利用</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.6873zz067gw0.webp"
+                     
+                ></p>
+<p>还不知道版本，无法确定是否可利用</p>
+<p>继续扫目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.63f6y1qi1sw0.webp"
+                     
+                ></p>
+<p>扫出一大堆</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.20aiobaf2eyo.webp"
+                     
+                ></p>
+<p>在这可以生成一个票据，之后会给一个查询码和一个邮箱地址</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.40w1r9xjk140.webp"
+                     
+                ></p>
+<p>在这可以检查票据</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.7bll09dj8l00.webp"
+                     
+                ></p>
+<p>没有可利用信息</p>
+<p>之前还在80主页发现一个链接</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.6tjpyjy4qp00.webp"
+                     
+                ></p>
+<p>尝试用那个<a class="link"   href="mailto:&#55;&#x37;&#52;&#x39;&#x39;&#54;&#x33;&#64;&#x64;&#101;&#x6c;&#105;&#118;&#101;&#x72;&#x79;&#x2e;&#x68;&#116;&#98;" >&#55;&#x37;&#52;&#x39;&#x39;&#54;&#x33;&#64;&#x64;&#101;&#x6c;&#105;&#118;&#101;&#x72;&#x79;&#x2e;&#x68;&#116;&#98;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.rw1y4ulnugw.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.6po00vxhrhs0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.7jreek4p9v40.webp"
                      
                 ></p>
+<p>验证链接发到了票据查询这，访问该地址</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.1qzg1p3hpsbk.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.2ga50kjalslc.webp"
                      
                 ></p>
+<p>点击internal</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.3urzcdnxjj60.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.5k0scxkoe3o0.webp"
+                     
+                ></p>
+<p>这里貌似有一个ssh登陆的用户和密码，尝试登陆一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.512j3r0f6ds0.webp"
                      
                 ></p>
 <p>提权</p>
-<p>在网站目录下发现一个疑似备份文件的压缩包</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.66gvqv2pv600.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.1g1vv4ligkm8.webp"
                      
                 ></p>
-<p>把他下载到攻击机进行解压缩</p>
+<p>在网站目录下发现ost-config.php配置文件，内部包含数据库的连接账户和密码</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.34wt2rfel6a0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.3bi3talgy6o0.webp"
                      
                 ></p>
-<p>还需要密码，爆破一下</p>
-<p><code>zz2john bakckup.zip</code></p>
+<p>数据库中并无可利用信息</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.u24wcjp7u9s.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.mbhdw1bhhv4.webp"
                      
                 ></p>
-<p>将密钥写入一个文件，在利用john进行爆破</p>
+<p>在另一个目录又发现一个配置文件，内部同样包含一个数据库的账号和密码</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.361h1f8h5h20.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.2pijxqf3bpg0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.38d9kz9xdtk0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.1ddzbmcvw874.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.2vihh1clf9u0.webp"
                      
                 ></p>
-<p>解压后也没有可利用信息</p>
+<p>在Users表中找到root的密码，尝试爆破一下</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.2hvxr9apsf20.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.6yxlhd2o0sg0.webp"
                      
                 ></p>
-<p>passwd发现有ash用户，尝试用这个密码去切换</p>
+<p>查看一下hash类型</p>
+<p><code>https://hashcat.net/wiki/doku.php?id=hashcat</code></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.4x7sm6cyae00.webp"
-                     
-                ></p>
-<p>发现ash用户存在lxd组内，尝试用lxd提权</p>
-<p>先在本地创建好所需文件</p>
-<p><code>https://www.cnblogs.com/hirak0/p/16111530.html</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.4yov7m6cm400.webp"
-                     
-                ></p>
-<p>上传到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.x897l1kaqg0.webp"
-                     
-                ></p>
-<p>创建镜像</p>
-<p><code>lxc image import lxd.tar.xz rootfs.squashfs --alias alpine</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.5lh9oprdyuo0.webp"
-                     
-                ></p>
-<p><code>lxc init alpine privesc -c security.privileged=true</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.60r3bbmfw780.webp"
-                     
-                ></p>
-<p>如果报错的话，则重新运行<code>lxd init</code>创建新的存储池</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.5kev92hszjo0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.2miqhhvhvbs0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.71huvbmzvv00.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.60n5iy65i140.webp"
                      
                 ></p>
-<p>一路回车即可</p>
-<p>挂载root目录</p>
-<p><code>lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=true</code></p>
+<p>这边好像给了提示，PleaseSubscribe!这段是密码的一部分，采用hashcat掩码爆破</p>
+<p><code>hashcat -m 3200 -a 3 -i --increment-min 16 --increment-max 20 hash.txt PleaseSubscribe\!?a?a?a?a</code></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.7e5xo3x8ds0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.u854iotexio.webp"
                      
                 ></p>
-<p>启动镜像，并进入镜像shell会话</p>
-<p><code>lxc start privesc</code> <code>lxc exec privesc /bin/sh</code></p>
+<p>切换root</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Tabby/image.3ek6sjok08g0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Delivery/image.5mzf9uw23do0.webp"
                      
                 ></p>
 
@@ -519,13 +473,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/Doctor%20-%20HackTheBox-dea21469d468/"
+                               href="/Armageddon%20-%20HackTheBox-0d669e781980/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Doctor - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">Armageddon - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -535,10 +489,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/Admirer%20-%20HackTheBox-817e25a1d628/"
+                               href="/Ready%20-%20HackTheBox-f413d8c7139d/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Admirer - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">Ready - HackTheBox</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
