@@ -9,7 +9,7 @@
     
     <title>
         
-            Blocky - HackTheBox |
+            Admirer - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Blocky - HackTheBox</span>
+                <span class="title-hover-animation">Admirer - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2023-04-22 13:01:39</span>
-                <span class="mobile">2023-04-22 13:01</span>
+                <span class="pc">2023-05-03 22:26:18</span>
+                <span class="mobile">2023-05-03 22:26</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2023-04-22 13:01:39</span>
+                <span class="pc">2023-05-03 22:26:18</span>
             </span>
         
 
@@ -247,185 +247,306 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.4mrre2j2zjw0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.6qe6wz267500.webp"
                      
                 ></p>
 <p>nmap扫描</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.7ennzifiezs0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.4e0oc5i5ysq0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.21fa6kzpnwps.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.9okup0xt5a0.webp"
                      
                 ></p>
-<p>这端口有点意思，还开了个Minecraft服务器在上面</p>
-<p>80端口扫出个域名，添加到hosts文件，访问</p>
+<p>访问80端口下的robots.txt</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.h1g3ue8xo74.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.651hes6hvf40.webp"
                      
                 ></p>
-<p>逛了一圈，没啥可利用信息，扫目录</p>
-<p><code>gobuster dir -u &quot;http://blocky.htb/&quot; -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,sh,pl -t 30</code></p>
+<p>发现一个目录</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.37k7w7xycf60.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.1ww85i1nnou8.webp"
                      
                 ></p>
+<p>扫一下</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.1ziy5p0762tc.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.32ho0hjyf500.webp"
                      
                 ></p>
+<p>扫到一个txt</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.6gpc11q693c0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.fo47k76rnvc.webp"
                      
                 ></p>
+<p>好像没什么用</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.5u8qx2j5tlk0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.2ofk8fj73ik0.webp"
                      
                 ></p>
-<p>这目录扫起来都断断续续的，看样子应该是个wordpress站点</p>
+<p>robots.txt里面这句话说有两个txt文件，但只扫到了一个，另外一个貌似是creds相关的，creds是资格证书的缩写，尝试全称访问一下</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.73tcs1tswqk0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.1ox0911iqy4g.webp"
                      
                 ></p>
-<p>在这发现俩jar包文件，下载下来，unzip解压后，在利用jad进行反编译</p>
-<p><code>https://github.com/moparisthebest/jad/blob/master/jad158e.linux.static.zip</code></p>
+<p>获得一些账号密码，有个FTP的账号密码可以试试</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.1kxg2lh7qpa8.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.4gbkz83s12w0.webp"
                      
                 ></p>
+<p>发现两个文件，get下来</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.2te6bsgiqay0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.6yxw46vf4ts0.webp"
                      
                 ></p>
-<p>发现疑似数据库账号密码，扫目录发现个phpmyadmin，尝试登陆一下</p>
+<p>sql文件里面没可利用信息，只有一个数据库名字</p>
+<p>压缩包解压缩后</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.5gmzk5zekmw0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.105woezrifs0.webp"
                      
                 ></p>
+<p>这个robots和访问到的又不一样</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.2afiw65eaef4.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.4tfwx9vnc7i0.webp"
                      
                 ></p>
-<p>发现账号和加密后的密码，无法解密</p>
-<p>Windows的phpmyadmin提权我会，Linux的怎么个操作</p>
-<p>搜了半天，貌似是说这个数据库root的密码，同样也是ssh连接notch用户的密码</p>
+<p>可能这俩文件又和访问到的不一样</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.56zpdznyzpc0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.2wn8zb2zhlk0.webp"
                      
                 ></p>
-<p>看到这个lxd用户组，我就知道这把稳了</p>
+<p>第一个是一样的</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.4o2xay5gw580.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.399yfa7j83a0.webp"
                      
                 ></p>
-<p>文件都存在，老样子，lxd容器提权</p>
-<p><code>wget https://raw.githubusercontent.com/saghul/lxd-alpine-builder/master/build-alpine</code></p>
-<p>下载build-alpine，还是下载不下来，将内容复制，写入文本，在本地运行</p>
+<p>第二个明显多了一条，但还是没法突破下一步</p>
+<p>在utility-scripts目录下找到一些php文件</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.9l4sd7r4asc.webp"
-                     
-                ></p>
-<p>让靶机下载</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.1kejhlnkorpc.webp"
-                     
-                ></p>
-<p><code>lxc image import alpine-v3.17-x86_64-20230401_1205.tar.gz --alias test1</code></p>
-<p><code>lxc image list</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.1vu0t2mev7fk.webp"
-                     
-                ></p>
-<p><code>lxc init test1 test1 -c security.privileged=true</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.7hrf84g65dc0.webp"
-                     
-                ></p>
-<p><code>lxc config device add test1 test1 disk source=/ path=/mnt/root recursive=true</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.4xfa0hibuds0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.64rmxuit4w00.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.1bug3y3gk4n4.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.5x6edwigwlk0.webp"
                      
                 ></p>
-<hr>
-<p>应该还有其他方法提权，脚本检测一下</p>
+<p>访问后，是一个类似于查看信息的页面，没法闭合rce</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.3ar83xv9q7g0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.52mcy91hts00.webp"
+                     
+                ></p>
+<p>又发现一个账号密码，怎么这么多啊</p>
+<p>尝试用这个和ftp的账号密码登陆一下ssh</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.3bwdsne0rq60.webp"
+                     
+                ></p>
+<p>ftp账号拒绝登录，waldo密码不对</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.1klfm98uolwg.webp"
+                     
+                ></p>
+<p>剩下俩文件也没信息，网上搜了一下，说是utility-scripts目录下还有个php文件，但我字段扫不出来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.3154h2tja5c0.webp"
+                     
+                ></p>
+<p>存在adminer.php文件，左上角表明为adminer</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.5gl47l7vpb00.webp"
+                     
+                ></p>
+<p>搜一下有无exp</p>
+<p><code>https://podalirius.net/en/articles/writing-an-exploit-for-adminer-4.6.2-arbitrary-file-read-vulnerability/</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.5hja817mykw0.webp"
+                     
+                ></p>
+<p>类似于将本地的数据库进行远程共享，达到读取文件的目的</p>
+<p>先把mysql开起来，创建一个数据库和连接用户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.1p4zddwl78ww.webp"
+                     
+                ></p>
+<p>在修改一下mysql的监听地址</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.45b9jldc9jc0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.5pj3e5sz9v40.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.5aiff82ox2o0.webp"
                      
                 ></p>
-<p>pkexec和脏牛就不试了，而且这靶机也没有gcc</p>
+<p>重新启动mysql</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.3uix8bgvfnq0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.2nmm3a6fouy0.webp"
                      
                 ></p>
-<p>我们之前有notch用户的密码，sudo -l看看</p>
+<p>返回登录</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.6o2edf00hnc0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.44dvw0vbh7e0.webp"
+                     
+                ></p>
+<p>server填攻击机的IP地址</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.157o79x4h03g.webp"
+                     
+                ></p>
+<p>登录后先创建一个表</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.2pkpx50uqse0.webp"
+                     
+                ></p>
+<p>将type类型修改为text</p>
+<p>然后执行sql语句</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.31xz2m8ky0y0.webp"
+                     
+                ></p>
+<p>应该是权限不足，不能读取passwd，换成index.php试一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.13bmt7qre35s.webp"
+                     
+                ></p>
+<p>读到了，去看一下表里面的数据</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.4l5o0jz807i0.webp"
+                     
+                ></p>
+<p>又读到了一个账号密码，尝试ssh登录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.3eednlf8zu20.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.cp6nt2npx3s.webp"
+                     
+                ></p>
+<p>有一个sudo权限的文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.33hwgq7rp8q0.webp"
+                     
+                ></p>
+<p>看一下内容</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.38mmbv8mv320.webp"
+                     
+                ></p>
+<p>貌似引用了该目录下的一个py文件</p>
+<p>在看看python文件内容</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.46q9p8iont40.webp"
+                     
+                ></p>
+<p>好像又是一个路径劫持</p>
+<p>在攻击机创建一个反弹shell的shutil名字的python文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.2h3ofdhynxm0.webp"
+                     
+                ></p>
+<p>由于python开启http服务也需要引用到shutil.py文件，如果名字相同就开不了http服务</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.76kb7g4d4hc0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Blocky/image.719kudwlrxg.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.zlmgw237cwg.webp"
                      
                 ></p>
-<p>还有其他提权方法，不一个一个试了，主要是lxd那块太慢了，浪费时间</p>
+<p>然后就是添加python的环境变量，选择shutil.py所在的目录，以及sh文件的绝对路径</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.qg5w09et0kg.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox-Admirer/image.1spkr72u1ilc.webp"
+                     
+                ></p>
 
             </div>
 
@@ -447,13 +568,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/Frolic%20-%20HackTheBox-f72fd971108b/"
+                               href="/Tabby%20-%20HackTheBox-5dffe8b93821/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Frolic - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">Tabby - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -463,10 +584,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/Haircut%20-%20HackTheBox-d81c24607f5d/"
+                               href="/Magic%20-%20HackTheBox-b0af2ab35fc4/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Haircut - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">Magic - HackTheBox</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">

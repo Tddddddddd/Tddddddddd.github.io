@@ -173,6 +173,644 @@
                 <div class="home-article-item-bottom border-box">
                     
                     <h3 class="home-article-title border-box">
+                        <a href="/Node%20-%20HackTheBox-13258ccc923a/">
+                            Node - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+http服务开放在3000端口
+
+
+
+主页有登录框
+
+试试弱口令
+
+在试试主页这几个名字
+
+都没用，想到靶机名字Node，看看js文件
+
+
+貌似是用户和加密后的密码，第一个貌似是管理员，解密一下密码
+
+cmd5可以解密
+登陆后有一...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Wed Apr 05 2023 15:29:18 GMT+0800">2023-04-05</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Node%20-%20HackTheBox-13258ccc923a/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/SolidState%20-%20HackTheBox-0990c563f1ff/">
+                            SolidState - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+4555端口运行了一个没见过的服务
+
+搜索一下
+
+可以用telnet连接
+
+
+修改一下这些用户的密码
+
+然后在连接110端口
+
+查看一下邮件信息
+
+第一封是一封欢迎邮件，无可利用信息
+
+第二封邮件发现一个账号密码，尝试ssh登录一...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Wed Apr 05 2023 15:22:07 GMT+0800">2023-04-05</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/SolidState%20-%20HackTheBox-0990c563f1ff/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/Sense%20-%20HackTheBox-9a633a1ff158/">
+                            Sense - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+访问80
+
+试试弱口令，万能密码
+
+都不行，在爆破试试，利用burp获取post提交的数据格式
+
+扫目录
+
+密码是默认值
+
+查看主页源代码时，发现路径中包含pfsense
+
+搜索pfsense默认密码
+
+尝试登录
+
+这里要用小写的...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Wed Apr 05 2023 11:15:08 GMT+0800">2023-04-05</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Sense%20-%20HackTheBox-9a633a1ff158/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/Nineveh%20-%20HackTheBox-6c7691fc8f01/">
+                            Nineveh - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+老样子，看80
+
+
+扫一下目录
+
+
+试试弱口令
+
+账号是对的，在试试万能密码
+
+爆破一下
+1hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.10.10.43 http-p...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Tue Apr 04 2023 20:02:23 GMT+0800">2023-04-04</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Nineveh%20-%20HackTheBox-6c7691fc8f01/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/Cronos%20-%20HackTheBox-d7494865a491/">
+                            Cronos - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+先看看80端口
+
+扫一下目录
+
+啥也没有
+枚举一下解析域名 dig -x 10.10.10.13 @10.10.10.13
+
+添加hosts解析
+
+
+
+没找到可利用信息，继续枚举子域名 dig axfr cronos.htb @1...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Tue Apr 04 2023 16:53:55 GMT+0800">2023-04-04</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Cronos%20-%20HackTheBox-d7494865a491/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/Nibbles%20-%20HackTheBox-b7e633527fc0/">
+                            Nibbles - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+访问80端口
+
+查看页面源代码
+
+发现一个目录
+
+扫一波目录
+
+发现一个管理员登录地址
+
+没账号密码
+发现版本信息，搜索一下
+
+
+貌似可以写一个shell进去
+
+先试试账号密码登录
+
+写一个shell
+
+
+拼接路径访问
+
+
+文件存...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Tue Apr 04 2023 14:39:43 GMT+0800">2023-04-04</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Nibbles%20-%20HackTheBox-b7e633527fc0/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/Bashed%20-%20HackTheBox-07986bdc7b27/">
+                            Bashed - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+只开放了80端口，访问
+
+搜索一下
+
+这么简单？
+
+扫一下目录
+
+
+在dev目录下发现bash
+
+
+
+想办法把shell反弹回来
+
+不能直接反弹
+在本地写一个python反弹文件，在让他下载执行
+1import socket,su...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Tue Apr 04 2023 10:29:33 GMT+0800">2023-04-04</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Bashed%20-%20HackTheBox-07986bdc7b27/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/Shocker%20-%20HackTheBox-83ca457128e3/">
+                            Shocker - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+访问80端口
+
+
+没什么可利用信息，扫一下目录
+
+发现一个user.sh文件
+
+下载下来
+
+文件内容
+
+在利用curl看看
+
+可能是个bash命令，搜索一下
+
+
+可用来反弹shell
+
+
+
+发现lxd用户组
+
+文件也存在
+
+尝试利...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Mon Apr 03 2023 16:22:00 GMT+0800">2023-04-03</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/Shocker%20-%20HackTheBox-83ca457128e3/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
                         <a href="/Brainfuck%20-%20HackTheBox-f19b5ee3dc23/">
                             Brainfuck - HackTheBox
                         </a>
@@ -312,110 +950,6 @@ g...
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                <div class="home-article-item-bottom border-box">
-                    
-                    <h3 class="home-article-title border-box">
-                        <a href="/cisp-pte-83d4ba911579/">
-                            cisp-pte
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content keep-markdown-body">
-                        
-                            前言一直想着需不需要考个证书，毕竟看着大佬们那些堆起来的证书都感觉特别强。
-评估了一下自己的水平和钱包的厚度，看来看去，看到了国内的CISP认证系列。
-
-看看这可怕的时间要求，我只是一个刚毕业的小牛马，还够不着他的最低要求。
-后续我又了解到CISP的...
-                        
-                    </div>
-
-                    
-
-<div class="article-meta-info-container border-box home">
-    <div class="article-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Thu Oct 20 2022 10:05:13 GMT+0800">2022-10-20</span>
-            </span>
-        
-
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/cisp-pte-83d4ba911579/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <div class="home-article-item-bottom border-box">
-                    
-                    <h3 class="home-article-title border-box">
-                        <a href="/hello-world-6fefadf19e23/">
-                            Hello World
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content keep-markdown-body">
-                        
-                            
-很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，主要是因为懒
-前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，没钱，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，...
-                        
-                    </div>
-
-                    
-
-<div class="article-meta-info-container border-box home">
-    <div class="article-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Mon Aug 29 2022 11:31:12 GMT+0800">2022-08-29</span>
-            </span>
-        
-
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/hello-world-6fefadf19e23/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
     </ul>
     
     <div class="paginator border-box flex-center">
@@ -431,14 +965,14 @@ g...
                    type="number"
                    value="3"
                    min="1"
-                   max="3"
-            ><span class="delimiter base-color-size">/</span><span class="base-color-size">3</span>
+                   max="4"
+            ><span class="delimiter base-color-size">/</span><span class="base-color-size">4</span>
         </div>
 
 
-        <div class="btn-wrap">
+        <div class="btn-wrap allowed">
             <a class="jump-btn"
-               href="/"
+               href="/page/4/"
             ><i class="fa-solid fa-chevron-right"></i></a>
         </div>
     </div>
