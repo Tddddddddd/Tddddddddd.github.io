@@ -9,7 +9,7 @@
     
     <title>
         
-            cisp-pte |
+            OSCP |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">cisp-pte</span>
+                <span class="title-hover-animation">OSCP</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-10-25 10:05:13</span>
-                <span class="mobile">2022-10-25 10:05</span>
+                <span class="pc">2023-07-25 10:13:23</span>
+                <span class="mobile">2023-07-25 10:13</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-10-25 10:05:13</span>
+                <span class="pc">2023-07-25 10:13:23</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/OffSec/">OffSec</a></li>
+                        
                     
                 </ul>
             </span>
@@ -241,87 +244,133 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直想着需不需要考个证书，毕竟看着大佬们那些堆起来的证书都感觉特别强。</p>
-<p>评估了一下自己的水平和钱包的厚度，看来看去，看到了国内的CISP认证系列。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSCP（Offensive Security Certified Professional）是由OffSec（也就是kali的设计以及维护官方）推出的一个渗透认证考试，要求持有者在安全的实验室环境中成功攻击和渗透各种实时机器，不设立笔试环节。</p>
+<h1 id="课程内容与变化"><a href="#课程内容与变化" class="headerlink" title="课程内容与变化"></a>课程内容与变化</h1><p>OffSec官方今年3月份的时候宣布更新了PEN-200的课程和考试内容（又名PEN-200-2023，后面又改回去了），这也意味着难度可能更高。</p>
+<p>主要的变化有：</p>
+<ul>
+<li>移出了前置的基础内容，包括：熟悉Kali Linux、命令行使用等</li>
+<li>移出了缓冲区溢出内容</li>
+<li>扩充了SQL注入部分</li>
+<li>扩充了提权部分</li>
+<li>扩充了端口转发和隧道部分</li>
+<li>扩充了Active Directory部分</li>
+</ul>
+<p>这次的更新变化还是挺大的，以前如果在考试的时候遇见缓冲区溢出的题目，那么这将是送分题，而且每个缓冲区溢出的题目分值都不低，大多在15-20分，<del>这也意味着没法混</del>，而扩展的SQL注入、提权、以及AD域的内容则更贴切当前的行业需求吧，毕竟现在都这么卷，要是不会个内网提权啥的，都没人看你一眼。</p>
+<p>而之前获得奖励积分的条件也改变了：</p>
+<ul>
+<li>获得30台主机的<code>proof.txt</code></li>
+<li>完成每个模块中80%的练习</li>
+</ul>
+<p>proof.txt也就是靶场练习中的root权限flag，而模块练习则是需要每一个模块中的练习题，都完成至总进度的百分之八十，少一个都不行，但是模块练习中的一些题目则很让人难受，我记得有一题填空题，我只是忘记将它的开头字母大写而已，死活就是验证不正确。</p>
+<p>总的来说，练习不难，但恶心，如果对自己有信心，就可以不用考虑去拿这10分的奖励积分。</p>
+<p>新<code>labs</code>面板如下图所示</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.1266hocqf09s.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.45u9o77hqaq0.webp"
                      
                 ></p>
-<p>看看这可怕的时间要求，我只是一个刚毕业的小牛马，还够不着他的最低要求。</p>
-<p>后续我又了解到CISP的其他分支系列。</p>
+<p>这是在OffSec官方的discord频道中找到的</p>
+<p>前三个Challenge都是一些根据课程内容设计出的练习机器，他们有的是单独的，有的是相互关联的，这个不会事先告诉你，需要你自己去领悟，如果在对一台机器进行了足够多的尝试后，还是无法找到突破口，那么就可以考虑去尝试其他机器，或许在其他机器上，你就能找到关于这台机器的一些解题思路。</p>
+<p>另外，OffSec官方也是在discord有建立交流频道，如果有不会的课程练习以及靶场中的一些问题，都可以进去询问学员或者他们的导师，但都不会直接给出答案，而是一个个谜语人，答案需要自己去悟。</p>
+<p>旧的<code>labs</code>总共75台机器，新的则是57台，后面三个Challenge就是往年的一些真实考题，与考试的构成是一模一样，一个域环境加三台独立的主机。</p>
+<h1 id="报名"><a href="#报名" class="headerlink" title="报名"></a>报名</h1><p>报名的话需要一张支持外币的信用卡，VISA，万事达都可以，如果实在没有，可以走国内的谷安代理，而且谷安也有时会给出一些优惠，对自己水平不够自信的话也可以联系谷安进行针对性的培训，但OffSec官方是极力推荐自学通过考试的，看个人选择。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.79inhjjdjrk0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.6v582ez73as0.png"
                      
                 ></p>
-<p>太多了，我一直学的是渗透，所以选择了CISP-PTE，没有选CISP-PTS的原因是，当时我在报名的时候，某机构报价是CISP-PTE学生6k，非学生8k，而CISP-PTS，起步则是一个w，我看了一眼钱包，它并不是很支持我去考虑CISP-PTS。</p>
-<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>在报名之后，机构会开展一个几天的所谓的培训，如果事先有学习过，可以不用听，直接去做题就行了。</p>
-<p>题目大同小异，无非就是那些web漏洞罢了，主要是避免一些出题角度很偏的题目，如果没有事先练习过，可能在考试的时候会浪费很多时间。</p>
+<p>目前有三种套餐可以选购：</p>
+<ul>
+<li>课程考试包：$1599，可以选择一门课程，自带90天的靶场访问时间，和一次考试的机会。</li>
+<li>Learn One：$2499，可以选择一门课程，一年的靶场访问时间，两次考试机会，外带所有基础课程。</li>
+<li>Learn Unlimited：$5499，一年之内可以学习所有课程，和一年之内访问靶场的时间（也是所有课程的靶场都可以访问），无限的考试机会（但不是无间隔的，第一次考试没过，需要等待一段时间后在申请第二次，间隔时间会比上面两个短一点），外带所有基础课程。</li>
+</ul>
+<p>由于我没有钱，所以就先只考虑报一个课程考试包，选OSCP课程。</p>
+<p>联系国内的代理David报名后，转账激活账户即可开始学习。</p>
+<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>报名后即开始备考，先把课程视频和课程材料看了一遍，做了部分课程练习，之后在打靶场，先做前几个Challenge，最后几个在快考试的时候去做。</p>
+<p>备考练习时，最好不用习惯性的用sqlmap、Metasploit这种限制类的工具，能手动注入就手动注入，能找到其他方法就用其他方法，减少依赖性，不然考试的时候习惯性的用起来就不太好了。</p>
+<p>扫描端口的时候最好多扫几遍，否则很容易漏下端口，可能漏下的就是关键性的。</p>
+<p>不要执着于Web上，虽然大多数都是从Web作为突破口，但有少数是在一个偏僻的端口上运行着一个存在漏洞的服务。</p>
+<p>经历了一个月多一点的学习和练习后，完成了除去Challenge 3以外的所有Challenge，也拿到了十分的奖励积分，我预约了北京时间7月17日上午十点的考试。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.3u5q8nwp4q20.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230822/image.5zcz25zhmio0.webp"
                      
                 ></p>
-<p>这张图我觉得有点夸大其实了，CISP-PTE这个证书顶多算是一个入门级的认证，并不会有这么多的一个知识体系，而且其中涉及到的也只是轻描淡写的掠过，并不是很深入。</p>
-<p>之后便是做练习题，做练习题，做练习题…</p>
-<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>因为当时疫情比较严重，本来是需要去线下考点进行考试的，改为了线上考试。</p>
-<p>考试要求两个手机进行画面拍摄，一个用于拍摄电脑画面，一个用于拍摄操作人画面，进入腾讯会议开启视频和语音，中途不允许退出。</p>
-<p>在考试前一天晚上，机构的人会来确认拍摄画面的正常与否，如果没有问题，那么第二天按照这个操作来即可。</p>
-<p>考试在上午10点，在进入会议室开启摄像头拍摄画面后，即可开始考试，考试是在一个虚拟环境中进行，会让你连接一个类似于浏览器的东西，这个连接以后不能切换后台，否则直接帮你交卷，过程中可以申请去厕所，限时五分钟，超时按作弊处理。</p>
-<p>题目比较简单，唯一难受的就是在虚拟化平台中操作，会很卡，并且拿到的flag，无法复制提交，只能手打，并且提交时也不会验证是否正确，所以要一个一个的确认，开考半小时就把题目做完，还剩20道选择题，一题一分，满分100，70分算通过，所以我即使选择题不做，我也足以通过考试，但抱着能多点分就多一点的想法，就随便选完了。</p>
-<p>提交所有答案之后，我提前交卷完成考试，最终得分91分。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/eaf3467738c2cc656d2b1cbcaa15268.56etwt1wor00.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230822/20230625160420.6segq8lb9vc0.webp"
                      
                 ></p>
-<p>稳稳的通过了考试，当然，这个只是算一个参考，如果后续在手机拍摄到的画面中，发现有作弊或者其他违规行为，那么考试成绩也会将被取消。</p>
-<p>最终证书需要等三个月的时间。</p>
+<h1 id="考试要求"><a href="#考试要求" class="headerlink" title="考试要求"></a>考试要求</h1><p>考试总时长为24小时，结束后有24小时的时间来写报告并提交，考试中全程需要开启摄像头和屏幕共享供监考，可以睡觉或暂时离开，跟考官说一下就行。</p>
+<p>不能使用除考试设备之外的电子设备，包括手机、平板电脑，也不能用手机或平板当监考摄像头。</p>
+<p>在考试中，不能使用商业工具（如Burpsuite Pro、Coablt Strike等）、自动化利用工具（如sqlmap）、chatgpt类问答AI、大型漏扫（如AWVS）、可能影响网络的其他工具。</p>
+<p>考试中对Metasploit的使用也是有限制的，只可以对一个目标使用，且该目标不能为域环境内的主机，当申请使用后，无论成功与否，都无法在对第二个目标使用，但可以无限次的对第一个目标使用，而使用<code>msfvenom</code>和<code>exploit/multi/handler</code>是不受限制的。</p>
+<p>考试总分为100分，达到70分即可通过，目标为3台独立主机和一个域环境，域环境中包括了3台主机，如果没有拿到奖励积分，要通过考试，域环境是必须要拿下的。</p>
+<p>3台独立主机中，每台的普通用户权限和管理员权限分别占10分，总计60分；域环境中，总计40分，没有步骤分，也就是要么全部拿到，要么一分没有。</p>
+<p>考试结束后，还需要编写考试报告，报告中需要写上你的操作步骤，以及所采用的命令，或者自己写的脚本，以及第三方的脚本工具等，和最终拿到flag的命令回显，表示成功获得权限的证明是，通过交互式shell从原始位置读取flag，webshell是不可以的，必须要截图，截图中要包括flag的内容，以及这台机器的IP地址。</p>
+<p>考试报告最好是写的清晰明了一点，因为他们是根据你报告中的步骤去做一遍，如果能够复现出来，则证明考试结果有效，否则一分没有。</p>
+<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>考试时间是48小时，其实只有23小时45分钟，还是15分钟是监考用来检查摄像头和验证身份的。</p>
+<p>考官会要求你打开摄像头，并将摄像头围绕你的考试环境环顾一周，并且在摄像头范围内不允许出现第二台电子设备，手机也得远离你随手可及的地方，并展示可以证明你身份的政府证件，如护照、身份证公证件。由于我不在户籍所在地，且办理护照需要一个月时间，所以我采用的是身份证公证件，只需要去当地的公证处，带上户口和身份证，和工作人员说要参加一个美国的资格认证考试，让他帮你公正一下身份证即可，如果摄像头拍的证件考官看不清，可以事先用手机拍照，然后传到电脑上，在桌面打开给考官看。</p>
+<p>当一切验证完成以后，考官就会给你事先预留的邮箱中发送一封带有检测脚本的邮件，下载后在运行，并将结果粘贴至他给你的一个链接中即可，完成后，还会发送一封带有VPN连接包和考试靶机IP的邮件，下载好VPN连接包，在kali中连接即可开始考试。</p>
+<p>在考试过程中，监考人员是听不到你的声音的，沟通是通过一个在线的聊天平台进行沟通。</p>
+<p>在7月17日，提前十五分钟，在9：45进入监考平台，我是购买的外接USB摄像头，考官要求拿着摄像头环顾四周，以及桌底，和桌面，确认无误后就给我发送了邮件。</p>
+<p>考试肯定是优先做域的，域分值为40分，不管有没有拿到奖励积分，最好是先把域做完，在将近12点的时候，找到了入口点，提权很快，没花多久，拿下第一台的管理员权限，接下来就是搭建隧道，横向移动，这一部分也很快，不知道是不是我运气好，还是抽到的题目简单，每次都能一阵见血的找到突破点，还没到下午两点就拿下了整个域。</p>
+<p>和考官说了一声，就去吃了个饭，休息了会，在下午四点的时候，继续开始做独立主机，第一台独立主机拿shell也很快，但是提权部分卡了非常非常久，到最后快晚上七点的时候才找到提权方法，原本打完域给我的盲目自信现在都给我干碎了。</p>
+<p>我为了求稳，还是考虑拿了10分的奖励积分，算上域的40分和独立机器的20分，我已经可以通过考试了，但是还是为了求稳，尝试在打下一台独立机器，这一台独立机器就没有那么的顺利了，光shell就拿了快两个小时，到九点的时候，才最终提权拿到root权限，这个时候已经有点累了，不想动了，之前做练习和打htb的时候，都没有过一次性做过这么长时间，脑子已经开始有点晕了，但我还是想试试最后一台机器。</p>
+<p>最后一台机器我也不知道是因为我太菜了还是机器有问题，死活就是找不到突破点，最终到了11点多，实在坚持不住了，先放弃了，算下分数，已经有90分了，就索性不打了。</p>
+<p>原本想着睡醒了在写报告的，还是打算现在就写，利用在线翻译，把报告翻译成英文，然后把步骤截图和flag截图全贴上，到了凌晨十二点多，写完了，在检查了一遍，没啥问题后，和考官说了一声，就提前结束了考试，我看了一下，我熬走了五个监考…哈哈哈。</p>
+<p>将报告转成pdf格式，压缩，改名，上传，一步梭哈，然后倒头就睡。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.6hidpsykj900.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230822/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20230718000036.6197jg1ac900.webp"
                      
                 ></p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>不得不说，这个证真的只是入门级的，从我考试开始到结束，我只用去了25分钟，但考都考了，多一个总比少一个好。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>事先也了解过报告审核时间，很多都是两三天，甚至还有隔天就出结果的，我等了6天，一度认为是我的报告写的有问题，但最终还是在等了6天，4个工作日后，我在7月24日下午一点多收到了通过的邮件。</p>
+<p>在此，感谢那些在我备考期间给予我帮助和鼓励的人。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230822/image.6zqu9cb5now0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/20230822/image.nbwxcn4cldc.webp"
+                     
+                ></p>
 
             </div>
 
             
 
             
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/OffSec/"><i class="icon fas fa-hashtag"></i>OffSec</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
 
             
                 <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/post/742af00ba586/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Lame - HackTheBox</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                            </a>
-                        </div>
                     
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/post/6fefadf19e23/"
+                               href="/post/427daae154a1/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                <span class="post-nav-title-item text-ellipsis">Bitlab - HackTheBox</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -348,7 +397,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">考试过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9%E4%B8%8E%E5%8F%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">课程内容与变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E5%90%8D"><span class="nav-number">3.</span> <span class="nav-text">报名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%A6%81%E6%B1%82"><span class="nav-number">5.</span> <span class="nav-text">考试要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">考试过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">7.</span> <span class="nav-text">结语</span></a></li></ol>
     </div>
 </div>
 
@@ -510,7 +559,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">考试过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9%E4%B8%8E%E5%8F%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">课程内容与变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E5%90%8D"><span class="nav-number">3.</span> <span class="nav-text">报名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%A6%81%E6%B1%82"><span class="nav-number">5.</span> <span class="nav-text">考试要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">考试过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">7.</span> <span class="nav-text">结语</span></a></li></ol>
     </div>
 </div>
 
