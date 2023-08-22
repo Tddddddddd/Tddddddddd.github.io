@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            Falafel - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">Falafel - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
-                <span class="mobile">2022-08-29 11:31</span>
+                <span class="pc">2023-05-19 19:16:53</span>
+                <span class="mobile">2023-05-19 19:16</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
+                <span class="pc">2023-05-19 19:16:53</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
                     
                 </ul>
             </span>
@@ -244,17 +247,327 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.b5ng4wro05k.webp"
                      
                 ></p>
-<p>很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，<del>主要是因为懒</del></p>
-<p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
-<p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.3ymiqqi01hy0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.23uisgwe8lkw.webp"
+                     
+                ></p>
+<p>就俩端口，先看80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4jwo3311dp80.webp"
+                     
+                ></p>
+<p>右上角有个登录框</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4jgwxl6c5og0.webp"
+                     
+                ></p>
+<p>猜不出，扫个目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4qlevxyt39m0.webp"
+                     
+                ></p>
+<p>在cyberlaw.txt中发现了线索</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.70tfs7fmpd40.webp"
+                     
+                ></p>
+<p>他说有个用户可以在不知道密码的情况下登录管理员的账号，难道是sql注入吗</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.117te0n6z8og.webp"
+                     
+                ></p>
+<p>貌似不行，但不知道密码的情况下怎么登录</p>
+<p>貌似真有可能，由于是PHP站点，盲猜他的密码存储方式是MD5加密，在PHP+MD5的情况下，会导致一个问题，如果密文前两位都为0e，那么后面的数据不相同，PHP也会判断为相同</p>
+<p><code>https://www.cnblogs.com/du1ge/p/13812118.html</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.1feuejhsouzk.webp"
+                     
+                ></p>
+<p>比如这几个</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.3cx7ijqkca80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.42bjmyti6x40.webp"
+                     
+                ></p>
+<p>尝试一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.6wxte5d3gnk0.webp"
+                     
+                ></p>
+<p>猜想成立</p>
+<p>这里貌似是个远程文件上传，试试反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.qgcz879vnao.webp"
+                     
+                ></p>
+<p>做了限制</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.5dcqdc8ykj40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.7gifanj30r40.webp"
+                     
+                ></p>
+<p>能访问，但怎么上传php文件</p>
+<p>搜了一下，貌似Linux的wget命令有最大字节数限制，如果超过字节数后续的就不会接收，那么可以用这个来绕过上传的限制</p>
+<p>先用msf-pattern_create创建一个255长度的字符串</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.3bz8lbm8pnu0.webp"
+                     
+                ></p>
+<p>用这个创建一个文件，删掉最后四个</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.1zh6cq8tmu0w.webp"
+                     
+                ></p>
+<p>上传</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.6d3gkbh4yo80.webp"
+                     
+                ></p>
+<p>看下长度</p>
+<p><code>msf-pattern_offset -l 255 -q h7Ah</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.65b4si16kx80.webp"
+                     
+                ></p>
+<p>232个字符</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.11rb8o34wvio.webp"
+                     
+                ></p>
+<p>创建一个232长度的字符串</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.5kwlar59i780.webp"
+                     
+                ></p>
+<p>往里面写个phpinfo测试一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4a2e8n7ph8k0.webp"
+                     
+                ></p>
+<p>上传看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.603r7wpymks0.webp"
+                     
+                ></p>
+<p>很好</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.1cio3ulc7x34.webp"
+                     
+                ></p>
+<p>把反弹shell改名上传</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.75uey6v972c0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4efn4rxkayg0.webp"
+                     
+                ></p>
+<p>网站目录下发现了数据库的账号密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.5h0kq9bv18o0.webp"
+                     
+                ></p>
+<p>没什么利用价值</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.1775nny0cd6k.webp"
+                     
+                ></p>
+<p>靶机上刚好有一个用户名和数据库的一样，尝试切换过去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.6ghggawcnpw0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.tqimg3j345c.webp"
+                     
+                ></p>
+<p>发现一个密钥文件，但登陆不了</p>
+<p>实在找不着了，搜了一下wp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4397xd4ofuc0.webp"
+                     
+                ></p>
+<p>要搜日志文件</p>
+<p><code>for i in $(groups);do echo -e &quot;\n==========$i==========&quot;; find / -group $i 2&gt;/dev/null; done</code></p>
+<p><code>cat /dev/fb0 &gt;&gt; screenshot</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.46vahbcockc0.webp"
+                     
+                ></p>
+<p>把这玩意下载到本地</p>
+<p>安装gimp进行查看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.jxiuxginskg.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.7wh90dom11s.webp"
+                     
+                ></p>
+<p>打开</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.37ur6f96sug0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.466do5eb0o20.webp"
+                     
+                ></p>
+<p>修改图片类型和宽度高度</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.3f9hs5g7qbo0.webp"
+                     
+                ></p>
+<p>得到了yossi用户的密码，这他妈跟ctf一样</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.26hxlxg1wjnk.webp"
+                     
+                ></p>
+<p>继续，还是那个命令，看日志文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.2wrz4k3tth60.webp"
+                     
+                ></p>
+<p>这次又多了一些</p>
+<p><code>debugfs /dev/sda1</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.1rvjmchm7b34.webp"
+                     
+                ></p>
+<p>可以直接看到flag，但没有获取到权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.2auos0hbosn4.webp"
+                     
+                ></p>
+<p>进.ssh下看看有没有密钥文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.4xofo5piyjs0.webp"
+                     
+                ></p>
+<p>有了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.5zdd8lpu7bc0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Falafel/image.1cuadr3xjrk0.webp"
+                     
+                ></p>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -263,18 +576,33 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/post/eb5b8f948eee/"
+                               href="/post/4ed2fd6214e3/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">cisp-pte</span>
+                                <span class="post-nav-title-item text-ellipsis">Hawk - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
                         </div>
                     
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/post/9cd54bd1c82b/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Kotarak - HackTheBox</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
                     
                 </div>
             

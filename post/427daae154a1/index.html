@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            Bitlab - HackTheBox |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">Bitlab - HackTheBox</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
-                <span class="mobile">2022-08-29 11:31</span>
+                <span class="pc">2023-05-20 22:50:40</span>
+                <span class="mobile">2023-05-20 22:50</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2022-08-29 11:31:12</span>
+                <span class="pc">2023-05-20 22:50:40</span>
             </span>
         
 
@@ -219,6 +219,9 @@
             <span class="article-tag meta-info-item border-box">
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
                     
                 </ul>
             </span>
@@ -244,37 +247,293 @@
                 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/image/image.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.298huvyoic2s.webp"
                      
                 ></p>
-<p>很久没有见过这个标题了，之前也或多或少尝试过几次搭建blog，但是都没有坚持到现在，<del>主要是因为懒</del></p>
-<p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
-<p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.5vmrmmewa9g0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.5g9717e3z50.webp"
+                     
+                ></p>
+<p>访问80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.204pjd36ubi8.webp"
+                     
+                ></p>
+<p>一个登录框，这个页面貌似见过，在看看robots.txt</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.73j44oit3bg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.s5zyoi2npq8.webp"
+                     
+                ></p>
+<p>在help目录下发现一个html</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.5ygvhinatr00.webp"
+                     
+                ></p>
+<p>进去后前四个都可以点击跳转，第五个是一段js代码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.103xs8bw2wg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.4zwl2633jg00.webp"
+                     
+                ></p>
+<p>看不明白</p>
+<p>搜了一下，这玩意右键把他添加到书签</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.4f7pdfuwnqw0.webp"
+                     
+                ></p>
+<p>然后在登录页面点击他</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.6wvneqrcw4w0.webp"
+                     
+                ></p>
+<p>就会自动填充账号密码，看看密码是啥</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.2u70xbz4k1g0.webp"
+                     
+                ></p>
+<p>审查元素中把password的类型修改为text</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.6equ0r8g6240.webp"
+                     
+                ></p>
+<p>发现两个项目</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.36546yygdqu0.webp"
+                     
+                ></p>
+<p>这个profile的项目可以编辑，并且我记得robots.txt里面有见过这个目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.2n5oeh5lh4q0.webp"
+                     
+                ></p>
+<p>访问看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.6u05xbex2600.webp"
+                     
+                ></p>
+<p>确实是这个，在里面加个php后门代码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.m1u06b4rndo.webp"
+                     
+                ></p>
+<p>在body里面加</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.39vtck7596g0.webp"
+                     
+                ></p>
+<p>保存</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.2hy7a9wnpp40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.5xxo9p0ics40.webp"
+                     
+                ></p>
+<p>然后合并</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.2xgvxq28bvk0.webp"
+                     
+                ></p>
+<p>反弹个shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.e0n7iknpc6g.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.29g2st2vqd8g.webp"
+                     
+                ></p>
+<p>git pull有sudo权限</p>
+<p>把网站目录下的文件复制一份到<code>/dev/shm</code>目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.4vwmpat0s0i0.webp"
+                     
+                ></p>
+<p>然后创建一个文件链接</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.5iug4wwhjtk0.webp"
+                     
+                ></p>
+<p>然后在本地创建一个<code>post-merge</code>文件，内容为反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.2ze0bhjhb3u0.webp"
+                     
+                ></p>
+<p>让靶机下载</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.71uk4xixf4g0.webp"
+                     
+                ></p>
+<p>添加执行权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.349o2kee5si0.webp"
+                     
+                ></p>
+<p>回到profile目录下，执行git pull</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.47gk4xnjzw80.webp"
+                     
+                ></p>
+<p>回到网站随便创建一个文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.53r804sgqsw0.webp"
+                     
+                ></p>
+<p>提交合并</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.afya3gp45go.webp"
+                     
+                ></p>
+<p>在执行git pull</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.6kstzutmc3k0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.7izqcc0bsa80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.3k23nc9xqls0.webp"
+                     
+                ></p>
+<hr>
+<p>官方还有一种解法是缓冲区溢出</p>
+<p><code>https://ivanitlearning.wordpress.com/2020/10/22/hackthebox-bitlab/</code></p>
+<p>大致流程是，在靶机上有docker容器，容器中运行有postgresql数据库，通过端口映射到本地进行连接数据库，在数据库中可以发现clave用户的密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.1osvdfrvlfy8.webp"
+                     
+                ></p>
+<p>通过切换到clave用户，在家目录下有一个exe文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.ose94tq946o.webp"
+                     
+                ></p>
+<p>这个执行程序通过缓冲区溢出后，会爆出root的ssh连接密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bitlab/image.5wkqjuj7z5o0.webp"
+                     
+                ></p>
 
             </div>
 
             
 
             
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
 
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/post/eb5b8f948eee/"
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/post/7a04ed4bdc1f/"
                             >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item text-ellipsis">Lightweight - HackTheBox</span>
+                                <span class="post-nav-item">下一篇</span>
                             </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">cisp-pte</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
                             </span>
                             </a>
                         </div>
-                    
                     
                 </div>
             
