@@ -173,6 +173,75 @@
                 <div class="home-article-item-bottom border-box">
                     
                     <h3 class="home-article-title border-box">
+                        <a href="/post/23647649a3f1/">
+                            Legacy - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+
+重点扫一下445看看
+nmap -n -v -p 445 --script=smb-vuln* 10.10.10.4 -Pn
+
+
+扫出了两个经典漏洞，ms08-067，ms17-010
+但目前的exp都是python2环境，py...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Tue May 09 2023 21:17:10 GMT+0800">2023-05-09</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/23647649a3f1/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
                         <a href="/post/d2956a1e4111/">
                             Shibboleth - HackTheBox
                         </a>
@@ -871,80 +940,6 @@ nmap扫描
 
     
         <a class="home-read-more" href="/post/9ef8c7d2ce46/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <div class="home-article-item-bottom border-box">
-                    
-                    <h3 class="home-article-title border-box">
-                        <a href="/post/f413d8c7139d/">
-                            Ready - HackTheBox
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content keep-markdown-body">
-                        
-                            
-nmap扫描
-
-
-
-访问5080端口
-
-gitlab仓库，注册一个账号进去看看
-
-发现了gitlab的版本，搜一下有无exp
-https://github.com/Algafix/gitlab-RCE-11.4.7
-
-有个rce，尝试利用
-
-
-提权...
-                        
-                    </div>
-
-                    
-
-<div class="article-meta-info-container border-box home">
-    <div class="article-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Sat May 06 2023 21:01:17 GMT+0800">2023-05-06</span>
-            </span>
-        
-
-
-        
-
-        
-
-        
-            <span class="article-tag meta-info-item border-box">
-                <i class="icon fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/f413d8c7139d/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
     
 </div>
 
