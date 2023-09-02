@@ -9,7 +9,7 @@
     
     <title>
         
-            Delivery - HackTheBox |
+            Blast - CtfShow |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Delivery - HackTheBox</span>
+                <span class="title-hover-animation">Blast - CtfShow</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2023-05-07 09:06:17</span>
-                <span class="mobile">2023-05-07 09:06</span>
+                <span class="pc">2023-09-02 10:17:02</span>
+                <span class="mobile">2023-09-02 10:17</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2023-05-07 09:06:17</span>
+                <span class="pc">2023-09-02 11:24:21</span>
             </span>
         
 
@@ -220,7 +220,7 @@
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Ctf/">Ctf</a></li>
                         
                     
                 </ul>
@@ -244,218 +244,338 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <p><img  
+                <h1 id="web21"><a href="#web21" class="headerlink" title="web21"></a>web21</h1><p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.2igws1tsj5w0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.118wdpx1g428.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5ncf6b0ij6k0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.2s2m8h5r7580.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5xa1jgo7z3k0.webp"
+                     
+                ></p>
+<p>看起来像是tomcat的登录认证爆破</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.3toattq8wm60.webp"
+                     
+                ></p>
+<p>这一串就是base64编码后的用户名和密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.i1dx9s8ga68.webp"
+                     
+                ></p>
+<p>爆破只需按照这个格式即可</p>
+<p><code>https://www.cnblogs.com/007NBqaq/p/13220297.html</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6y495sgvc5w0.webp"
+                     
+                ></p>
+<p>选择Custom iterator模式，第一个为用户名</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.3lmpuq8wpag0.webp"
+                     
+                ></p>
+<p>第二个为一个:作间隔</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.1vm1oqao7yzk.webp"
+                     
+                ></p>
+<p>第三个即是密码</p>
+<p>还需要编码一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5dxluj8qm8o0.webp"
+                     
+                ></p>
+<p>选择base64编码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6yaunm7wiik0.webp"
+                     
+                ></p>
+<p>还要把这个取消勾选</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.4mtmqnv17am0.webp"
+                     
+                ></p>
+<p>解码一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6es7nas950w0.webp"
+                     
+                ></p>
+<p>登录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5idpjc4dwkw0.webp"
+                     
+                ></p>
+<hr>
+<h1 id="web22"><a href="#web22" class="headerlink" title="web22"></a>web22</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.g2dxp9tdts.webp"
+                     
+                ></p>
+<p>这题貌似已经失效了</p>
+<p>原意是进行子域名爆破的</p>
+<p>官方直接给出了flag</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5knc3hjoi5s0.webp"
+                     
+                ></p>
+<hr>
+<h1 id="web23"><a href="#web23" class="headerlink" title="web23"></a>web23</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5v9djrh67ws0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.12iahmoirz4w.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.ztw838jh8kw.webp"
                      
                 ></p>
-<p>访问80端口</p>
+<p>这题有两种解法</p>
+<p>一种是直接用burp爆破token值，直到爆出flag</p>
+<p>还有一种是解密token，最终拿到token值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line"></span><br><span class="line">dic = &#x27;0123456789qazwsxedcrfvtgbyhnujmikolp&#x27;</span><br><span class="line"></span><br><span class="line">for a in dic:</span><br><span class="line"></span><br><span class="line">  for b in dic:</span><br><span class="line"></span><br><span class="line">	t = str(a)+str(b)</span><br><span class="line"></span><br><span class="line">	md5 = hashlib.md5(t.encode(&#x27;utf-8&#x27;)).hexdigest()</span><br><span class="line"></span><br><span class="line">	if md5[1] != md5[14] or md5[14]!= md5[17]:</span><br><span class="line"></span><br><span class="line">		continue</span><br><span class="line"></span><br><span class="line">	if(ord(md5[1]))&gt;=48 and ord(md5[1])&lt;=57 and (ord(md5[31]))&gt;=48 and ord(md5[31])&lt;=57:</span><br><span class="line"></span><br><span class="line">			if((int(md5[1])+int(md5[14])+int(md5[17]))/int(md5[1])==int(md5[31])):</span><br><span class="line"></span><br><span class="line">				print(t)</span><br></pre></td></tr></table></figure>
+
+<p>这是爆破token值，得到3j</p>
+<p>另外一种burp爆破</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.9cyksjqn00o.webp"
-                     
-                ></p>
-<p>扫一下目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.2oynwn9nwi00.webp"
-                     
-                ></p>
-<p>没什么用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.39kvvx7hz940.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.2pna2zvqake0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.6xpz6f731bk0.webp"
-                     
-                ></p>
-<p>发现域名，添加到hosts文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.7d5t176v89o0.webp"
-                     
-                ></p>
-<p>发现cms名称</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.3088jk1hmge0.webp"
-                     
-                ></p>
-<p>搜一下有无exp可利用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.31yyipn53k40.webp"
-                     
-                ></p>
-<p>还不知道版本，无法确定是否可利用</p>
-<p>继续扫目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1tj0me5kkoe8.webp"
-                     
-                ></p>
-<p>扫出一大堆</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1f7r6o154xa8.webp"
-                     
-                ></p>
-<p>在这可以生成一个票据，之后会给一个查询码和一个邮箱地址</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1dm92t2hgwww.webp"
-                     
-                ></p>
-<p>在这可以检查票据</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1fl59jemza9s.webp"
-                     
-                ></p>
-<p>没有可利用信息</p>
-<p>之前还在80主页发现一个链接</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.7dhthjgbrsw0.webp"
-                     
-                ></p>
-<p>尝试用那个<a class="link"   href="mailto:&#x37;&#x37;&#x34;&#57;&#57;&#x36;&#x33;&#64;&#x64;&#101;&#108;&#105;&#118;&#101;&#114;&#x79;&#46;&#x68;&#x74;&#x62;" >&#x37;&#x37;&#x34;&#57;&#57;&#x36;&#x33;&#64;&#x64;&#101;&#108;&#105;&#118;&#101;&#114;&#x79;&#46;&#x68;&#x74;&#x62;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.6pmthkq9to00.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.7f0uz6gwt8k0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1mw8ppy510ww.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.4gqg8919pig0.webp"
                      
                 ></p>
-<p>验证链接发到了票据查询这，访问该地址</p>
-<p><img  
+<p>最终爆破得出422和1202都可以获得flag</p>
+<hr>
+<h1 id="web24"><a href="#web24" class="headerlink" title="web24"></a>web24</h1><p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1ik9wielpkgw.webp"
-                     
-                ></p>
-<p>点击internal</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.26aue1zeberk.webp"
-                     
-                ></p>
-<p>这里貌似有一个ssh登陆的用户和密码，尝试登陆一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.4qsb0lhy8ky0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.60fv7uw3jyo0.webp"
-                     
-                ></p>
-<p>在网站目录下发现ost-config.php配置文件，内部包含数据库的连接账户和密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1v0duns4c3z4.webp"
-                     
-                ></p>
-<p>数据库中并无可利用信息</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.6p5opjrjavk0.webp"
-                     
-                ></p>
-<p>在另一个目录又发现一个配置文件，内部同样包含一个数据库的账号和密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.5d87bb4y0t80.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5tnyzig8m9w0.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.4s0t80tzax40.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5roz966db940.webp"
                      
                 ></p>
-<p>在Users表中找到root的密码，尝试爆破一下</p>
+<p>这题考的是php的随机数</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.47yrwnw3spw0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.3ev0pl7n7w20.webp"
                      
                 ></p>
-<p>查看一下hash类型</p>
-<p><code>https://hashcat.net/wiki/doku.php?id=hashcat</code></p>
+<p>这个函数会返回一个随机值，但这里是一个伪随机</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.3r50vy1v4mu0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6xkgob7si2g0.webp"
+                     
+                ></p>
+<p>输出的永远是一个固定值，所以只需要传入这个值就可以</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6knm4kmelp40.webp"
+                     
+                ></p>
+<hr>
+<h1 id="web25"><a href="#web25" class="headerlink" title="web25"></a>web25</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.1ebcz7d3wrz4.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.5xr2rv8en580.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.4mpshwc1yba0.webp"
                      
                 ></p>
-<p>这边好像给了提示，PleaseSubscribe!这段是密码的一部分，采用hashcat掩码爆破</p>
-<p><code>hashcat -m 3200 -a 3 -i --increment-min 16 --increment-max 20 hash.txt PleaseSubscribe\!?a?a?a?a</code></p>
+<p>这题有点麻烦啊</p>
+<p>先get传递一个r参数</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.4cb4wb6icoi0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.17hhunq294sg.webp"
                      
                 ></p>
-<p>切换root</p>
+<p>由代码可知，进入if判断是取反值，所以if中的rand值是<code>2133319622</code></p>
+<p>后续还需要一个token值，token值由两个伪随机数相加得到</p>
+<p><code>https://www.openwall.com/php_mt_seed/</code></p>
+<p><code>https://www.openwall.com/php_mt_seed/php_mt_seed-4.0.tar.gz</code></p>
+<p>用到这个工具得到随机值</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.48d1w0p1wxu0.webp"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.7h5gr94m7uw0.webp"
+                     
+                ></p>
+<p><code>./php_mt_seed 2133319623</code></p>
+<p>运行时后面加上r得到的取反值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">mt_srand(1885621456); #此处的这个数，来自上面PHP 7.1.0+那行。</span><br><span class="line"></span><br><span class="line">echo &#x27;intval(mt_rand())=&#x27;;</span><br><span class="line"></span><br><span class="line">echo intval(mt_rand());</span><br><span class="line"></span><br><span class="line">echo &#x27;&#x27;;</span><br><span class="line"></span><br><span class="line">$token2=mt_rand()+mt_rand();</span><br><span class="line"></span><br><span class="line">echo &#x27;mt_rand()+mt_rand()=&#x27;;</span><br><span class="line"></span><br><span class="line">echo $token2;</span><br><span class="line"></span><br><span class="line">echo &#x27;&#x27;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后一个一个尝试输出的seed值</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.13r3bwaixzpc.webp"
+                     
+                ></p>
+<p>此时已得到token值，利用burp抓包发送即可</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5rnspuxqogo0.webp"
+                     
+                ></p>
+<hr>
+<h1 id="web26"><a href="#web26" class="headerlink" title="web26"></a>web26</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.5vou2fiqduo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.30k5gau33po0.webp"
+                     
+                ></p>
+<p>啥也没干，就连接成功了？</p>
+<p>burp看一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6rtam8nhabo0.webp"
+                     
+                ></p>
+<p>这个有点简单</p>
+<hr>
+<h1 id="web27"><a href="#web27" class="headerlink" title="web27"></a>web27</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6t2ajpo3efw0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.66n6cnarf14.png"
+                     
+                ></p>
+<p>应该是爆破登录了</p>
+<p>录取名单有一个excel表下载</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.4wgf6shwb1c0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.1pvymd19f9b4.webp"
+                     
+                ></p>
+<p>试试爆破身份证中间那几位</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.4865rdlqmns0.webp"
+                     
+                ></p>
+<p>爆破时间格式</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.2h5coqxeqle0.png"
+                     
+                ></p>
+<p>unicode解码一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6fczkvejl0k0.webp"
+                     
+                ></p>
+<p>登录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.2vb02qnz6kq0.webp"
+                     
+                ></p>
+<hr>
+<h1 id="web28"><a href="#web28" class="headerlink" title="web28"></a>web28</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.se2mnqnxbo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6hoaedr17k80.webp"
+                     
+                ></p>
+<p>这题是爆破目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.6xxr7knlk0s0.webp"
+                     
+                ></p>
+<p>把后面的2.txt去掉，只爆破目录，爆破模式选第四个</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.3rkz4o8vods0.webp"
+                     
+                ></p>
+<p>这两个都一样，1-99</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/Tddddddddd/picx-images-hosting@master/CtfShow/Blast/image.4mg8nshkv300.webp"
                      
                 ></p>
 
@@ -467,7 +587,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                            <a href="/tags/Ctf/"><i class="icon fas fa-hashtag"></i>Ctf</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -476,29 +596,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/post/0d669e781980/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Armageddon - HackTheBox</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/post/f413d8c7139d/"
+                               href="/post/12b82d3a5b7b/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Ready - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">Information - CtfShow</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -525,7 +630,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web21"><span class="nav-number">1.</span> <span class="nav-text">web21</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web22"><span class="nav-number">2.</span> <span class="nav-text">web22</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web23"><span class="nav-number">3.</span> <span class="nav-text">web23</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web24"><span class="nav-number">4.</span> <span class="nav-text">web24</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web25"><span class="nav-number">5.</span> <span class="nav-text">web25</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web26"><span class="nav-number">6.</span> <span class="nav-text">web26</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web27"><span class="nav-number">7.</span> <span class="nav-text">web27</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web28"><span class="nav-number">8.</span> <span class="nav-text">web28</span></a></li></ol>
     </div>
 </div>
 
@@ -687,7 +792,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web21"><span class="nav-number">1.</span> <span class="nav-text">web21</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web22"><span class="nav-number">2.</span> <span class="nav-text">web22</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web23"><span class="nav-number">3.</span> <span class="nav-text">web23</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web24"><span class="nav-number">4.</span> <span class="nav-text">web24</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web25"><span class="nav-number">5.</span> <span class="nav-text">web25</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web26"><span class="nav-number">6.</span> <span class="nav-text">web26</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web27"><span class="nav-number">7.</span> <span class="nav-text">web27</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web28"><span class="nav-number">8.</span> <span class="nav-text">web28</span></a></li></ol>
     </div>
 </div>
 
