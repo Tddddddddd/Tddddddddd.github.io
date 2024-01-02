@@ -15822,4 +15822,73 @@
 <p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>CRTO</title>
+    <url>/post/871cf5124189/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Certified Red Team Operator（CRTO）是一种专业证书，证明了个人在红队运作领域的专业知识和能力。红队运作是指在组织的信息系统和网络上进行模拟网络攻击，由一组安全专家进行，旨在识别组织的安全弱点和漏洞。</p>
+<p>CRTO证书通常由安全培训和认证机构提供，面向参与红队运作的个人，如渗透测试人员，安全顾问和事件响应人员。获得证书的过程通常包括一次考试，测试个人对红队运作方法，工具和技术的知识，以及在实际场景中应用这些知识的能力。</p>
+<p>持有 CRTO证书表明个人对红队运作有深刻的理解和能力，能够对组织的系统和网络进行有效的模拟攻击，这是网络安全领域中任何专业人员都应该具备的技能。</p>
+<h1 id="收费标准"><a href="#收费标准" class="headerlink" title="收费标准"></a><strong>收费标准</strong></h1><ul>
+<li>课程材料（永久更新），365英镑。</li>
+<li>单独考试尝试或者重考费用，99英镑。</li>
+<li>Lab分为30天、180天、365天，购买Lab后赠送一次考试机会</li>
+<li><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.2hj8hstslto0.webp"
+                     
+                ></li>
+</ul>
+<h1 id="课程框架"><a href="#课程框架" class="headerlink" title="课程框架"></a><strong>课程框架</strong></h1><p>在CRTO课程中，学员会学习到如何使用Cobalt Strike进行内网渗透。</p>
+<ol>
+<li>入门</li>
+<li>命令与控制</li>
+<li>外部侦查</li>
+<li>初始入侵</li>
+<li>主机侦查</li>
+<li>主机持久性</li>
+<li>主机特权提升</li>
+<li>主机持久性（重复）</li>
+<li>凭据盗取</li>
+<li>密码破解技巧与技巧</li>
+<li>域侦查</li>
+<li>用户模仿</li>
+<li>横向移动</li>
+<li>会话传递</li>
+<li>枢转</li>
+<li>数据保护API</li>
+<li>Kerberos</li>
+<li>Active Directory证书服务</li>
+<li>组策略</li>
+<li>MS SQL服务器</li>
+<li>域统治</li>
+<li>森林和域信任</li>
+<li>本地管理员密码解决方案</li>
+<li>Microsoft Defender Antivirus</li>
+<li>应用程序白名单</li>
+<li>数据搜索和外泄</li>
+<li>扩展Cobalt Strike</li>
+</ol>
+<h1 id="实验室"><a href="#实验室" class="headerlink" title="实验室"></a><strong>实验室</strong></h1><p>以前的实验室貌似是按小时计费，现在有点类似于套餐形式了，一个月三十天，总共可用120小时，随用随停，不需要连接VPN，可通过浏览器直接访问</p>
+<p>合理利用的话，完完全全足够完成课程练习的</p>
+<h1 id="考试模式"><a href="#考试模式" class="headerlink" title="考试模式"></a><strong>考试模式</strong></h1><p>考试机器有8台机器，需要获得6台以上机器的flag.txt才可以通过考试。考试时间为4天，考试机器48小时，也就是说平均下来每天可以访问机器12小时。其中考试没有人监考，考试开始前一小时重新安排或取消预约，并且只需提交flag即可，不需要编写过程报告，考试预约也非常方便，基本是头天可以预约第二天的考试</p>
+<p>由于是通过浏览器访问，在稳定性以及响应速度上，会稍逊于VPN连接，这个没有很好的解决方法</p>
+<p>最终成绩甚至不需要等到考试结束，今天总结昨天的成绩，如果符合通过条件，就算考试还没结束，也会算通过，颁发徽章以及证书</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p>考试其实不难，基本都是课程里面有过练习的，灵活运用一下，基本上都是可以考过的</p>
+<p>CRTO总体课程偏向于内网方向，如果有对内网不够熟练的话，可以考虑学习学习，并且还有配套的环境可供练习，还是非常不错的</p>
+<p>最后放上徽章以及证书</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.68o58jddqog0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.qdb3hg7m628.webp"
+                     
+                ></p>
+]]></content>
+  </entry>
 </search>
