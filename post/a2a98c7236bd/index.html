@@ -9,7 +9,7 @@
     
     <title>
         
-            Delivery - HackTheBox |
+            OSED |
         
         Td
     </title>
@@ -171,7 +171,7 @@
         <div class="article-content-container border-box">
 
             <div class="article-title">
-                <span class="title-hover-animation">Delivery - HackTheBox</span>
+                <span class="title-hover-animation">OSED</span>
             </div>
 
             
@@ -197,13 +197,13 @@
         
             <span class="meta-info-item article-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2023-05-07 09:06:17</span>
-                <span class="mobile">2023-05-07 09:06</span>
+                <span class="pc">2024-06-10 11:31:15</span>
+                <span class="mobile">2024-06-10 11:31</span>
             </span>
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2023-05-07 09:06:17</span>
+                <span class="pc">2024-06-10 12:02:38</span>
             </span>
         
 
@@ -220,7 +220,7 @@
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul>
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/OffSec/">OffSec</a></li>
                         
                     
                 </ul>
@@ -244,220 +244,78 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.2igws1tsj5w0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSED也称EXP-301(Windows User Mode Exploit Development)，这是一门Windows平台漏洞利用的课程，简单来说就是Windows Pwn。</p>
+<p><code>EXP-301</code>的主要内容是Windows下32位的漏洞利用，这也是令很多人为之诟病的地方，但这门课并不是进阶课程，只是一个入门级的课程，所以用32位其实也可以，进阶的课程可以参考Exploit Development，也就是OSEE-EXP-401。</p>
+<p>官方建议学习这门课程的前置技能要求为：</p>
+<ul>
+<li>熟悉调试器</li>
+<li>熟悉32位漏洞利用的基本概念</li>
+<li>能够熟练编写Python3代码</li>
+<li>能够基本阅读和理解C代码</li>
+<li>能够基本阅读和理解基础的汇编代码</li>
+</ul>
+<p>如果暂时没有掌握这些前置要求的话，可以考虑学习一下exp-100，这是一门简单讲解汇编语言，以及Windbg、IDA-Free利用的课程。</p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>OSED考试时间同样是48小时，需要提交考试报告。考试总共三题，前面两题各为30分，最后一题40分，拿到60分即可通过。</p>
+<p>考试中不允许使用GPT之类的AI辅助工具，而且必须使用IDA-Free和Windbg来完成题目，这一点就让很多人不适宜，相比较与IDA-Pro、x32dbg这类工具来讲，规定使用的IDA-Free和Windbg很不方便，但官方解释是为了保证考试过程的相对公平。</p>
+<p>考试中所写的利用脚本必须是为python3格式，可以使用Metasploit社区版来辅助生成shellcode，并且可利用的脚本要作为单独的文件与考试报告一同打包为一个压缩包，并不是将脚本放置在报告pdf中。</p>
+<p>如果只算通过的话，前面两题做出来就可以通过考试，但是必须要完完整整的做出，并且拿到shell，步骤不算分，但缺少步骤会扣分。</p>
+<p>与OSWE一样，OSED考试也不允许将考试文件下载到本地，除非是第三题，考试说明允许下载到本地，但也要求在考试结束时删除文件。</p>
+<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>相对于OSEP、OSWE来说，OSED的课程内容相对较少，但浓缩的就是精华，写的少，不代表内容少。</p>
+<p>在这期间，也看过不少之前通过OSED的师傅写的记录，一般来说，题目分为3个类型：</p>
+<ul>
+<li>Custome Shellcode，会指定你需要通过哪个函数达成什么效果</li>
+<li>给Crash PoC的DEP Bypass，这部分是考ROP，重点中的重点</li>
+<li>对逆向能力要求高的压轴题</li>
+</ul>
+<p>最后一题我看记录做出来的师傅不多，但只做前两题也足以通过考试。</p>
+<p>距离OSCE3就差最后一门了，也是比较的心急，基本上是OSWE知道结果后的当天晚上就开始准备了，先看了一部分exp-100的内容，大概了解了下汇编语言以及汇编指令，随即就开始看教材。</p>
+<p>目标是先保底能做出前两题，如果时间有多，可以尝试做做第三题，所以重点就放在了看前两题的相关章节上。</p>
+<p>OSED总共有三个challenge，我一个没做…，哈哈，在看完教材后，我找了很多课外练习题来做。</p>
+<p>自定义shellcode：</p>
+<ul>
+<li>CreateProcess执行calc.exe</li>
+<li>WinExec执行calc.exe</li>
+<li>CreateServiceA创建一个服务</li>
+<li>GetUserNameA + MessageboxA 弹出”Hello 用户名”</li>
+<li>GetUserNameW + MessageboxW 弹出”主机名 用户名”</li>
+</ul>
+<p>ROP：</p>
+<ul>
+<li>github.com&#x2F;xct&#x2F;vulnbins</li>
+<li>exploits&#x2F;50472 10-Strike Network Inventory Explorer</li>
+<li>exploits&#x2F;17665 D.R. Software Audio Converter 8.1</li>
+<li>exploits&#x2F;44522 exploits&#x2F;47411 Easy File Sharing Web Server 7.2</li>
+<li>exploits&#x2F;46269 Faleemi Desktop Software 1.8</li>
+<li>exploits&#x2F;50650 vuplayer 2.49</li>
+<li>exploits&#x2F;43156 VX Search 10.2.14</li>
+</ul>
+<p>其实ROP有很多都下载不到对应版本了，这就只能在去找找其他师傅自己编写的程序练习。</p>
+<p>后续的时间只有端午节有假了，如果还要等的话就要等9月10月的中秋国庆了，想着不管咋样，先预约一波端午节的考试。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.118wdpx1g428.webp"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/20240523231746.9gwf59lkl4.webp"
                      
                 ></p>
+<h1 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h1><p>这绝对是我目前经历过的最难最难最难的OffSec考试。</p>
+<p>这次考试将折磨发挥的淋漓尽致，由于我之前并没有任何有关这方面的知识学习，我拿到题目和考试要求后，我坐在那里发呆了半个小时，不断地回忆之前做练习时候的那种状态。</p>
+<p>第一题是DEP Bypass，也就是ROP，这一题我没有开始就做，选择先开始第二题，自定义shellcode，这一题我从开考开始计算，十二个小时后我才成功解决，随后休息了一段时间，开始尝试第一题，这一试就出问题了，开头就被卡住，卡了我三四个小时，后面到凌晨的三点多受不了了，和监考说去睡了会，早上七点多又起来继续，这一干直接干到了第二天的早上六七点，期间想放弃的念头不断升起，甚至于我都已经想和监考说结束考试了，但那句话还是在消息框没有发送出去。</p>
+<p>早上六七点终于解决了ROP的题目，将脚本完善完善，运行后拿到目标机器的反弹shell，就马不停蹄的将报告也写好，写完之后和监考说了结束考试，提交了报告，立马倒头就睡，一觉睡到晚上六点多。</p>
+<p>原本我还以为结果要等第二天，没想到这次效率非常之快，我提交报告差不多是上午的八九点，晚上十一点多的时候就在预约考试页面看到了通过通知，还没有收到邮件。</p>
+<p>在第二天的上午，我收到了OSED的通过邮件，以及OSCE3的邮件，有个很神奇的地方就是，OSCE3的邮件来的比OSED的邮件还要快。</p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.2s2m8h5r7580.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.12iahmoirz4w.webp"
-                     
-                ></p>
-<p>访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.9cyksjqn00o.webp"
-                     
-                ></p>
-<p>扫一下目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.2oynwn9nwi00.webp"
-                     
-                ></p>
-<p>没什么用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.39kvvx7hz940.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.6xpz6f731bk0.webp"
-                     
-                ></p>
-<p>发现域名，添加到hosts文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.7d5t176v89o0.webp"
-                     
-                ></p>
-<p>发现cms名称</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.3088jk1hmge0.webp"
-                     
-                ></p>
-<p>搜一下有无exp可利用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.31yyipn53k40.webp"
-                     
-                ></p>
-<p>还不知道版本，无法确定是否可利用</p>
-<p>继续扫目录</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1tj0me5kkoe8.webp"
-                     
-                ></p>
-<p>扫出一大堆</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1f7r6o154xa8.webp"
-                     
-                ></p>
-<p>在这可以生成一个票据，之后会给一个查询码和一个邮箱地址</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1dm92t2hgwww.webp"
-                     
-                ></p>
-<p>在这可以检查票据</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1fl59jemza9s.webp"
-                     
-                ></p>
-<p>没有可利用信息</p>
-<p>之前还在80主页发现一个链接</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.7dhthjgbrsw0.webp"
-                     
-                ></p>
-<p>尝试用那个<a class="link"   href="mailto:&#55;&#x37;&#x34;&#x39;&#57;&#x36;&#51;&#x40;&#100;&#x65;&#x6c;&#x69;&#118;&#101;&#114;&#121;&#x2e;&#x68;&#x74;&#98;" >&#55;&#x37;&#x34;&#x39;&#57;&#x36;&#51;&#x40;&#100;&#x65;&#x6c;&#x69;&#118;&#101;&#114;&#121;&#x2e;&#x68;&#x74;&#98;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.6pmthkq9to00.webp"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.7egmh7osy7.webp"
                      
                 ></p>
 <p><img  
                      lazyload
                      alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1mw8ppy510ww.webp"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/373e02b3d0a57a15a8ed077e87a2813d.sysq6l7yh.webp"
                      
                 ></p>
-<p>验证链接发到了票据查询这，访问该地址</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1ik9wielpkgw.webp"
-                     
-                ></p>
-<p>点击internal</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.26aue1zeberk.webp"
-                     
-                ></p>
-<p>这里貌似有一个ssh登陆的用户和密码，尝试登陆一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.4qsb0lhy8ky0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.60fv7uw3jyo0.webp"
-                     
-                ></p>
-<p>在网站目录下发现ost-config.php配置文件，内部包含数据库的连接账户和密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.1v0duns4c3z4.webp"
-                     
-                ></p>
-<p>数据库中并无可利用信息</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.6p5opjrjavk0.webp"
-                     
-                ></p>
-<p>在另一个目录又发现一个配置文件，内部同样包含一个数据库的账号和密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.5d87bb4y0t80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.4s0t80tzax40.webp"
-                     
-                ></p>
-<p>在Users表中找到root的密码，尝试爆破一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.47yrwnw3spw0.webp"
-                     
-                ></p>
-<p>查看一下hash类型</p>
-<p><code>https://hashcat.net/wiki/doku.php?id=hashcat</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.3r50vy1v4mu0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.5xr2rv8en580.webp"
-                     
-                ></p>
-<p>这边好像给了提示，PleaseSubscribe!这段是密码的一部分，采用hashcat掩码爆破</p>
-<p><code>hashcat -m 3200 -a 3 -i --increment-min 16 --increment-max 20 hash.txt PleaseSubscribe\!?a?a?a?a</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.4cb4wb6icoi0.webp"
-                     
-                ></p>
-<p>切换root</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.48d1w0p1wxu0.webp"
-                     
-                ></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这次还是有点勉强了，差一点就挂了，还是因为只差最后一门，有点心急，学习时间不太够。</p>
 
             </div>
 
@@ -467,7 +325,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Hack-The-Box/"><i class="icon fas fa-hashtag"></i>Hack-The-Box</a>&nbsp;
+                            <a href="/tags/OffSec/"><i class="icon fas fa-hashtag"></i>OffSec</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -479,13 +337,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/post/0d669e781980/"
+                               href="/post/fee0f83bc8bd/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Armageddon - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">OSCE3</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -495,10 +353,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/post/f413d8c7139d/"
+                               href="/post/e2351bb11e1e/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item text-ellipsis">Ready - HackTheBox</span>
+                                <span class="post-nav-title-item text-ellipsis">OSWP</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -525,7 +383,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">考试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol>
     </div>
 </div>
 
@@ -688,7 +546,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">备考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">考试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol>
     </div>
 </div>
 

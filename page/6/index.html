@@ -173,6 +173,160 @@
                 <div class="home-article-item-bottom border-box">
                     
                     <h3 class="home-article-title border-box">
+                        <a href="/post/dea21469d468/">
+                            Doctor - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+
+访问80端口
+
+下方这个邮箱貌似是个域名地址，添加到hosts文件
+
+一个登录框，注册一个进去看看
+
+
+扫个目录
+
+
+一个空白页
+
+之前的文本编辑处有ssti注入，写入注入语句后可以在archive目录下查看结果
+https:/...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Fri May 05 2023 18:14:11 GMT+0800">2023-05-05</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/dea21469d468/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
+                        <a href="/post/5dffe8b93821/">
+                            Tabby - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+
+貌似是个tomcat的站
+先看看80
+
+
+发现一个域名，添加到hosts文件
+
+这里疑似一个文件包含
+
+确实是文件包含，包含他本身看一下代码
+
+这就是打开文件，并不存在包含执行文件
+在看看8080
+
+貌似就是个tomcat的后台...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Fri May 05 2023 15:36:23 GMT+0800">2023-05-05</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/5dffe8b93821/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
                         <a href="/post/817e25a1d628/">
                             Admirer - HackTheBox
                         </a>
@@ -745,156 +899,6 @@ gobuster dir -u &quot;http://blocky.htb/&quo...
 
     
         <a class="home-read-more" href="/post/c1cc1ff33f67/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <div class="home-article-item-bottom border-box">
-                    
-                    <h3 class="home-article-title border-box">
-                        <a href="/post/d7b4657d7cb8/">
-                            Mirai - HackTheBox
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content keep-markdown-body">
-                        
-                            
-nmap扫描
-
-
-
-访问80
-
-啥也没有，看看32400
-
-一个登录框
-
-弱口令不行，爆破也不行，扫个目录看看
-
-gobuster报错了，加个-b 401即可
-
-扫出了挺多，但访问起来都是
-
-再回80扫个目录看看
-
-有个admin
-
-树莓派？
-
-
-...
-                        
-                    </div>
-
-                    
-
-<div class="article-meta-info-container border-box home">
-    <div class="article-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Sat Apr 22 2023 10:41:57 GMT+0800">2023-04-22</span>
-            </span>
-        
-
-
-        
-
-        
-
-        
-            <span class="article-tag meta-info-item border-box">
-                <i class="icon fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/d7b4657d7cb8/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <div class="home-article-item-bottom border-box">
-                    
-                    <h3 class="home-article-title border-box">
-                        <a href="/post/d81c24607f5d/">
-                            Haircut - HackTheBox
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content keep-markdown-body">
-                        
-                            
-nmap扫描
-
-
-
-访问80端口
-
-就一张图片，扫个目录
-gobuster dir -u &quot;http://10.10.10.24&quot; -w /usr/share/dirbuster/wordlists/directory-list...
-                        
-                    </div>
-
-                    
-
-<div class="article-meta-info-container border-box home">
-    <div class="article-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Fri Apr 21 2023 21:54:31 GMT+0800">2023-04-21</span>
-            </span>
-        
-
-
-        
-
-        
-
-        
-            <span class="article-tag meta-info-item border-box">
-                <i class="icon fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/d81c24607f5d/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
     
 </div>
 
