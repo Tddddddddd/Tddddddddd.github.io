@@ -173,6 +173,87 @@
                 <div class="home-article-item-bottom border-box">
                     
                     <h3 class="home-article-title border-box">
+                        <a href="/post/36d451523fa9/">
+                            Passage - HackTheBox
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content keep-markdown-body">
+                        
+                            
+nmap扫描
+
+
+
+访问80
+
+感觉这是个注入
+
+
+不是注入
+扫个目录
+
+这个站点有防护措施，只要一开扫，就会被封禁一段时间
+那就只能手动找了
+
+这里好像有另外的目录
+
+没什么可利用信息，看看他上级目录有没有东西
+
+一个登录框，注册进去看看
+
+还是...
+                        
+                    </div>
+
+                    
+
+<div class="article-meta-info-container border-box home">
+    <div class="article-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Sat May 06 2023 10:27:57 GMT+0800">2023-05-06</span>
+            </span>
+        
+
+
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/post/36d451523fa9/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <div class="home-article-item-bottom border-box">
+                    
+                    <h3 class="home-article-title border-box">
                         <a href="/post/c69635a31a1b/">
                             SneakyMailer - HackTheBox
                         </a>
@@ -838,78 +919,6 @@ nmap扫描
 
     
         <a class="home-read-more" href="/post/318ed2c71048/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <div class="home-article-item-bottom border-box">
-                    
-                    <h3 class="home-article-title border-box">
-                        <a href="/post/f72fd971108b/">
-                            Frolic - HackTheBox
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content keep-markdown-body">
-                        
-                            
-nmap扫描
-
-
-
-开放有两个http端口
-
-
-弱口令登不上，扫目录
-扫目录的过程中，看到445和139开放了Samba，也尝试一下
-enum4linux -a 10.10.10.111
-
-
-smbclient \\\\WORKGROUP\\pri...
-                        
-                    </div>
-
-                    
-
-<div class="article-meta-info-container border-box home">
-    <div class="article-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-article-history" data-updated="Sun Apr 23 2023 15:40:50 GMT+0800">2023-04-23</span>
-            </span>
-        
-
-
-        
-
-        
-
-        
-            <span class="article-tag meta-info-item border-box">
-                <i class="icon fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hack-The-Box/">Hack-The-Box</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/post/f72fd971108b/">阅读全文&nbsp;<i class="icon fas fa-angles-right"></i></a>
     
 </div>
 
