@@ -260,7 +260,10 @@
 <p>考试中所写的利用脚本必须是为python3格式，可以使用Metasploit社区版来辅助生成shellcode，并且可利用的脚本要作为单独的文件与考试报告一同打包为一个压缩包，并不是将脚本放置在报告pdf中。</p>
 <p>如果只算通过的话，前面两题做出来就可以通过考试，但是必须要完完整整的做出，并且拿到shell，步骤不算分，但缺少步骤会扣分。</p>
 <p>与OSWE一样，OSED考试也不允许将考试文件下载到本地，除非是第三题，考试说明允许下载到本地，但也要求在考试结束时删除文件。</p>
-<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>相对于OSEP、OSWE来说，OSED的课程内容相对较少，但浓缩的就是精华，写的少，不代表内容少。</p>
+<h1 id="备考"><a href="#备考" class="headerlink" title="备考"></a>备考</h1><p>备考内容摘自袍哥@evilAdan0s </p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://red-team.tips/post/oxqLv6NzK/" >https://red-team.tips/post/oxqLv6NzK/<i class="fas fa-external-link-alt"></i></a></p>
+<p> OSED部分，ipao巨有面子！</p>
+<p>相对于OSEP、OSWE来说，OSED的课程内容相对较少，但浓缩的就是精华，写的少，不代表内容少。</p>
 <p>在这期间，也看过不少之前通过OSED的师傅写的记录，一般来说，题目分为3个类型：</p>
 <ul>
 <li>Custome Shellcode，会指定你需要通过哪个函数达成什么效果</li>
@@ -270,25 +273,13 @@
 <p>最后一题我看记录做出来的师傅不多，但只做前两题也足以通过考试。</p>
 <p>距离OSCE3就差最后一门了，也是比较的心急，基本上是OSWE知道结果后的当天晚上就开始准备了，先看了一部分exp-100的内容，大概了解了下汇编语言以及汇编指令，随即就开始看教材。</p>
 <p>目标是先保底能做出前两题，如果时间有多，可以尝试做做第三题，所以重点就放在了看前两题的相关章节上。</p>
-<p>OSED总共有三个challenge，我一个没做…，哈哈，在看完教材后，我找了很多课外练习题来做。</p>
-<p>自定义shellcode：</p>
-<ul>
-<li>CreateProcess执行calc.exe</li>
-<li>WinExec执行calc.exe</li>
-<li>CreateServiceA创建一个服务</li>
-<li>GetUserNameA + MessageboxA 弹出”Hello 用户名”</li>
-<li>GetUserNameW + MessageboxW 弹出”主机名 用户名”</li>
-</ul>
-<p>ROP：</p>
-<ul>
-<li>github.com&#x2F;xct&#x2F;vulnbins</li>
-<li>exploits&#x2F;50472 10-Strike Network Inventory Explorer</li>
-<li>exploits&#x2F;17665 D.R. Software Audio Converter 8.1</li>
-<li>exploits&#x2F;44522 exploits&#x2F;47411 Easy File Sharing Web Server 7.2</li>
-<li>exploits&#x2F;46269 Faleemi Desktop Software 1.8</li>
-<li>exploits&#x2F;50650 vuplayer 2.49</li>
-<li>exploits&#x2F;43156 VX Search 10.2.14</li>
-</ul>
+<p>OSED总共有三个challenge，我一个没做…，哈哈，在看完教材后，找了一些其他课外练习题来做。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/Tddddddddd/picx-images-hosting@master/image/image.8hgcfh0gsb.webp"
+                     
+                ></p>
 <p>其实ROP有很多都下载不到对应版本了，这就只能在去找找其他师傅自己编写的程序练习。</p>
 <p>后续的时间只有端午节有假了，如果还要等的话就要等9月10月的中秋国庆了，想着不管咋样，先预约一波端午节的考试。</p>
 <p><img  
